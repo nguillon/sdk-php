@@ -19,5 +19,3 @@ try {
   print $e->getMessage() . "\n";
   print $e->getTraceAsString() . "\n";
 }
-
-

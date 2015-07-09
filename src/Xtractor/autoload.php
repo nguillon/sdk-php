@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @param $className
+ * @link http://www.php-fig.org/psr/psr-0/
+ *
+ * This is PSR-0 based autoload method.
+ */
 function xtractor_api_php_client_autoload($className)
 {
   $classPath = explode('_', $className);
