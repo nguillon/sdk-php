@@ -12,3 +12,4 @@
 //@TODO: Add more advanced examples
 //@TODO: Add a simple script/class/method to signup our API
 //@TODO: Add more stable/improved access token validation
+//@TODO: Provide upload_directory
