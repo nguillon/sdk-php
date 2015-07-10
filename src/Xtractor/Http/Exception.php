@@ -1,15 +1,13 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
+use Xtractor;
 
 /**
- * Class Xtractor_Http_Exception
+ * Class Xtractor\Http\Exception
  *
  * This class is used to throw more specifc exceptions. You can handle
  * them differently.
  */
-class Xtractor_Http_Exception extends Xtractor_Exception
+class Exception extends Xtractor\Exception
 {
 }

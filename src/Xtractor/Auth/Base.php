@@ -1,35 +1,34 @@
 <?php
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Auth;
+use Xtractor\Http;
 
 /**
- * Class Xtractor_Auth_Base
+ * Class Xtractor\Auth\Base
  *
  * This class is used to set the authentication header for API calls.
  */
-class Xtractor_Auth_Base
+class Base
 {
   /**
    * @var String
    */
   private $_accessToken = null;
   /**
-   * @var Xtractor_Http_Header
+   * @var Http\Header
    */
   private $_header = null;
 
   /**
-   * @param Xtractor_Http_Header $header
+   * @param Http\Header $header
    */
-  public function __construct(Xtractor_Http_Header $header)
+  public function __construct(Http\Header $header)
   {
     $this->_header = $header;
   }
 
   /**
    * @param $accessToken
-   * @throws Xtractor_Auth_Exception
+   * @throws Exception
    *
    * Checks the given access token and set them to class property to use them
    * in class methods.
@@ -41,7 +40,7 @@ class Xtractor_Auth_Base
     $accessToken = trim($accessToken);
 
     if ( empty($accessToken) === TRUE ) {
-      throw new Xtractor_Auth_Exception('Given $code is empty.');
+      throw new Exception('Given $code is empty.');
     }
 
     $this->_accessToken = (String) $accessToken;
@@ -67,7 +66,7 @@ class Xtractor_Auth_Base
   }
 
   /**
-   * @throws Xtractor_Auth_Exception
+   * @throws Exception
    *
    * Sets current access token to header object. This ensures (if token is
    * known by api) an authenticated request.
@@ -75,7 +74,7 @@ class Xtractor_Auth_Base
   private function setAccessKeyToHeader()
   {
     if (is_null($this->_header)) {
-      throw new Xtractor_Auth_Exception('Missing Xtractor_Http_Header object.');
+      throw new Exception('Missing Xtractor\Http\Header object.');
     }
 
     $this->_header->addField('X-API-Key', $this->getAccessToken());

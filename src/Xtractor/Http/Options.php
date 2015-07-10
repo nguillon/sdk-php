@@ -1,16 +1,13 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
 
 /**
- * Class Xtractor_Http_Options
+ * Class Xtractor\Http\Options
  *
  * This class delivers a business object to handle request options in a defined
  * structure.
  */
-class Xtractor_Http_Options
+class Options
 {
   /**
    * @var array
@@ -31,14 +28,14 @@ class Xtractor_Http_Options
   /**
    * @param $key
    * @return mixed
-   * @throws Xtractor_Http_Exception
+   * @throws Exception
    *
    * Returns the value of single option.
    */
   public function getOption($key)
   {
     if (!array_key_exists($key, $this->_options)) {
-      throw new Xtractor_Http_Exception('Undefined option called.');
+      throw new Exception('Undefined option called.');
     }
 
     return $this->_options[$key];

@@ -1,16 +1,13 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
 
 /**
- * Class Xtractor_Http_Response
+ * Class Xtractor\Http\Response
  *
  * This class is designed like a business object but includes some methods
  * to parse responses from api.
  */
-class Xtractor_Http_Response
+class Response
 {
   /**
    * @var null|string

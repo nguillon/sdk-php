@@ -1,6 +1,7 @@
 <?php
+namespace Xtractor\Utils;
 
-class Xtractor_Utils_Url
+class Url
 {
   public static function isValidUrl($url)
   {

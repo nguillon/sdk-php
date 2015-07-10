@@ -1,16 +1,13 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
 
 /**
- * Class Xtractor_Http_Header
+ * Class Xtractor\Http\Header
  *
  * This class delivers a business object to handle request header in a defined
  * structure.
  */
-class Xtractor_Http_Header
+class Header
 {
   /**
    * @var array
@@ -39,7 +36,7 @@ class Xtractor_Http_Header
 
   /**
    * @return array
-   * @throws Xtractor_Http_Exception
+   * @throws Exception
    *
    * Returns an array with all header fields concatenated in following format:
    * <fieldname>:<fieldvalue>
@@ -58,14 +55,14 @@ class Xtractor_Http_Header
   /**
    * @param $field
    * @return string
-   * @throws Xtractor_Http_Exception
+   * @throws Exception
    *
    * Retruns a formated string of called header field.
    */
   public function getFieldString($field)
   {
     if (!array_key_exists($field, $this->_headers)) {
-      throw new Xtractor_Http_Exception('Requested header field not exist.');
+      throw new Exception('Requested header field not exist.');
     }
 
     return sprintf('%s: %s', $field, $this->_headers[$field]);

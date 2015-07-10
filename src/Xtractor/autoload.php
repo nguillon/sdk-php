@@ -2,20 +2,23 @@
 
 /**
  * @param $className
- * @link http://www.php-fig.org/psr/psr-0/
+ * @link http://www.php-fig.org/psr/psr-4/
  *
- * This is PSR-0 based autoload method.
+ * This is PSR-4 based autoload method.
  */
-function xtractor_api_php_client_autoload($className)
-{
-  $classPath = explode('_', $className);
-  if ($classPath[0] != 'Xtractor') {
+function xtractor_api_php_client_autoload($className) {
+  $prefix = 'Xtractor\\';
+
+  $base_dir = __DIR__ . '/';
+  $len = strlen($prefix);
+
+  if (strncmp($prefix, $className, $len) !== 0) {
     return;
   }
-  // Drop 'Xtractor', and maximum class file path depth in this project is 3.
-  $classPath = array_slice($classPath, 1, 2);
 
-  $filePath = dirname(__FILE__) . '/' . implode('/', $classPath) . '.php';
+  $relative_class = substr($className, $len);
+
+  $filePath = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
 
   if (file_exists($filePath)) {
     require_once $filePath;

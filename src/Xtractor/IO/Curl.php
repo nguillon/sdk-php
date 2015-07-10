@@ -1,15 +1,14 @@
 <?php
+namespace Xtractor\IO;
+use Xtractor\Http;
 
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
 
 /**
- * Class Xtractor_IO_Curl
+ * Class Xtractor\IO\Curl
  *
  * This class encapsulate cURL request.
  */
-class Xtractor_IO_Curl
+class Curl
 {
   /**
    * @var null
@@ -17,29 +16,29 @@ class Xtractor_IO_Curl
   private $_curlHandler = null;
 
   /**
-   * @throws Xtractor_IO_Exception
+   * @throws Exception
    *
    * Check if cURL extension is enabled and initialize cURL handler.
    */
   public function __construct()
   {
     if (!extension_loaded('curl')) {
-      throw new Xtractor_IO_Exception('The cURL IO handler requires the cURL extension to be enabled');
+      throw new Exception('The cURL IO handler requires the cURL extension to be enabled');
     }
 
     $this->_curlHandler = curl_init();
   }
 
   /**
-   * @param Xtractor_Http_Request $request
-   * @return Xtractor_Http_Response
-   * @throws Xtractor_IO_Exception
+   * @param Http\Request $request
+   * @return Http\Response
+   * @throws Exception
    *
    * This method executes cURL request based on Xtracotr_Http_Request object.
    * In this method some default cURL options are defined. But in fact
    * every option can be overriden if a user setted them to request object.
    */
-  public function executeRequest(Xtractor_Http_Request $request)
+  public function executeRequest(Http\Request $request)
   {
     $this->setDefaultOptions($request);
 
@@ -70,11 +69,11 @@ class Xtractor_IO_Curl
   }
 
   /**
-   * @param Xtractor_Http_Request $request
+   * @param Http\Request $request
    *
    * Sets basic cURL options.
    */
-  private function setDefaultOptions(Xtractor_Http_Request $request)
+  private function setDefaultOptions(Http\Request $request)
   {
     curl_setopt($this->_curlHandler, CURLOPT_URL, $request->getUrl());
     curl_setopt($this->_curlHandler, CURLOPT_CUSTOMREQUEST, $request->getRequestMethod());
@@ -87,44 +86,44 @@ class Xtractor_IO_Curl
   }
 
   /**
-   * @param Xtractor_Http_Request $request
-   * @throws Xtractor_IO_Exception
+   * @param Http\Request $request
+   * @throws Exception
    *
    * If the request method is POST we need to set postfields options to our
    * cURL request.
    */
-  private function setPostFields(Xtractor_Http_Request $request)
+  private function setPostFields(Http\Request $request)
   {
     $requestBody = $request->getRequestBody();
 
-    if (!is_object($requestBody) || !is_a($requestBody, 'Xtractor_Http_Body')) {
-      throw new Xtractor_IO_Exception('Current "$requestBody" is no object or has unexpected class.');
+    if (!is_object($requestBody) || !is_a($requestBody, 'Xtractor\Http\Body')) {
+      throw new Exception('Current "$requestBody" is no object or has unexpected class.');
     }
 
     if ( !method_exists($requestBody, 'getFields') ) {
-      throw new Xtractor_IO_Exception('Missing method "getFields" in class Xtractor_Http_Body.');
+      throw new Exception('Missing method "getFields" in class Xtractor\Http\Body.');
     }
 
     curl_setopt($this->_curlHandler, CURLOPT_POSTFIELDS, $requestBody->getFields());
   }
 
   /**
-   * @param Xtractor_Http_Request $request
-   * @throws Xtractor_IO_Exception
+   * @param Http\Request $request
+   * @throws Exception
    *
    * You can override or add any cURL option. In this method we set this options
    * to our cURL handler.
    */
-  private function addOrOverrideRequestOptions(Xtractor_Http_Request $request)
+  private function addOrOverrideRequestOptions(Http\Request $request)
   {
     $requestOptions = $request->getRequestOptions();
 
-    if (!is_object($requestOptions) || !is_a($requestOptions, 'Xtractor_Http_Options')) {
-      throw new Xtractor_IO_Exception('Current "$requestOptions" is no object or has unexpected class.');
+    if (!is_object($requestOptions) || !is_a($requestOptions, 'Xtractor\Http\Options')) {
+      throw new Exception('Current "$requestOptions" is no object or has unexpected class.');
     }
 
     if ( !method_exists($requestOptions, 'getAll') ) {
-      throw new Xtractor_IO_Exception('Missing method "getAll" in class Xtractor_Http_Options.');
+      throw new Exception('Missing method "getAll" in class Xtractor\Http\Options.');
     }
 
     foreach ($requestOptions->getAll() as $key => $var) {
@@ -134,8 +133,8 @@ class Xtractor_IO_Curl
 
   /**
    * @param $response
-   * @return Xtractor_Http_Response
-   * @throws Xtractor_IO_Exception
+   * @return Http\Response
+   * @throws Exception
    *
    * Evaluates the response from cURL call. If everything looks good
    * a response object will be built.
@@ -146,14 +145,14 @@ class Xtractor_IO_Curl
       $error = curl_error($this->_curlHandler);
       $code = curl_errno($this->_curlHandler);
 
-      throw new Xtractor_IO_Exception($error, $code);
+      throw new Exception($error, $code);
     }
 
     $headerSize = curl_getinfo($this->_curlHandler, CURLINFO_HEADER_SIZE);
     $responseCode = curl_getinfo($this->_curlHandler, CURLINFO_HTTP_CODE);
     $totalTime = curl_getinfo($this->_curlHandler, CURLINFO_TOTAL_TIME);
 
-    return new Xtractor_Http_Response($responseCode, $headerSize, $totalTime, $response);
+    return new Http\Response($responseCode, $headerSize, $totalTime, $response);
   }
 
   /**

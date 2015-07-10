@@ -1,16 +1,13 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
 
 /**
- * Class Xtractor_Http_Request
+ * Class Xtractor\Http\Request
  *
  * This class delivers a business object to handle requests in a defined
  * structure.
  */
-class Xtractor_Http_Request
+class Request
 {
   /**
    * @var string
@@ -21,21 +18,21 @@ class Xtractor_Http_Request
    */
   private $requestMethod = 'GET';
   /**
-   * @var Xtractor_Http_Header
+   * @var Header
    */
   private $requestHeader;
   /**
-   * @var Xtractor_Http_Body
+   * @var Body
    */
   private $requestBody;
   /**
-   * @var Xtractor_Http_Options
+   * @var Options
    */
   private $requestOptions;
 
   /**
    * @param $method
-   * @throws Xtractor_Http_Exception
+   * @throws Exception
    */
   public function setRequestMethod($method)
   {
@@ -43,7 +40,7 @@ class Xtractor_Http_Request
     $valid_methods = array('POST', 'GET', 'PUT', 'DELETE');
 
     if (!in_array($method, $valid_methods)) {
-      throw new Xtractor_Http_Exception(sprintf('Invalid method called. - Called: %s', $method));
+      throw new Exception(sprintf('Invalid method called. - Called: %s', $method));
     }
 
     $this->requestMethod = strtoupper($method);
@@ -74,30 +71,30 @@ class Xtractor_Http_Request
   }
 
   /**
-   * @param Xtractor_Http_Header $headers
+   * @param Header $headers
    */
-  public function setRequestHeader(Xtractor_Http_Header $headers)
+  public function setRequestHeader(Header $headers)
   {
     $this->requestHeader = $headers;
   }
 
   /**
    * @return mixed
-   * @throws Xtractor_IO_Exception
+   * @throws Exception
    */
   public function getRequestHeader()
   {
     if ( !method_exists($this->requestHeader, 'getFieldStrings') ) {
-      throw new Xtractor_IO_Exception('Missing method "getFieldStrings" in class Xtractor_Http_Header.');
+      throw new Exception('Missing method "getFieldStrings" in class Xtractor\Http\Header.');
     }
 
     return $this->requestHeader->getFieldStrings();
   }
 
   /**
-   * @param Xtractor_Http_Body $body
+   * @param Body $body
    */
-  public function setRequestBody(Xtractor_Http_Body $body)
+  public function setRequestBody(Body $body)
   {
     $this->requestBody = $body;
   }
@@ -111,9 +108,9 @@ class Xtractor_Http_Request
   }
 
   /**
-   * @param Xtractor_Http_Options $options
+   * @param Options $options
    */
-  public function setRequestOptions(Xtractor_Http_Options $options)
+  public function setRequestOptions(Options $options)
   {
     $this->requestOptions = $options;
   }

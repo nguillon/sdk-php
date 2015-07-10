@@ -1,22 +1,21 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/autoload.php';
-}
+namespace Xtractor;
+use Xtractor\Client\Base;
+use Xtractor\Utils\Files;
 
 /**
- * Class Xtractor_Client
+ * Class Xtractor\Client
  *
  * This class is the gateway to our api.
  * Here are all supported api methods declared.
  */
-class Xtractor_Client extends Xtractor_Client_Base
+class Client extends Base
 {
   /**
    * @param null $apiUrl
    *
    * A user can override default api url. Further explanations:
-   * Xtractor_Client_Base::_setApiUrl
+   * Xtractor\Client\Base::_setApiUrl
    */
   public function __construct($apiUrl = null) {
     parent::__construct($apiUrl);
@@ -25,9 +24,9 @@ class Xtractor_Client extends Xtractor_Client_Base
   /**
    * @param $filePath
    * @param array $extractors
-   * @return Xtractor_Http_Response
-   * @throws Xtractor_Exception
-   * @throws Xtractor_Http_Exception
+   * @return Response
+   * @throws Exception
+   * @throws Http\Exception
    *
    * This method uploads a file to our api and returns the response body
    * from that request.
@@ -36,8 +35,8 @@ class Xtractor_Client extends Xtractor_Client_Base
    */
   public function upload($filePath, $extractors = array())
   {
-    if ( !Xtractor_Utils_Files::isValidFileType($filePath) ) {
-      throw new Xtractor_Exception('Invalid file type.');
+    if ( !Files::isValidFileType($filePath) ) {
+      throw new Exception('Invalid file type.');
     }
 
     //Set Method

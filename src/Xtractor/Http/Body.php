@@ -1,16 +1,14 @@
 <?php
-
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Http;
+use Xtractor\Utils\Files;
 
 /**
- * Class Xtractor_Http_Body
+ * Class Xtractor\Http\Body
  *
  * This class delivers a business object to handle request body in a defined
  * structure.
  */
-class Xtractor_Http_Body
+class Body
 {
   /**
    * @var array
@@ -54,16 +52,16 @@ class Xtractor_Http_Body
    */
   private function isUpload($value)
   {
-    return Xtractor_Utils_Files::isValidFilePath($value);
+    return Files::isValidFilePath($value);
   }
 
   /**
    * @param $filePath
    * @return CURLFile
-   * @throws Xtractor_Exception
+   * @throws Exception
    */
   private function buildCurlFile($filePath)
   {
-    return curl_file_create($filePath, Xtractor_Utils_Files::getMimeType($filePath), basename($filePath));
+    return curl_file_create($filePath, Files::getMimeType($filePath), basename($filePath));
   }
 }

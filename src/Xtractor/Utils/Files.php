@@ -1,6 +1,8 @@
 <?php
+namespace Xtractor\Utils;
+use Xtractor;
 
-class Xtractor_Utils_Files
+class Files
 {
   public static function isValidFilePath($filePath)
   {
@@ -29,7 +31,7 @@ class Xtractor_Utils_Files
     ];
 
     if (!self::isValidFilePath($filePath)) {
-      throw new Xtractor_Exception('Invalid file path.');
+      throw new Exception('Invalid file path.');
     }
 
     return (bool) in_array(self::getMimeType($filePath), $supportedMimeTypes);
@@ -38,7 +40,7 @@ class Xtractor_Utils_Files
   public static function getMimeType($filePath)
   {
     if (!self::isValidFilePath($filePath)) {
-      throw new Xtractor_Exception('Invalid file path.');
+      throw new Exception('Invalid file path.');
     }
 
     $infoResource = finfo_open(FILEINFO_MIME_TYPE);

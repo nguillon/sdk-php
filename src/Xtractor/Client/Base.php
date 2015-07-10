@@ -1,12 +1,13 @@
 <?php
-if (!class_exists('Xtractor_Client')) {
-  require_once dirname(__FILE__) . '/../autoload.php';
-}
+namespace Xtractor\Client;
+use Xtractor\Auth;
+use Xtractor\Http;
+use Xtractor\IO\Curl;
 
 /**
- * Class Xtractor_Client_Base
+ * Class Xtractor\Client\Base
  */
-class Xtractor_Client_Base extends Xtractor_Auth_Base
+class Base extends Auth\Base
 {
   /**
    * @var string
@@ -17,24 +18,24 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
    */
   private $_apiUrl = NULL;
   /**
-   * @var null|Xtractor_Http_Request
+   * @var null|Http\Request
    */
   private $_request = NULL;
   /**
-   * @var null|Xtractor_Http_Response
+   * @var null|Http\Response
    */
   private $_last_request_response = null;
 
   /**
-   * @var null|Xtractor_Http_Header
+   * @var null|Http\Header
    */
   protected $_header  = NULL;
   /**
-   * @var null|Xtractor_Http_Body
+   * @var null|Http\Body
    */
   protected $_body    = NULL;
   /**
-   * @var null|Xtractor_Http_Options
+   * @var null|Http\Options
    */
   protected $_options = NULL;
 
@@ -44,10 +45,10 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
   public function __construct($apiUrl = NULL)
   {
     //Init objects
-    $this->_request = new Xtractor_Http_Request();
-    $this->_header = new Xtractor_Http_Header();
-    $this->_body = new Xtractor_Http_Body();
-    $this->_options = new Xtractor_Http_Options();
+    $this->_request = new Http\Request();
+    $this->_header = new Http\Header();
+    $this->_body = new Http\Body();
+    $this->_options = new Http\Options();
 
     //Set defaults
     $this->_setApiUrl($apiUrl);
@@ -59,7 +60,7 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
 
   /**
    * @param $method
-   * @throws Xtractor_Http_Exception
+   * @throws Http\Exception
    *
    * Sets the reuqes method to request object. Actually only the method "POST"
    * makes a different, because in this case we need to set CURLOPT_POSTFIELDS
@@ -71,10 +72,9 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
   }
 
   /**
-   * @return Xtractor_Http_Response
-   * @throws Xtractor_Exception
-   * @throws Xtractor_Http_Exception
-   * @throws Xtractor_IO_Exception
+   * @return Http\Response
+   * @throws Exception
+   * @throws Http\Exception
    *
    * This method sets the required values and objects to the §request instance
    * and execute request.
@@ -82,10 +82,10 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
   protected function executeRequest()
   {
     if (!$this->hasAccessToken()) {
-      throw new Xtractor_Http_Exception('Missing api key. You have to set them first.');
+      throw new Exception('Missing api key. You have to set them first.');
     }
 
-    $xtractorIoCurl = new Xtractor_IO_Curl();
+    $xtractorIoCurl = new Curl();
 
     $this->_request->setUrl($this->_apiUrl);
     $this->_request->setRequestHeader($this->_header);
@@ -105,20 +105,20 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
    *
    * This method works silently if no json content was returned.
    *
-   * @throws Xtractor_Exception
+   * @throws Exception
    */
   private function decodeResponseBody()
   {
     if ( !method_exists($this->_last_request_response, 'getResponseHeader') ) {
-      throw new Xtractor_IO_Exception('Missing method "getResponseHeader" in class Xtractor_Http_Response.');
+      throw new Exception('Missing method "getResponseHeader" in class Xtractor\Http\Response.');
     }
 
     if ( !method_exists($this->_last_request_response, 'setResponseBody') ) {
-      throw new Xtractor_IO_Exception('Missing method "setResponseBody" in class Xtractor_Http_Response.');
+      throw new Exception('Missing method "setResponseBody" in class Xtractor\Http\Response.');
     }
 
     if ( !method_exists($this->_last_request_response, 'getResponseBody') ) {
-      throw new Xtractor_IO_Exception('Missing method "getResponseBody" in class Xtractor_Http_Response.');
+      throw new Exception('Missing method "getResponseBody" in class Xtractor\Http\Response.');
     }
 
     $responseHeader = $this->_last_request_response->getResponseHeader();
@@ -132,7 +132,7 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
       $decodedResponseBody = json_decode( $this->_last_request_response->getResponseBody(), TRUE );
 
       if (empty($decodedResponseBody)) {
-        throw new Xtractor_Exception('Error on decoding responseBody, don\'t match with content-type.');
+        throw new Exception('Error on decoding responseBody, don\'t match with content-type.');
       }
 
       $this->_last_request_response->setResponseBody($decodedResponseBody);
@@ -151,7 +151,7 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
   private function _setApiUrl($apiUrl)
   {
     if (!is_null($apiUrl)) {
-      if (Xtractor_Utils_Url::isValidUrl($this->_apiUrl)) {
+      if (Url::isValidUrl($this->_apiUrl)) {
         $this->_apiUrl = trim($apiUrl);
       } else {
         $this->_apiUrl = $this->_defaultApiUrl;

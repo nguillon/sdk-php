@@ -1,12 +1,9 @@
 <?php
-/**
- * Basic example
- */
-
+namespace Xtractor;
 require_once realpath( __DIR__ . '/../') . '/src/Xtractor/autoload.php';
 
 try {
-  $xtractorClient = new Xtractor_Client();
+  $xtractorClient = new Client();
   //$xtractorClient->setAccessToken('ACCESS_TOKEN');
   $xtractorClient->setAccessToken('m1HHn/2Ph5H3SjIdkfEQI7szgo0Pv38T5CtlXREJwjk=');
 
@@ -15,7 +12,7 @@ try {
 
   print_r ( $responseObject->getResponseBody() );
 
-} catch (Xtractor_Exception $e) {
+} catch (Exception $e) {
   print $e->getMessage() . "\n";
   print $e->getTraceAsString() . "\n";
 }

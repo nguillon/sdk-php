@@ -1,5 +1,4 @@
 <?php
-//@TODO: Make them PSR-4 compatible
 //@TODO: Add unit tests (PHPUnit)
 //@TODO: Check changes for API v2
 //@TODO: Add documentation
@@ -13,3 +12,5 @@
 //@TODO: Add a simple script/class/method to signup our API
 //@TODO: Add more stable/improved access token validation
 //@TODO: Provide upload_directory
+//@TODO: Repository versioning
+//@TODO: Private functions/variables -> coding guideline
