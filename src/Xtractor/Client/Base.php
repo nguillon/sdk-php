@@ -76,7 +76,7 @@ class Xtractor_Client_Base extends Xtractor_Auth_Base
    * @throws Xtractor_Http_Exception
    * @throws Xtractor_IO_Exception
    *
-   * This method sets the required values and objects to the §request instance
+   * This method sets the required values and objects to the Â§request instance
    * and execute request.
    */
   protected function executeRequest()
