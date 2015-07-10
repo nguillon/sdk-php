@@ -13,32 +13,32 @@ class Base extends Auth\Base
     /**
      * @var string
      */
-    private $_defaultApiUrl = 'https://api.xtractor.io';
+    private $defaultApiUrl = 'https://api.xtractor.io';
     /**
      * @var null|string
      */
-    private $_apiUrl = null;
+    private $apiUrl = null;
     /**
      * @var null|Http\Request
      */
-    private $_request = null;
+    private $request = null;
     /**
      * @var null|Http\Response
      */
-    private $_last_request_response = null;
+    private $lastRequestResponse = null;
 
     /**
      * @var null|Http\Header
      */
-    protected $_header = null;
+    protected $header = null;
     /**
      * @var null|Http\Body
      */
-    protected $_body = null;
+    protected $body = null;
     /**
      * @var null|Http\Options
      */
-    protected $_options = null;
+    protected $options = null;
 
     /**
      * @param null $apiUrl
@@ -46,17 +46,17 @@ class Base extends Auth\Base
     public function __construct($apiUrl = null)
     {
         //Init objects
-        $this->_request = new Http\Request();
-        $this->_header = new Http\Header();
-        $this->_body = new Http\Body();
-        $this->_options = new Http\Options();
+        $this->request = new Http\Request();
+        $this->header = new Http\Header();
+        $this->body = new Http\Body();
+        $this->options = new Http\Options();
 
         //Set defaults
-        $this->_setApiUrl($apiUrl);
-        $this->_header->setBaseFields();
+        $this->setApiUrl($apiUrl);
+        $this->header->setBaseFields();
 
         //Parent Constructor
-        parent::__construct($this->_header);
+        parent::__construct($this->header);
     }
 
     /**
@@ -69,7 +69,7 @@ class Base extends Auth\Base
      */
     protected function setRequestMethod($method)
     {
-        $this->_request->setRequestMethod($method);
+        $this->request->setRequestMethod($method);
     }
 
     /**
@@ -88,15 +88,15 @@ class Base extends Auth\Base
 
         $xtractorIoCurl = new Curl();
 
-        $this->_request->setUrl($this->_apiUrl);
-        $this->_request->setRequestHeader($this->_header);
-        $this->_request->setRequestBody($this->_body);
-        $this->_request->setRequestOptions($this->_options);
+        $this->request->setUrl($this->apiUrl);
+        $this->request->setRequestHeader($this->header);
+        $this->request->setRequestBody($this->body);
+        $this->request->setRequestOptions($this->options);
 
-        $this->_last_request_response = $xtractorIoCurl->executeRequest($this->_request);
+        $this->lastRequestResponse = $xtractorIoCurl->executeRequest($this->request);
         $this->decodeResponseBody();
 
-        return $this->_last_request_response;
+        return $this->lastRequestResponse;
     }
 
     /**
@@ -110,21 +110,21 @@ class Base extends Auth\Base
      */
     private function decodeResponseBody()
     {
-        if (!method_exists($this->_last_request_response,
+        if (!method_exists($this->lastRequestResponse,
           'getResponseHeader')
         ) {
             throw new Auth\Exception('Missing method "getResponseHeader" in class Xtractor\Http\Response.');
         }
 
-        if (!method_exists($this->_last_request_response, 'setResponseBody')) {
+        if (!method_exists($this->lastRequestResponse, 'setResponseBody')) {
             throw new Auth\Exception('Missing method "setResponseBody" in class Xtractor\Http\Response.');
         }
 
-        if (!method_exists($this->_last_request_response, 'getResponseBody')) {
+        if (!method_exists($this->lastRequestResponse, 'getResponseBody')) {
             throw new Auth\Exception('Missing method "getResponseBody" in class Xtractor\Http\Response.');
         }
 
-        $responseHeader = $this->_last_request_response->getResponseHeader();
+        $responseHeader = $this->lastRequestResponse->getResponseHeader();
 
         if (is_array($responseHeader) &&
           array_key_exists('content-type', $responseHeader) &&
@@ -132,14 +132,14 @@ class Base extends Auth\Base
         ) {
             // Parameter TRUE ensues that every object will be converted to an
             // associative array.
-            $decodedResponseBody = json_decode($this->_last_request_response->getResponseBody(),
+            $decodedResponseBody = json_decode($this->lastRequestResponse->getResponseBody(),
               true);
 
             if (empty($decodedResponseBody)) {
                 throw new Auth\Exception('Error on decoding responseBody, don\'t match with content-type.');
             }
 
-            $this->_last_request_response->setResponseBody($decodedResponseBody);
+            $this->lastRequestResponse->setResponseBody($decodedResponseBody);
         }
     }
 
@@ -152,17 +152,17 @@ class Base extends Auth\Base
      *
      * This method ensures a valid url and set them to our class property.
      */
-    private function _setApiUrl($apiUrl)
+    private function setApiUrl($apiUrl)
     {
         if (!is_null($apiUrl)) {
             /** @noinspection PhpUndefinedClassInspection */
-            if (Url::isValidUrl($this->_apiUrl)) {
-                $this->_apiUrl = trim($apiUrl);
+            if (Url::isValidUrl($this->apiUrl)) {
+                $this->apiUrl = trim($apiUrl);
             } else {
-                $this->_apiUrl = $this->_defaultApiUrl;
+                $this->apiUrl = $this->defaultApiUrl;
             }
         } else {
-            $this->_apiUrl = $this->_defaultApiUrl;
+            $this->apiUrl = $this->defaultApiUrl;
         }
     }
 

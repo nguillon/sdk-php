@@ -12,7 +12,7 @@ class Header
     /**
      * @var array
      */
-    private $_headers = array();
+    private $fields = array();
 
     /**
      * Tells our api server which response types our client can handle.
@@ -31,7 +31,7 @@ class Header
      */
     public function addField($field, $value)
     {
-        $this->_headers[$field] = $value;
+        $this->fields[$field] = $value;
     }
 
     /**
@@ -45,7 +45,7 @@ class Header
     {
         $fieldStrings = array();
 
-        foreach (array_keys($this->_headers) as $field) {
+        foreach (array_keys($this->fields) as $field) {
             $fieldStrings[] = $this->getFieldString($field);
         }
 
@@ -61,10 +61,10 @@ class Header
      */
     public function getFieldString($field)
     {
-        if (!array_key_exists($field, $this->_headers)) {
+        if (!array_key_exists($field, $this->fields)) {
             throw new Exception('Requested header field not exist.');
         }
 
-        return sprintf('%s: %s', $field, $this->_headers[$field]);
+        return sprintf('%s: %s', $field, $this->fields[$field]);
     }
 }

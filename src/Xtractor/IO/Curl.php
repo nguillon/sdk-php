@@ -14,7 +14,7 @@ class Curl
     /**
      * @var null
      */
-    private $_curlHandler = null;
+    private $curlHandler = null;
 
     /**
      * @throws Exception
@@ -27,7 +27,7 @@ class Curl
             throw new Exception('The cURL IO handler requires the cURL extension to be enabled');
         }
 
-        $this->_curlHandler = curl_init();
+        $this->curlHandler = curl_init();
     }
 
     /**
@@ -51,7 +51,7 @@ class Curl
         //Set headers
         $requestHeaders = $request->getRequestHeader();
         if ($requestHeaders && is_array($requestHeaders)) {
-            curl_setopt($this->_curlHandler, CURLOPT_HTTPHEADER,
+            curl_setopt($this->curlHandler, CURLOPT_HTTPHEADER,
               $requestHeaders);
         }
 
@@ -59,7 +59,7 @@ class Curl
         $this->addOrOverrideRequestOptions($request);
 
         //Execute curl request
-        $response = curl_exec($this->_curlHandler);
+        $response = curl_exec($this->curlHandler);
 
         //Evaluate Response
         $xtractorHttpResponse = $this->evaluateResponse($response);
@@ -77,15 +77,15 @@ class Curl
      */
     private function setDefaultOptions(Http\Request $request)
     {
-        curl_setopt($this->_curlHandler, CURLOPT_URL, $request->getUrl());
-        curl_setopt($this->_curlHandler, CURLOPT_CUSTOMREQUEST,
+        curl_setopt($this->curlHandler, CURLOPT_URL, $request->getUrl());
+        curl_setopt($this->curlHandler, CURLOPT_CUSTOMREQUEST,
           $request->getRequestMethod());
-        curl_setopt($this->_curlHandler, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($this->_curlHandler, CURLOPT_SSLVERSION, 1);
-        curl_setopt($this->_curlHandler, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($this->_curlHandler, CURLOPT_HEADER, true);
-        curl_setopt($this->_curlHandler, CURLOPT_CONNECTTIMEOUT, 30);
-        curl_setopt($this->_curlHandler, CURLOPT_TIMEOUT, 30);
+        curl_setopt($this->curlHandler, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($this->curlHandler, CURLOPT_SSLVERSION, 1);
+        curl_setopt($this->curlHandler, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->curlHandler, CURLOPT_HEADER, true);
+        curl_setopt($this->curlHandler, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($this->curlHandler, CURLOPT_TIMEOUT, 30);
     }
 
     /**
@@ -109,7 +109,7 @@ class Curl
             throw new Exception('Missing method "getFields" in class Xtractor\Http\Body.');
         }
 
-        curl_setopt($this->_curlHandler, CURLOPT_POSTFIELDS,
+        curl_setopt($this->curlHandler, CURLOPT_POSTFIELDS,
           $requestBody->getFields());
     }
 
@@ -135,7 +135,7 @@ class Curl
         }
 
         foreach ($requestOptions->getAll() as $key => $var) {
-            curl_setopt($this->_curlHandler, $key, $var);
+            curl_setopt($this->curlHandler, $key, $var);
         }
     }
 
@@ -150,15 +150,15 @@ class Curl
     private function evaluateResponse($response)
     {
         if ($response === false) {
-            $error = curl_error($this->_curlHandler);
-            $code = curl_errno($this->_curlHandler);
+            $error = curl_error($this->curlHandler);
+            $code = curl_errno($this->curlHandler);
 
             throw new Exception($error, $code);
         }
 
-        $headerSize = curl_getinfo($this->_curlHandler, CURLINFO_HEADER_SIZE);
-        $responseCode = curl_getinfo($this->_curlHandler, CURLINFO_HTTP_CODE);
-        $totalTime = curl_getinfo($this->_curlHandler, CURLINFO_TOTAL_TIME);
+        $headerSize = curl_getinfo($this->curlHandler, CURLINFO_HEADER_SIZE);
+        $responseCode = curl_getinfo($this->curlHandler, CURLINFO_HTTP_CODE);
+        $totalTime = curl_getinfo($this->curlHandler, CURLINFO_TOTAL_TIME);
 
         return new Http\Response($responseCode, $headerSize, $totalTime,
           $response);
@@ -169,7 +169,7 @@ class Curl
      */
     private function resetCurlHandler()
     {
-        curl_close($this->_curlHandler);
-        $this->_curlHandler = curl_init();
+        curl_close($this->curlHandler);
+        $this->curlHandler = curl_init();
     }
 }

@@ -45,13 +45,13 @@ class Client extends Base
         $this->setRequestMethod('POST');
 
         //Set Postfields
-        $this->_body->addField('extractors', $extractors);
-        $this->_body->addField('file', $filePath);
+        $this->body->addField('extractors', $extractors);
+        $this->body->addField('file', $filePath);
 
         //Set Options
-        $this->_options->addOption(CURLOPT_SSL_VERIFYPEER, false);
-        $this->_options->addOption(CURLOPT_CONNECTTIMEOUT, 60);
-        $this->_options->addOption(CURLOPT_TIMEOUT, 60);
+        $this->options->addOption(CURLOPT_SSL_VERIFYPEER, false);
+        $this->options->addOption(CURLOPT_CONNECTTIMEOUT, 60);
+        $this->options->addOption(CURLOPT_TIMEOUT, 60);
 
         return $this->executeRequest();
     }

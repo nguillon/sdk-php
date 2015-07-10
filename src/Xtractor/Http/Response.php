@@ -12,23 +12,23 @@ class Response
     /**
      * @var null|string
      */
-    private $_responseCode = null;
+    private $responseCode = null;
     /**
      * @var null|integer
      */
-    private $_headerSize = null;
+    private $headerSize = null;
     /**
      * @var null|float
      */
-    private $_totalTime = null;
+    private $totalTime = null;
     /**
      * @var null|string
      */
-    private $_rawData = null;
+    private $rawData = null;
     /**
      * @var array
      */
-    private $_parsedResult = array();
+    private $parsedResult = array();
 
     /**
      * @param $responseCode
@@ -55,7 +55,7 @@ class Response
      */
     public function getResponseCode()
     {
-        return $this->_responseCode;
+        return $this->responseCode;
     }
 
     /**
@@ -63,7 +63,7 @@ class Response
      */
     public function getResponseHeader()
     {
-        return $this->_parsedResult['responseHeader'];
+        return $this->parsedResult['responseHeader'];
     }
 
     /**
@@ -71,7 +71,7 @@ class Response
      */
     public function setResponseHeader($responseHeader)
     {
-        $this->_parsedResult['responseHeader'] = $responseHeader;
+        $this->parsedResult['responseHeader'] = $responseHeader;
     }
 
     /**
@@ -79,7 +79,7 @@ class Response
      */
     public function getResponseBody()
     {
-        return $this->_parsedResult['responseBody'];
+        return $this->parsedResult['responseBody'];
     }
 
     /**
@@ -87,7 +87,7 @@ class Response
      */
     public function setResponseBody($responseBody)
     {
-        $this->_parsedResult['responseBody'] = $responseBody;
+        $this->parsedResult['responseBody'] = $responseBody;
     }
 
     /**
@@ -95,7 +95,7 @@ class Response
      */
     private function setResponseCode($responseCode)
     {
-        $this->_responseCode = $responseCode;
+        $this->responseCode = $responseCode;
     }
 
     /**
@@ -103,7 +103,7 @@ class Response
      */
     private function setResponseRawData($responseData)
     {
-        $this->_rawData = $responseData;
+        $this->rawData = $responseData;
     }
 
     /**
@@ -111,7 +111,7 @@ class Response
      */
     private function setHeaderSize($headerSize)
     {
-        $this->_headerSize = $headerSize;
+        $this->headerSize = $headerSize;
     }
 
     /**
@@ -119,7 +119,7 @@ class Response
      */
     private function setTotalTime($totalTime)
     {
-        $this->_totalTime = $totalTime;
+        $this->totalTime = $totalTime;
     }
 
     /**
@@ -127,7 +127,7 @@ class Response
      */
     public function getTotalTime()
     {
-        return (String) $this->_totalTime;
+        return (String) $this->totalTime;
     }
 
     /**
@@ -136,12 +136,12 @@ class Response
     private function parse()
     {
         //If we know the header size we can make a clean split in response data.
-        if ($this->_headerSize) {
-            $responseBody = substr($this->_rawData, $this->_headerSize);
-            $responseHeader = substr($this->_rawData, 0, $this->_headerSize);
+        if ($this->headerSize) {
+            $responseBody = substr($this->rawData, $this->headerSize);
+            $responseHeader = substr($this->rawData, 0, $this->headerSize);
         } else {
             //Try to guess the right position for data split.
-            $responseSegments = explode("\r\n\r\n", $this->_rawData, 2);
+            $responseSegments = explode("\r\n\r\n", $this->rawData, 2);
             $responseHeader = $responseSegments[0];
             $responseBody = isset($responseSegments[1]) ? $responseSegments[1] : null;
         }

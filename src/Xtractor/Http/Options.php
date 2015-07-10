@@ -12,7 +12,7 @@ class Options
     /**
      * @var array
      */
-    private $_options = array();
+    private $options = array();
 
     /**
      * @param $key
@@ -22,7 +22,7 @@ class Options
      */
     public function addOption($key, $value)
     {
-        $this->_options[$key] = $value;
+        $this->options[$key] = $value;
     }
 
     /**
@@ -34,11 +34,11 @@ class Options
      */
     public function getOption($key)
     {
-        if (!array_key_exists($key, $this->_options)) {
+        if (!array_key_exists($key, $this->options)) {
             throw new Exception('Undefined option called.');
         }
 
-        return $this->_options[$key];
+        return $this->options[$key];
     }
 
     /**
@@ -48,6 +48,6 @@ class Options
      */
     public function getAll()
     {
-        return $this->_options;
+        return $this->options;
     }
 }

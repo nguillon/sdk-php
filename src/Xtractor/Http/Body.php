@@ -14,14 +14,14 @@ class Body
     /**
      * @var array
      */
-    private $_fields = array();
+    private $fields = array();
 
     /**
      * @return array
      */
     public function getFields()
     {
-        return $this->_fields;
+        return $this->fields;
     }
 
     /**
@@ -34,12 +34,12 @@ class Body
     public function addField($name, $value)
     {
         if (is_string($value) && $this->isUpload($value)) {
-            $this->_fields[$name] = $this->buildCurlFile($value);
+            $this->fields[$name] = $this->buildCurlFile($value);
         } else {
             if (is_array($value)) {
-                $this->_fields[$name] = implode(',', array_map("trim", $value));
+                $this->fields[$name] = implode(',', array_map("trim", $value));
             } else {
-                $this->_fields[$name] = trim($value);
+                $this->fields[$name] = trim($value);
             }
         }
     }

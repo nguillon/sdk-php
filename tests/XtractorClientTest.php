@@ -1,21 +1,19 @@
 <?php
 
-
-
 class XtractorClientTest extends PHPUnit_Framework_TestCase
 {
-  private $_xtractorClient = null;
+    private $xtractorClient = null;
 
-  public function testConstruct()
-  {
-    $this->_xtractorClient = new Xtractor_Client();
-  }
+    public function testConstruct()
+    {
+        $this->xtractorClient = new Xtractor_Client();
+    }
 
-  /*
-   * @depends testConstruct
-   */
-  public function testUpload()
-  {
+    /*
+     * @depends testConstruct
+     */
+    public function testUpload()
+    {
 
-  }
+    }
 }

@@ -13,18 +13,18 @@ class Base
     /**
      * @var String
      */
-    private $_accessToken = null;
+    private $accessToken = null;
     /**
      * @var Http\Header
      */
-    private $_header = null;
+    private $header = null;
 
     /**
      * @param Http\Header $header
      */
     public function __construct(Http\Header $header)
     {
-        $this->_header = $header;
+        $this->header = $header;
     }
 
     /**
@@ -44,7 +44,7 @@ class Base
             throw new Exception('Given $code is empty.');
         }
 
-        $this->_accessToken = (String) $accessToken;
+        $this->accessToken = (String) $accessToken;
         $this->setAccessKeyToHeader();
     }
 
@@ -53,7 +53,7 @@ class Base
      */
     public function getAccessToken()
     {
-        return $this->_accessToken;
+        return $this->accessToken;
     }
 
     /**
@@ -63,7 +63,7 @@ class Base
      */
     public function hasAccessToken()
     {
-        return (is_null($this->_accessToken)) ? false : true;
+        return (is_null($this->accessToken)) ? false : true;
     }
 
     /**
@@ -74,10 +74,10 @@ class Base
      */
     private function setAccessKeyToHeader()
     {
-        if (is_null($this->_header)) {
+        if (is_null($this->header)) {
             throw new Exception('Missing Xtractor\Http\Header object.');
         }
 
-        $this->_header->addField('X-API-Key', $this->getAccessToken());
+        $this->header->addField('X-API-Key', $this->getAccessToken());
     }
 }
