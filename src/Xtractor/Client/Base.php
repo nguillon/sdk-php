@@ -59,6 +59,15 @@ class Base extends Auth\Base
         parent::__construct($this->header);
     }
 
+    public function setAPIVersion($apiVersion)
+    {
+        if (!preg_match('/^(\d{1,2}\.\d{1,2}\.\d{1,2}){1}$/i', $apiVersion)) {
+            throw new \Xtractor\Exception('Malformed API-Version string.');
+        }
+
+        $this->header->addField('Accept-Version', $apiVersion);
+    }
+
     /**
      * @param $method
      * @throws Http\Exception

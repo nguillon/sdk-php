@@ -1,6 +1,4 @@
 <?php
-//@TODO: Private functions/variables -> coding guideline
-//@TODO: Check changes for API v2
 //@TODO: Provide upload_directory
 //@TODO: Add more stable/improved access token validation
 //@TODO: Add a simple script/class/method to signup our API
