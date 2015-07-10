@@ -1,0 +1,8 @@
+<phpunit bootstrap="src/Xtractor/autoload.php">
+  <testsuites>
+    <testsuite name="money">
+      <file>tests/XtractorUtilsUrl.php</file>
+      <file>tests/XtractorUtilsFiles.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>

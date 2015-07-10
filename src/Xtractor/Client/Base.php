@@ -3,6 +3,7 @@ namespace Xtractor\Client;
 
 use Xtractor\Auth;
 use Xtractor\Http;
+use Xtractor\Utils\Url;
 use Xtractor\IO\Curl;
 
 /**
@@ -175,4 +176,13 @@ class Base extends Auth\Base
         }
     }
 
+    /**
+     * @return null|string
+     *
+     * Returns the current apiUrl.
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
+    }
 }
