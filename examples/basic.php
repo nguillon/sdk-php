@@ -8,7 +8,7 @@ try {
   $xtractorClient->setAccessToken('m1HHn/2Ph5H3SjIdkfEQI7szgo0Pv38T5CtlXREJwjk=');
 
   $sourceFile = realpath(__DIR__) . '/files/example.pdf';
-  $responseObject   = $xtractorClient->upload($sourceFile);
+  $responseObject = $xtractorClient->upload($sourceFile);
 
   print_r ( $responseObject->getResponseBody() );
 

@@ -1,5 +1,6 @@
 <?php
 namespace Xtractor\Auth;
+
 use Xtractor;
 
 /**

@@ -1,5 +1,6 @@
 <?php
 namespace Xtractor\Http;
+
 use Xtractor\Utils\Files;
 
 /**
@@ -10,58 +11,59 @@ use Xtractor\Utils\Files;
  */
 class Body
 {
-  /**
-   * @var array
-   */
-  private $_fields = array();
+    /**
+     * @var array
+     */
+    private $_fields = array();
 
-  /**
-   * @return array
-   */
-  public function getFields()
-  {
-    return $this->_fields;
-  }
-
-  /**
-   * @param $name
-   * @param $value
-   *
-   * Add new field to body object. Values are trimmed and (if array is given)
-   * concatenated to a comma separated string.
-   */
-  public function addField($name, $value)
-  {
-    if (is_string($value) && $this->isUpload($value)) {
-      $this->_fields[$name] = $this->buildCurlFile($value);
-    } else {
-      if (is_array($value)) {
-        $this->_fields[$name] = implode(',', array_map("trim", $value));
-      } else {
-        $this->_fields[$name] = trim($value);
-      }
+    /**
+     * @return array
+     */
+    public function getFields()
+    {
+        return $this->_fields;
     }
-  }
 
-  /**
-   * @param $value
-   * @return bool
-   *
-   * This method validates if a file is provided in POST request.
-   * (e.g. from an upload form field)
-   */
-  private function isUpload($value)
-  {
-    return Files::isValidFilePath($value);
-  }
+    /**
+     * @param $name
+     * @param $value
+     *
+     * Add new field to body object. Values are trimmed and (if array is given)
+     * concatenated to a comma separated string.
+     */
+    public function addField($name, $value)
+    {
+        if (is_string($value) && $this->isUpload($value)) {
+            $this->_fields[$name] = $this->buildCurlFile($value);
+        } else {
+            if (is_array($value)) {
+                $this->_fields[$name] = implode(',', array_map("trim", $value));
+            } else {
+                $this->_fields[$name] = trim($value);
+            }
+        }
+    }
 
-  /**
-   * @param $filePath
-   * @return CURLFile
-   * @throws Exception
-   */
-  private function buildCurlFile($filePath)
-  {
-    return curl_file_create($filePath, Files::getMimeType($filePath), basename($filePath));
-  }
+    /**
+     * @param $value
+     * @return bool
+     *
+     * This method validates if a file is provided in POST request.
+     * (e.g. from an upload form field)
+     */
+    private function isUpload($value)
+    {
+        return Files::isValidFilePath($value);
+    }/** @noinspection PhpUndefinedClassInspection */
+
+    /**
+     * @param $filePath
+     * @return CURLFile
+     * @throws Exception
+     */
+    private function buildCurlFile($filePath)
+    {
+        return curl_file_create($filePath, Files::getMimeType($filePath),
+          basename($filePath));
+    }
 }

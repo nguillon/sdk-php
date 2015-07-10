@@ -1,52 +1,54 @@
 <?php
 namespace Xtractor\Utils;
+
 use Xtractor;
 
 class Files
 {
-  public static function isValidFilePath($filePath)
-  {
-    if (!file_exists($filePath)) {
-      return FALSE;
+    public static function isValidFilePath($filePath)
+    {
+        if (!file_exists($filePath)) {
+            return false;
+        }
+
+        if (is_dir($filePath)) {
+            return false;
+        }
+
+        return true;
     }
 
-    if (is_dir($filePath)) {
-      return FALSE;
+    public static function isValidFileType($filePath)
+    {
+        $supportedMimeTypes = [
+          'application/pdf',
+          'image/bmp',
+          'image/gif',
+          'image/jp2',
+          'image/jpeg',
+          'image/x-pcx',
+          'image/png',
+          'image/tiff',
+        ];
+
+        if (!self::isValidFilePath($filePath)) {
+            throw new Xtractor\Exception('Invalid file path.');
+        }
+
+        return (bool) in_array(self::getMimeType($filePath),
+          $supportedMimeTypes);
     }
 
-    return TRUE;
-  }
+    public static function getMimeType($filePath)
+    {
+        if (!self::isValidFilePath($filePath)) {
+            throw new Xtractor\Exception('Invalid file path.');
+        }
 
-  public static function isValidFileType($filePath)
-  {
-    $supportedMimeTypes = [
-      'application/pdf',
-      'image/bmp',
-      'image/gif',
-      'image/jp2',
-      'image/jpeg',
-      'image/x-pcx',
-      'image/png',
-      'image/tiff',
-    ];
+        $infoResource = finfo_open(FILEINFO_MIME_TYPE);
+        $mimeType = finfo_file($infoResource, $filePath);
+        finfo_close($infoResource);
 
-    if (!self::isValidFilePath($filePath)) {
-      throw new Exception('Invalid file path.');
+        return $mimeType;
     }
-
-    return (bool) in_array(self::getMimeType($filePath), $supportedMimeTypes);
-  }
-
-  public static function getMimeType($filePath)
-  {
-    if (!self::isValidFilePath($filePath)) {
-      throw new Exception('Invalid file path.');
-    }
-
-    $infoResource = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = finfo_file($infoResource, $filePath);
-    finfo_close($infoResource);
-
-    return $mimeType;
-  }
 }
