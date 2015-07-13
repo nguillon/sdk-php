@@ -2,7 +2,6 @@
 require_once realpath(__DIR__ . '/../../src/Xtractor') . '/autoload.php';
 
 use Xtractor\Client;
-use Xtractor\Http\Response;
 
 class XtractorClientTest extends PHPUnit_Framework_TestCase
 {
