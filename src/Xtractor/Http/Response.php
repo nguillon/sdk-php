@@ -59,6 +59,14 @@ class Response
     }
 
     /**
+     * @param $responseCode
+     */
+    private function setResponseCode($responseCode)
+    {
+        $this->responseCode = $responseCode;
+    }
+
+    /**
      * @return mixed
      */
     public function getResponseHeader()
@@ -88,14 +96,6 @@ class Response
     public function setResponseBody($responseBody)
     {
         $this->parsedResult['responseBody'] = $responseBody;
-    }
-
-    /**
-     * @param $responseCode
-     */
-    private function setResponseCode($responseCode)
-    {
-        $this->responseCode = $responseCode;
     }
 
     /**

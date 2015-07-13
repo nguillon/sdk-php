@@ -54,7 +54,7 @@ class Body
     private function isUpload($value)
     {
         return Files::isValidFilePath($value);
-    }/** @noinspection PhpUndefinedClassInspection */
+    }
 
     /**
      * @param $filePath

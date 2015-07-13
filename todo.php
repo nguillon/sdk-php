@@ -1,6 +1,4 @@
 <?php
-//@TODO: Add unit tests (PHPUnit)
-
 //@TODO: Add documentation
 //@TODO: Make developer documentation to override provided or add API methods
 

@@ -2,6 +2,7 @@
 namespace Xtractor\Client;
 
 use Xtractor\Auth;
+use Xtractor\Exception;
 use Xtractor\Http;
 use Xtractor\Utils\Url;
 use Xtractor\IO\Curl;
@@ -19,6 +20,12 @@ class Base extends Auth\Base
      * @var null|string
      */
     private $apiUrl = null;
+
+    /**
+     * @var string
+     */
+    private $apiRoute = '/';
+
     /**
      * @var null|Http\Request
      */
@@ -54,12 +61,17 @@ class Base extends Auth\Base
 
         //Set defaults
         $this->setApiUrl($apiUrl);
-        $this->header->setBaseFields();
 
         //Parent Constructor
         parent::__construct($this->header);
     }
 
+    /**
+     * @param $apiVersion
+     * @throws \Xtractor\Exception
+     *
+     * Sets the used API version.
+     */
     public function setAPIVersion($apiVersion)
     {
         if (!preg_match('/^(\d{1,2}\.\d{1,2}\.\d{1,2}){1}$/i', $apiVersion)) {
@@ -67,6 +79,17 @@ class Base extends Auth\Base
         }
 
         $this->header->addField('Accept-Version', $apiVersion);
+    }
+
+    /**
+     * @return mixed
+     * @throws Http\Exception
+     *
+     * Returns the current set API version.
+     */
+    public function getAPIVersion()
+    {
+        return $this->header->getField('Accept-Version');
     }
 
     /**
@@ -165,8 +188,7 @@ class Base extends Auth\Base
     private function setApiUrl($apiUrl)
     {
         if (!is_null($apiUrl)) {
-            /** @noinspection PhpUndefinedClassInspection */
-            if (Url::isValidUrl($this->apiUrl)) {
+            if (Url::isValidUrl($apiUrl)) {
                 $this->apiUrl = trim($apiUrl);
             } else {
                 $this->apiUrl = $this->defaultApiUrl;
@@ -184,5 +206,33 @@ class Base extends Auth\Base
     public function getApiUrl()
     {
         return $this->apiUrl;
+    }
+
+    /**
+     * @param $apiRoute
+     *
+     * This method helps to specify the correct rout against our REST API.
+     */
+    protected function setApiRoute($apiRoute)
+    {
+        if (empty($apiRoute)) {
+            throw new Exception('Cannot set empty apiRoute.');
+        }
+
+        if (!preg_match('/^(\/[^\s]*)$/i', $apiRoute)) {
+            throw new Exception('Given apiRoute contain whitespaces.');
+        }
+
+        $this->apiRoute = trim($apiRoute);
+    }
+
+    /**
+     * @return string
+     *
+     * Returns the current apiRoute.
+     */
+    public function getApiRoute()
+    {
+        return $this->apiRoute;
     }
 }

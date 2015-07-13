@@ -14,7 +14,7 @@ try {
     $sourceFile = realpath(__DIR__) . '/files/example.pdf';
     $responseObject = $xtractorClient->upload($sourceFile);
 
-    print_r($responseObject->getResponseBody());
+    print_r($responseObject);
 
 } catch (Exception $e) {
     print $e->getMessage() . "\n";

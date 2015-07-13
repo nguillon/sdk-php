@@ -10,7 +10,7 @@ use Xtractor\Utils\Files;
  * This class is the gateway to our api.
  * Here are all supported api methods declared.
  */
-class Client extends Base
+final class Client extends Base
 {
     /**
      * @param null $apiUrl
@@ -40,6 +40,9 @@ class Client extends Base
         if (!Files::isValidFileType($filePath)) {
             throw new Exception('Invalid file type.');
         }
+
+        //Set URL Route
+        $this->setApiRoute('/');
 
         //Set Method
         $this->setRequestMethod('POST');

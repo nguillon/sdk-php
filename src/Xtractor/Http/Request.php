@@ -44,7 +44,7 @@ class Request
               $method));
         }
 
-        $this->requestMethod = strtoupper($method);
+        $this->requestMethod = $method;
     }
 
     /**

@@ -17,7 +17,7 @@ class Header
     /**
      * Tells our api server which response types our client can handle.
      */
-    public function setBaseFields()
+    public function __construct()
     {
         $this->addField('Accept', 'application/json');
         $this->addField('Accept-Version', '1.0.0');
@@ -32,6 +32,22 @@ class Header
     public function addField($field, $value)
     {
         $this->fields[$field] = $value;
+    }
+
+    /**
+     * @param $field
+     * @return mixed
+     * @throws Exception
+     *
+     * Returns the current value of a field.
+     */
+    public function getField($field)
+    {
+        if (!array_key_exists($field, $this->fields)) {
+            throw new Exception('Unknown header field.');
+        }
+
+        return $this->fields[$field];
     }
 
     /**
