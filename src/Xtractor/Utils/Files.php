@@ -2,6 +2,7 @@
 namespace Xtractor\Utils;
 
 use Xtractor;
+use Xtractor\Utils\Exception;
 
 class Files
 {
@@ -41,6 +42,10 @@ class Files
 
     public static function getMimeType($filePath)
     {
+        if (!extension_loaded('fileinfo')) {
+            throw new Exception('Required extension "fileinfo" is not enabled.');
+        }
+
         if (!self::isValidFilePath($filePath)) {
             throw new Xtractor\Exception('Invalid file path.');
         }
