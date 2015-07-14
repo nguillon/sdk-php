@@ -23,13 +23,6 @@ class HttpResponseTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(200, $this->response->getResponseCode());
     }
 
-
-    public function testSetResponseHeader()
-    {
-        $this->response->setResponseHeader('testHeader');
-        $this->assertEquals('testHeader', $this->response->getResponseHeader());
-    }
-
     public function testSetResponseBody()
     {
         $this->response->setResponseBody('testBody');

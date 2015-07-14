@@ -1,36 +1,62 @@
 <?php
+/**
+ * xtractor.io-php-sdk
+ *
+ * PHP Version 5.5
+ *
+ * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://xtractor.io
+ */
+
 namespace Xtractor\Http;
 
 /**
- * Class Xtractor\Http\Request
+ * Class Request
  *
  * This class delivers a business object to handle requests in a defined
  * structure.
+ *
+ * @package Xtractor\Http
  */
 class Request
 {
     /**
      * @var string
+     *
+     * Current request url.
      */
     private $requestUrl;
     /**
      * @var string
+     *
+     * Current request method.
      */
     private $requestMethod = 'GET';
     /**
      * @var Header
+     *
+     * Current request header object.
      */
     private $requestHeader;
     /**
      * @var Body
+     *
+     * Current request body object.
      */
     private $requestBody;
     /**
      * @var Options
+     *
+     * Current request options object.
      */
     private $requestOptions;
 
     /**
+     * setRequestMethod(string $method)
+     *
+     * Sets the request methos. Ensures only supported methods.
+     *
      * @param $method
      * @throws Exception
      */
@@ -48,6 +74,10 @@ class Request
     }
 
     /**
+     * getRequestMethod()
+     *
+     * Returns current request method.
+     *
      * @return string
      */
     public function getRequestMethod()
@@ -56,6 +86,10 @@ class Request
     }
 
     /**
+     * setUrl(string $requestUrl)
+     *
+     * Set the request url.
+     *
      * @param $requestUrl
      */
     public function setUrl($requestUrl)
@@ -64,7 +98,11 @@ class Request
     }
 
     /**
-     * @return mixed
+     * getUrl()
+     *
+     * Returns the current request url.
+     *
+     * @return string
      */
     public function getUrl()
     {
@@ -72,6 +110,10 @@ class Request
     }
 
     /**
+     * setRequestHeader(Header $headers)
+     *
+     * Sets a header object to request.
+     *
      * @param Header $headers
      */
     public function setRequestHeader(Header $headers)
@@ -80,10 +122,27 @@ class Request
     }
 
     /**
-     * @return mixed
-     * @throws Exception
+     * getRequestHeader()
+     *
+     * Returns current header object.
+     *
+     * @return Header
      */
     public function getRequestHeader()
+    {
+        return $this->requestHeader;
+    }
+
+    /**
+     * getRequestHeaderFields()
+     *
+     * Returns the current header object formated as an array of
+     * header field strings.
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function getRequestHeaderFields()
     {
         if (!method_exists($this->requestHeader, 'getFieldStrings')) {
             throw new Exception('Missing method "getFieldStrings" in class Xtractor\Http\Header.');
@@ -93,6 +152,10 @@ class Request
     }
 
     /**
+     * setRequestBody(Body $body)
+     *
+     * Sets a body object to request.
+     *
      * @param Body $body
      */
     public function setRequestBody(Body $body)
@@ -101,7 +164,11 @@ class Request
     }
 
     /**
-     * @return mixed
+     * getRequestBody()
+     *
+     * Returns current body object.
+     *
+     * @return Body
      */
     public function getRequestBody()
     {
@@ -109,6 +176,10 @@ class Request
     }
 
     /**
+     * setRequestOptions(Options $options)
+     *
+     * Sets a options object to request.
+     *
      * @param Options $options
      */
     public function setRequestOptions(Options $options)
@@ -117,7 +188,11 @@ class Request
     }
 
     /**
-     * @return mixed
+     * getRequestOptions()
+     *
+     * Returns current body object.
+     *
+     * @return Options
      */
     public function getRequestOptions()
     {

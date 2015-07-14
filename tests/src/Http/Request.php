@@ -40,7 +40,10 @@ class HttpRequestTest extends PHPUnit_Framework_TestCase
     {
         $header = new Header();
         $this->request->setRequestHeader($header);
-        $this->assertEquals($this->request->getRequestHeader(), array(
+
+        $this->assertInstanceOf('Xtractor\Http\Header', $this->request->getRequestHeader());
+
+        $this->assertEquals($this->request->getRequestHeaderFields(), array(
             'Accept: application/json',
             'Accept-Version: 1.0.0',
         ));

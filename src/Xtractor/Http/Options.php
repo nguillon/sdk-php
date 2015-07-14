@@ -1,24 +1,40 @@
 <?php
+/**
+ * xtractor.io-php-sdk
+ *
+ * PHP Version 5.5
+ *
+ * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://xtractor.io
+ */
+
 namespace Xtractor\Http;
 
 /**
- * Class Xtractor\Http\Options
+ * Class Options
  *
  * This class delivers a business object to handle request options in a defined
  * structure.
+ *
+ * @package Xtractor\Http
  */
 class Options
 {
     /**
      * @var array
+     *
+     * Contains all user defined options for the request.
      */
     private $options = array();
 
     /**
-     * @param $key
-     * @param $value
+     * addOption(string $key, mixed $value)
      *
      * Add a cURL options for later use. (add or override in cURL class)
+     *
+     * @param $key
+     * @param $value
      */
     public function addOption($key, $value)
     {
@@ -26,25 +42,29 @@ class Options
     }
 
     /**
+     * getOption(string $key)
+     *
+     * Returns the value of single option.
+     *
      * @param $key
      * @return mixed
      * @throws Exception
-     *
-     * Returns the value of single option.
      */
     public function getOption($key)
     {
         if (!array_key_exists($key, $this->options)) {
-            throw new Exception('Undefined option called.');
+            throw new Exception('Unknown option called.');
         }
 
         return $this->options[$key];
     }
 
     /**
-     * @return array
+     * getAll()
      *
-     * Retruns the whole options array.
+     * Returns the whole options array.
+     *
+     * @return array
      */
     public function getAll()
     {

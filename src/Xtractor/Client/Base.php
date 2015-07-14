@@ -1,4 +1,14 @@
 <?php
+/**
+ * xtractor.io-php-sdk
+ *
+ * PHP Version 5.5
+ *
+ * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://xtractor.io
+ */
+
 namespace Xtractor\Client;
 
 use Xtractor\Auth;
@@ -8,50 +18,72 @@ use Xtractor\Utils\Url;
 use Xtractor\IO\Curl;
 
 /**
- * Class Xtractor\Client\Base
+ * Class Base
+ *
+ * This class contain methods for our client class.
+ *
+ * We move ththa methods from our client class to ensure a readable, clean
+ * source in that file.
+ *
+ * @package Xtractor\Client
  */
 class Base extends Auth\Base
 {
     /**
+     * @var Http\Header
+     *
+     * Request header object
+     */
+    protected $header = NULL;
+    /**
+     * @var Http\Body
+     *
+     * Request body object
+     */
+    protected $body = NULL;
+    /**
+     * @var Http\Options
+     *
+     * Request options object
+     */
+    protected $options = NULL;
+    /**
      * @var string
+     *
+     * Default api url
      */
     private $defaultApiUrl = 'https://api.xtractor.io';
     /**
-     * @var null|string
+     * @var string
+     *
+     * Current request api url
      */
-    private $apiUrl = null;
-
+    private $apiUrl = NULL;
     /**
      * @var string
+     *
+     * Current request api route
      */
     private $apiRoute = '/';
+    /**
+     * @var Http\Request
+     *
+     * Current request object
+     */
+    private $request = NULL;
+    /**
+     * @var Http\Response
+     *
+     * Last request response
+     */
+    private $lastRequestResponse = NULL;
 
     /**
-     * @var null|Http\Request
+     * __construct([string $apiUrl = NULL])
+     *
+     * @param $apiUrl
      */
-    private $request = null;
-    /**
-     * @var null|Http\Response
-     */
-    private $lastRequestResponse = null;
-
-    /**
-     * @var null|Http\Header
-     */
-    protected $header = null;
-    /**
-     * @var null|Http\Body
-     */
-    protected $body = null;
-    /**
-     * @var null|Http\Options
-     */
-    protected $options = null;
-
-    /**
-     * @param null $apiUrl
-     */
-    public function __construct($apiUrl = null)
+    public function __construct($apiUrl = NULL)
     {
         //Init objects
         $this->request = new Http\Request();
@@ -67,10 +99,41 @@ class Base extends Auth\Base
     }
 
     /**
+     * setApiUrl(string $apiUrl)
+     *
+     * During instanciation of client object a user can override default api url.
+     * (e.g. we have a complete new url for future api versions or for prod,
+     * dev environment)
+     *
+     * This method ensures a valid url and set them to our class property.
+     *
+     * @param $apiUrl
+     */
+    private function setApiUrl($apiUrl)
+    {
+        if (!is_null($apiUrl)) {
+            if (Url::isValidUrl($apiUrl)) {
+                $this->apiUrl = trim($apiUrl);
+            } else {
+                $this->apiUrl = $this->defaultApiUrl;
+            }
+        } else {
+            $this->apiUrl = $this->defaultApiUrl;
+        }
+    }
+
+    /**
+     * setAPIVersion(string $apiVersion)
+     *
+     * Set the used API version. The given version string have to be formated
+     * like this.
+     *
+     * [number].[number].[number]
+     *
+     * Each number contains 1 or 2 digits.
+     *
      * @param $apiVersion
      * @throws \Xtractor\Exception
-     *
-     * Sets the used API version.
      */
     public function setAPIVersion($apiVersion)
     {
@@ -82,10 +145,12 @@ class Base extends Auth\Base
     }
 
     /**
-     * @return mixed
-     * @throws Http\Exception
+     * getAPIVersion()
      *
-     * Returns the current set API version.
+     * Returns the selected API version.
+     *
+     * @return string
+     * @throws Http\Exception
      */
     public function getAPIVersion()
     {
@@ -93,12 +158,62 @@ class Base extends Auth\Base
     }
 
     /**
+     * getApiRoute()
+     *
+     * Returns the current apiRoute.
+     *
+     * @return string
+     */
+    public function getApiRoute()
+    {
+        return $this->apiRoute;
+    }
+
+    /**
+     * setApiRoute(string $apiRoute)
+     *
+     * This method helps to specify the correct route against our REST API.
+     *
+     * @param $apiRoute
+     * @throws Exception
+     */
+    protected function setApiRoute($apiRoute)
+    {
+        if (empty($apiRoute)) {
+            throw new Exception('Cannot set empty apiRoute.');
+        }
+
+        if (!preg_match('/^(\/[^\s]*)$/i', $apiRoute)) {
+            throw new Exception('Given apiRoute contain whitespaces.');
+        }
+
+        $this->apiRoute = trim($apiRoute);
+    }
+
+    /**
+     * getLastResponse()
+     *
+     * Returns the last response object. If there is no last response
+     * the return value will be NULL.
+     *
+     * @return Response
+     */
+    public function getLastResponse()
+    {
+        return $this->lastRequestResponse;
+    }
+
+    /**
+     * setRequestMethod(string $method)
+     *
+     * Sets the request method. Actually only the method "POST"
+     * makes a difference, because in this case we need to set CURLOPT_POSTFIELDS
+     * during cURL request.
+     *
+     * Currently we support: GET, POST, PUT, DELETE
+     *
      * @param $method
      * @throws Http\Exception
-     *
-     * Sets the reuqes method to request object. Actually only the method "POST"
-     * makes a different, because in this case we need to set CURLOPT_POSTFIELDS
-     * during cURL request.
      */
     protected function setRequestMethod($method)
     {
@@ -106,12 +221,14 @@ class Base extends Auth\Base
     }
 
     /**
+     * executeRequest()
+     *
+     * This method sets the required values and objects to the $request instance
+     * and execute request.
+     *
      * @return Http\Response
      * @throws Auth\Exception
      * @throws Http\Exception
-     *
-     * This method sets the required values and objects to the §request instance
-     * and execute request.
      */
     protected function executeRequest()
     {
@@ -121,7 +238,7 @@ class Base extends Auth\Base
 
         $xtractorIoCurl = new Curl();
 
-        $this->request->setUrl($this->apiUrl);
+        $this->request->setUrl($this->getRequestUrl());
         $this->request->setRequestHeader($this->header);
         $this->request->setRequestBody($this->body);
         $this->request->setRequestOptions($this->options);
@@ -133,19 +250,51 @@ class Base extends Auth\Base
     }
 
     /**
+     * getRequestUrl()
+     *
+     * This method concatinates apiUrl and apiRoute to the final request url
+     * against xtractor.io api.
+     *
+     * @return string
+     * @throws Exception
+     */
+    private function getRequestUrl()
+    {
+        $requestUrl = sprintf('%s%s', $this->getApiUrl(), $this->apiRoute);
+
+        if (!Url::isValidUrl($requestUrl)) {
+            throw new Exception('The combination of apiUrl and apiRoute leads to a non-valid request url.');
+        }
+
+        return $requestUrl;
+    }
+
+    /**
+     * getApiUrl()
+     *
+     * Returns the current apiUrl.
+     *
+     * @return string
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
+    }
+
+    /**
+     * decodeResponseBody()
+     *
      * Every response from our API should be a JSON encoded string. This precondition
      * in mind it makes sense to decode every valid responseBody automatically to
      * a php usable structure (objects will be converted to arrays).
      *
-     * This method works silently if no json content was returned.
+     * This method changes nothing if non JSON string was returned.
      *
      * @throws Auth\Exception
      */
     private function decodeResponseBody()
     {
-        if (!method_exists($this->lastRequestResponse,
-          'getResponseHeader')
-        ) {
+        if (!method_exists($this->lastRequestResponse, 'getResponseHeader')) {
             throw new Auth\Exception('Missing method "getResponseHeader" in class Xtractor\Http\Response.');
         }
 
@@ -163,10 +312,10 @@ class Base extends Auth\Base
           array_key_exists('content-type', $responseHeader) &&
           strtolower($responseHeader['content-type']) === 'application/json'
         ) {
-            // Parameter TRUE ensues that every object will be converted to an
+            // Parameter TRUE ensures that every object will be converted to an
             // associative array.
             $decodedResponseBody = json_decode($this->lastRequestResponse->getResponseBody(),
-              true);
+              TRUE);
 
             if (empty($decodedResponseBody)) {
                 throw new Auth\Exception('Error on decoding responseBody, don\'t match with content-type.');
@@ -174,66 +323,5 @@ class Base extends Auth\Base
 
             $this->lastRequestResponse->setResponseBody($decodedResponseBody);
         }
-    }
-
-    /**
-     * @param $apiUrl
-     *
-     * During instanciation of client object a user can override default api url.
-     * (e.g. we have a complete new url for future api versions or for
-     *  prod,dev environment)
-     *
-     * This method ensures a valid url and set them to our class property.
-     */
-    private function setApiUrl($apiUrl)
-    {
-        if (!is_null($apiUrl)) {
-            if (Url::isValidUrl($apiUrl)) {
-                $this->apiUrl = trim($apiUrl);
-            } else {
-                $this->apiUrl = $this->defaultApiUrl;
-            }
-        } else {
-            $this->apiUrl = $this->defaultApiUrl;
-        }
-    }
-
-    /**
-     * @return null|string
-     *
-     * Returns the current apiUrl.
-     */
-    public function getApiUrl()
-    {
-        return $this->apiUrl;
-    }
-
-    /**
-     * @param $apiRoute
-     * @throws Exception
-     *
-     * This method helps to specify the correct rout against our REST API.
-     */
-    protected function setApiRoute($apiRoute)
-    {
-        if (empty($apiRoute)) {
-            throw new Exception('Cannot set empty apiRoute.');
-        }
-
-        if (!preg_match('/^(\/[^\s]*)$/i', $apiRoute)) {
-            throw new Exception('Given apiRoute contain whitespaces.');
-        }
-
-        $this->apiRoute = trim($apiRoute);
-    }
-
-    /**
-     * @return string
-     *
-     * Returns the current apiRoute.
-     */
-    public function getApiRoute()
-    {
-        return $this->apiRoute;
     }
 }

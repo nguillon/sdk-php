@@ -1,21 +1,39 @@
 <?php
+/**
+ * xtractor.io-php-sdk
+ *
+ * PHP Version 5.5
+ *
+ * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://xtractor.io
+ */
+
 namespace Xtractor\Http;
 
 /**
- * Class Xtractor\Http\Header
+ * Class Header
  *
  * This class delivers a business object to handle request header in a defined
  * structure.
+ *
+ * @package Xtractor\Http
  */
 class Header
 {
     /**
      * @var array
+     *
+     * Array of current request headers.
      */
     private $fields = array();
 
     /**
-     * Tells our api server which response types our client can handle.
+     * __construct()
+     *
+     * Tells our api server which response types our client can handle and
+     * against which api version your application works. Default setting is api
+     * 1.0.0, but this can be overwritten with a method in our client\base class.
      */
     public function __construct()
     {
@@ -24,10 +42,12 @@ class Header
     }
 
     /**
-     * @param $field
-     * @param $value
+     * addField(string $field, string $value)
      *
      * Add new header fields. (e.g. is used for authentication header)
+     *
+     * @param $field
+     * @param $value
      */
     public function addField($field, $value)
     {
@@ -35,11 +55,13 @@ class Header
     }
 
     /**
-     * @param $field
-     * @return mixed
-     * @throws Exception
+     * getField(string $field)
      *
      * Returns the current value of a field.
+     *
+     * @param $field
+     * @return string
+     * @throws Exception
      */
     public function getField($field)
     {
@@ -47,15 +69,17 @@ class Header
             throw new Exception('Unknown header field.');
         }
 
-        return $this->fields[$field];
+        return (String) $this->fields[$field];
     }
 
     /**
-     * @return array
-     * @throws Exception
+     * getFieldStrings()
      *
      * Returns an array with all header fields concatenated in following format:
      * <fieldname>:<fieldvalue>
+     *
+     * @return array
+     * @throws Exception
      */
     public function getFieldStrings()
     {
@@ -69,11 +93,13 @@ class Header
     }
 
     /**
+     * getFieldString(string $field)
+     *
+     * Returns a formated string of called field.
+     *
      * @param $field
      * @return string
      * @throws Exception
-     *
-     * Retruns a formated string of called header field.
      */
     public function getFieldString($field)
     {

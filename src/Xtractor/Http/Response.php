@@ -1,41 +1,68 @@
 <?php
+/**
+ * xtractor.io-php-sdk
+ *
+ * PHP Version 5.5
+ *
+ * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT
+ * @link      http://xtractor.io
+ */
+
 namespace Xtractor\Http;
 
 /**
- * Class Xtractor\Http\Response
+ * Class Response
  *
  * This class is designed like a business object but includes some methods
  * to parse responses from api.
+ *
+ * @package Xtractor\Http
  */
 class Response
 {
     /**
-     * @var null|string
+     * @var string
+     *
+     * HTTP Status code from response data delivered by cURL request.
      */
     private $responseCode = null;
     /**
-     * @var null|integer
+     * @var integer
+     *
+     * Header size from response data delivered by cURL request.
      */
     private $headerSize = null;
     /**
-     * @var null|float
+     * @var float
+     *
+     * Total time of cURL request.
      */
     private $totalTime = null;
     /**
-     * @var null|string
+     * @var string
+     *
+     * Raw data of cURL response.
      */
     private $rawData = null;
     /**
      * @var array
+     *
+     * Array of parsed data from cURL response. Splitted in to fields for
+     * response header- and response body data.
      */
     private $parsedResult = array();
 
     /**
+     * __construct(intger $responseCode, intger $headerSize, float $totalTime, string $responseData)
+     *
+     * Constructor sets all required data from cURL response and calls private
+     * method parse() to transform response string into a usful structure.
+     *
      * @param $responseCode
      * @param $headerSize
      * @param $totalTime
      * @param $responseData
-     *
      */
     public function __construct(
       $responseCode,
@@ -51,7 +78,11 @@ class Response
     }
 
     /**
-     * @return null
+     * getResponseCode()
+     *
+     * Returns current response HTTP status code.
+     *
+     * @return string
      */
     public function getResponseCode()
     {
@@ -59,6 +90,10 @@ class Response
     }
 
     /**
+     * setResponseCode($responseCode)
+     *
+     * Sets response HTTP status code.
+     *
      * @param $responseCode
      */
     private function setResponseCode($responseCode)
@@ -67,6 +102,10 @@ class Response
     }
 
     /**
+     * getResponseHeader()
+     *
+     * Returns the parsed response header.
+     *
      * @return mixed
      */
     public function getResponseHeader()
@@ -75,14 +114,22 @@ class Response
     }
 
     /**
+     * setResponseHeader(array $responseHeader)
+     *
+     * Sets parsed response header.
+     *
      * @param $responseHeader
      */
-    public function setResponseHeader($responseHeader)
+    private function setResponseHeader($responseHeader)
     {
         $this->parsedResult['responseHeader'] = $responseHeader;
     }
 
     /**
+     * getResponseBody()
+     *
+     * Returns current response body.
+     *
      * @return mixed
      */
     public function getResponseBody()
@@ -91,6 +138,10 @@ class Response
     }
 
     /**
+     * setResponseBody(mixed $responseBody)
+     *
+     * Returns the parsed response body.
+     *
      * @param $responseBody
      */
     public function setResponseBody($responseBody)
@@ -99,6 +150,10 @@ class Response
     }
 
     /**
+     * setResponseRawData(string $responseData)
+     *
+     * Sets the response raw data.
+     *
      * @param $responseData
      */
     private function setResponseRawData($responseData)
@@ -107,6 +162,10 @@ class Response
     }
 
     /**
+     * setHeaderSize(integer $headerSize)
+     *
+     * Sets the responded header size.
+     *
      * @param $headerSize
      */
     private function setHeaderSize($headerSize)
@@ -115,6 +174,10 @@ class Response
     }
 
     /**
+     * setTotalTime(float $totalTime)
+     *
+     * Sets the total time of a request.
+     *
      * @param $totalTime
      */
     private function setTotalTime($totalTime)
@@ -123,6 +186,10 @@ class Response
     }
 
     /**
+     * getTotalTime()
+     *
+     * Returns the total time of last request as a string.
+     *
      * @return string
      */
     public function getTotalTime()
@@ -131,6 +198,8 @@ class Response
     }
 
     /**
+     * parse()
+     *
      * This method parses all raw data and set them to class properties.
      */
     private function parse()
@@ -154,11 +223,13 @@ class Response
     }
 
     /**
+     * parseHttpResponseHeader(mixed $responseHeader)
+     *
+     * Calculates the data type of given $responseHeader and
+     * lead data to the matching parse method.
+     *
      * @param $responseHeader
      * @return array
-     *
-     * Calculates the data typ of given $responseHeader and
-     * lead data to the matching parse method.
      */
     private function parseHttpResponseHeader($responseHeader)
     {
@@ -170,6 +241,12 @@ class Response
     }
 
     /**
+     * parseStringHeaders(string $rawHeaders)
+     *
+     * This method parses header string. It uses the raw date to split them
+     * based on header size value (array[0] => header data,
+     * array[1] => response body).
+     *
      * @param $rawHeaders
      * @return array
      */
@@ -178,7 +255,7 @@ class Response
         $headers = array();
         $responseHeaderLines = explode("\r\n", $rawHeaders);
         foreach ($responseHeaderLines as $headerLine) {
-            if ($headerLine && strpos($headerLine, ':') !== false) {
+            if ($headerLine && strpos($headerLine, ':') !== FALSE) {
                 list($header, $value) = explode(': ', $headerLine, 2);
                 $header = strtolower($header);
                 if (isset($headers[$header])) {
@@ -192,6 +269,10 @@ class Response
     }
 
     /**
+     * parseArrayHeaders(array $rawHeaders)
+     *
+     * This method parses header array.
+     *
      * @param $rawHeaders
      * @return array
      */
