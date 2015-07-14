@@ -1,6 +1,5 @@
 <?php
-//@TODO: Make user/developer documentation to override provided or add API methods
-
+//@TODO: Make user documentation to override provided or add API methods
 //@TODO: Add more advanced examples
 //Example Project
 //@TODO: Provide upload_directory
