@@ -30,7 +30,7 @@ class ClientBaseTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Xtractor\Exception
+     * @expectedException vierbergenlars\SemVer\SemVerException
      */
     public function testSetAPIVersionFailure()
     {

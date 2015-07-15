@@ -17,6 +17,8 @@ use Xtractor\Http;
 use Xtractor\Utils\Url;
 use Xtractor\IO\Curl;
 
+use vierbergenlars\SemVer\version;
+
 /**
  * Class Base
  *
@@ -125,23 +127,16 @@ class Base extends Auth\Base
     /**
      * setAPIVersion(string $apiVersion)
      *
-     * Set the used API version. The given version string have to be formated
-     * like this.
-     *
-     * [number].[number].[number]
-     *
-     * Each number contains 1 or 2 digits.
+     * Set the used API version. For validation and parsing we use
+     * php-semver.
      *
      * @param $apiVersion
-     * @throws \Xtractor\Exception
+     * @throws \vierbergenlars\SemVer\SemVerException
      */
     public function setAPIVersion($apiVersion)
     {
-        if (!preg_match('/^(\d{1,2}\.\d{1,2}\.\d{1,2}){1}$/i', $apiVersion)) {
-            throw new Exception('Malformed API-Version string.');
-        }
-
-        $this->header->addField('Accept-Version', $apiVersion);
+        $semVer = new version($apiVersion);
+        $this->header->addField('Accept-Version', $semVer->getVersion());
     }
 
     /**
