@@ -1,5 +1,7 @@
 # xtractor.io-sdk-php
 
+# Installation #
+
 ## Requirements ##
 
   - PHP 5.3.0 or above
@@ -8,8 +10,18 @@
 
 ## Setup ##
 
+### composer ###
+
+
+### github ###
+
 1. Create an access token with [xtractor.io API console] (https://console.xtractor.io). 
 2. Clone git repository to your local project folder and include autoload file into your project.
+
+### manually ###
+
+
+# Usage #
 
 ## Basic Usage ##
 
@@ -17,16 +29,44 @@
       namespace Xtractor;
       require_once realpath(__DIR__ . '/../') . '/src/Xtractor/autoload.php';
       
-      $sourceFile = <fullpath_to_my_file>;
+      $sourceFile = <fullpath_to_my_local_file>;
       
       $xtractorClient = new Client();
       $xtractorClient->setAccessToken('ACCESS_TOKEN');
       
-      //Call upload method
+      //call upload method
       $responseObject = $xtractorClient->upload($sourceFile);
       
       //response object contains all extracted information
       print_r($responseObject);
+
+## Advanced Usage ##
+
+
+## Response Object ##
+
+Every method that calls our api returns an instance of the Response class. Following methods are provided:
+
+getResponseCode
+getResponseHeader
+getResponseBody
+getTotalTime
+
+### Properties of Response object ###
+
+
+
+ 
+ 
+# Methods #
+
+## Methods provided by SDK ##
+
+## Methods provided by REST API ##
+
+## Create custom methods ##
+
+Based on our REST API documentation you can create your own methods to combine two or more features.
 
 ## License ##
 
@@ -51,3 +91,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+# Appendix #
+
+## Run unit tests ##

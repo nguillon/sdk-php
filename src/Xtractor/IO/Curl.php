@@ -81,12 +81,12 @@ class Curl
         $response = curl_exec($this->curlHandler);
 
         //Evaluate response
-        $xtractorHttpResponse = $this->evaluateResponse($response);
+        $responseInstance = $this->evaluateResponse($response);
 
         //Reset cURL handler in preparation for next call
         $this->resetCurlHandler();
 
-        return $xtractorHttpResponse;
+        return $responseInstance;
     }
 
     /**
