@@ -1,0 +1,19 @@
+{
+  "name": "organizeme/xtractor.io-sdk",
+  "description": "SDK to use xtractor.io provided REST API.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thilo Habenreich",
+      "email": "thilo@habenreich.de"
+    },
+    {
+      "name": "Bastian Konetzny",
+      "email": "b.konetzny@organize.me"
+    }
+  ],
+  "require": {
+    "vierbergenlars/php-semver": "3.0.1"
+  }
+}

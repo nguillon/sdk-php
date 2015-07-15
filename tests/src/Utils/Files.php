@@ -36,12 +36,4 @@ class XtractorUtilsFilesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Files::getMimeType($this->filesDir . '/example.png'), 'image/png');
     }
 
-    public function testIsValidFileType()
-    {
-        //Unsupported Mime-Type
-        $this->assertFalse(Files::isValidFileType($this->filesDir . '/example.txt'));
-
-        //Supported Mime-Type
-        $this->assertTrue(Files::isValidFileType($this->filesDir . '/example.jpg'));
-    }
 }

@@ -2,11 +2,11 @@
 /**
  * xtractor.io-php-sdk
  *
- * PHP Version 5.5
+ * PHP Version 5.3
  *
- * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @copyright 2015 organize.me GmbH (https://www.organize.me)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://xtractor.io
+ * @link      https://xtractor.io
  */
 
 namespace Xtractor;
@@ -54,8 +54,8 @@ final class Client extends Base
      */
     public function upload($filePath, $extractors = array())
     {
-        if (!Files::isValidFileType($filePath)) {
-            throw new Exception('Invalid file type.');
+        if (!Files::isValidFilePath($filePath)) {
+            throw new Exception('Invalid file path.');
         }
 
         if (!is_array($extractors)) {

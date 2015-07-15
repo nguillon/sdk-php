@@ -2,11 +2,11 @@
 /**
  * xtractor.io-php-sdk
  *
- * PHP Version 5.5
+ * PHP Version 5.3
  *
- * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @copyright 2015 organize.me GmbH (https://www.organize.me)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://xtractor.io
+ * @link      https://xtractor.io
  */
 
 namespace Xtractor\Auth;

@@ -5,7 +5,7 @@ use Xtractor\Http\Body;
 
 class HttpBodyTest extends PHPUnit_Framework_TestCase
 {
-    private $body  = null;
+    private $body = NULL;
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class HttpBodyTest extends PHPUnit_Framework_TestCase
         $this->assertCount(0, $this->body->getFields());
 
         //Try to add filepath
-        $file = realpath (__DIR__ . '/../../files') . '/example.jpg';
+        $file = realpath(__DIR__ . '/../../files') . '/example.jpg';
 
         $this->body->addField('file', $file);
         $fields = $this->body->getFields();

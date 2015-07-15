@@ -68,6 +68,24 @@ getTotalTime
 
 Based on our REST API documentation you can create your own methods to combine two or more features.
 
+# Miscellaneous #
+
+## Run unit tests ##
+
+1. [Install phpUnit] (https://phpunit.de/manual/current/en/installation.html) to your system
+2. Open your commandline and navigate to project root
+3. Run phpunit (e.g. php phpunit.phar) 
+
+## Generate documentation ##
+
+1. Install [phpDocumentor] (http://www.phpdoc.org/docs/latest/getting-started/installing.html)
+2. Read the [instructions] (http://www.phpdoc.org/docs/latest/guides/running-phpdocumentor.html) how to run phpDocumentor on commadline
+3. Open your commandline and navigate to project root
+4. Following command generates the documentation:
+
+
+    phpdoc -d src -t documentation --title "xtractor.io" --defaultpackagename "Xtractor" --sourcecode
+
 ## License ##
 
 The MIT License (MIT)
@@ -91,8 +109,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-# Appendix #
-
-## Run unit tests ##

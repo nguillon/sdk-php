@@ -2,11 +2,11 @@
 /**
  * xtractor.io-php-sdk
  *
- * PHP Version 5.5
+ * PHP Version 5.3
  *
- * @copyright 2015 organize.me GmbH (http://www.organize.me)
+ * @copyright 2015 organize.me GmbH (https://www.organize.me)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
- * @link      http://xtractor.io
+ * @link      https://xtractor.io
  */
 
 namespace Xtractor\Utils;
@@ -41,37 +41,6 @@ class Files
         }
 
         return TRUE;
-    }
-
-    /**
-     * isValidFileType(string $filePath)
-     *
-     * Returns TRUE if the given file path has an supported mime-type,
-     * FALSE otherwise.
-     *
-     * @param $filePath
-     * @return bool
-     * @throws Utils\Exception
-     */
-    public static function isValidFileType($filePath)
-    {
-        $supportedMimeTypes = [
-          'application/pdf',
-          'image/bmp',
-          'image/gif',
-          'image/jp2',
-          'image/jpeg',
-          'image/x-pcx',
-          'image/png',
-          'image/tiff',
-        ];
-
-        if (!self::isValidFilePath($filePath)) {
-            throw new Utils\Exception('Invalid file path.');
-        }
-
-        return (bool) in_array(self::getMimeType($filePath),
-          $supportedMimeTypes);
     }
 
     /**
