@@ -43,21 +43,17 @@
 ## Advanced Usage ##
 
 
-## Response Object ##
+# Response Object #
 
 Every method that calls our api returns an instance of the Response class. Following methods are provided:
 
-getResponseCode
-getResponseHeader
-getResponseBody
-getTotalTime
+| Method | Description |
+| --- | --- |
+| getResponseCode | [HTTP status code] (https://de.wikipedia.org/wiki/HTTP-Statuscode) from cURL request.  |
+| getResponseHeader | Response header information provided as associative array. |
+| getResponseBody | This is the response of our api. The SDK convert response in an associative array if response header says the body is encodes JSON string. In other cases you will get the string without parsing value.  |
+| getTotalTime | Welt |
 
-### Properties of Response object ###
-
-
-
- 
- 
 # Methods #
 
 ## Methods provided by SDK ##
