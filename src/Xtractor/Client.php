@@ -11,6 +11,8 @@
 
 namespace Xtractor;
 
+require_once realpath(__DIR__ . '/../../vendor/') . '/autoload.php';
+
 use Xtractor\Client\Base;
 use Xtractor\Utils\Files;
 
