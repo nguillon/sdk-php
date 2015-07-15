@@ -59,16 +59,6 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
         $xtractorClient->upload($this->filesDir . '/not-exists.jpg');
     }
 
-    /**
-     * @expectedException \Xtractor\Exception
-     * @expectedExceptionMessage Invalid file type.
-     */
-    public function testUploadFailurePathUnsupportedType()
-    {
-        $xtractorClient = new Client();
-        $xtractorClient->upload($this->filesDir . '/dummyResponse.txt');
-    }
-
     public function testUploadWithAllExtractors()
     {
         $xtractorClient = new Client();
