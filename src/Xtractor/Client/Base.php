@@ -11,13 +11,11 @@
 
 namespace Xtractor\Client;
 
-use Xtractor\Auth;
 use Xtractor\Exception;
-use Xtractor\Http;
 use Xtractor\Utils\Url;
-use Xtractor\IO\Curl;
 
 use vierbergenlars\SemVer\version;
+use GuzzleHttp\Client as GuzzleClient;
 
 /**
  * Class Base
@@ -29,38 +27,15 @@ use vierbergenlars\SemVer\version;
  *
  * @package Xtractor\Client
  */
-class Base extends Auth\Base
+class Base
 {
-    /**
-     * @var Http\Header
-     *
-     * Request header object
-     */
-    protected $header = NULL;
-    /**
-     * @var Http\Body
-     *
-     * Request body object
-     */
-    protected $body = NULL;
-    /**
-     * @var Http\Options
-     *
-     * Request options object
-     */
-    protected $options = NULL;
-    /**
-     * @var string
-     *
-     * Default api url
-     */
-    private $defaultApiUrl = 'https://api.xtractor.io';
+    private $accessToken = '';
     /**
      * @var string
      *
      * Current request api url
      */
-    private $apiUrl = NULL;
+    private $apiUrl = 'https://api.xtractor.io';
     /**
      * @var string
      *
@@ -68,36 +43,70 @@ class Base extends Auth\Base
      */
     private $apiRoute = '/';
     /**
-     * @var Http\Request
+     * @var string
      *
-     * Current request object
+     * Version of used api endpoint
      */
-    private $request = NULL;
-    /**
-     * @var Http\Response
-     *
-     * Last request response
-     */
-    private $lastRequestResponse = NULL;
+    private $apiVersion = '1.0.0';
 
-    /**
-     * __construct([string $apiUrl = NULL])
-     *
-     * @param $apiUrl
-     */
-    public function __construct($apiUrl = NULL)
+    private $requestMethod = 'GET';
+
+    private $headers = array();
+
+    private $parameters = array();
+
+    private $sslVerification = TRUE;
+
+    public function __construct()
     {
-        //Init objects
-        $this->request = new Http\Request();
-        $this->header = new Http\Header();
-        $this->body = new Http\Body();
-        $this->options = new Http\Options();
 
-        //Set defaults
-        $this->setApiUrl($apiUrl);
+    }
 
-        //Parent Constructor
-        parent::__construct($this->header);
+    /**
+     * getAccessToken()
+     *
+     * Returns the current access token.
+     *
+     * @return string
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * setAccessToken(string $accessToken)
+     *
+     * Set an access token to the client.
+     *
+     * @param $accessToken
+     * @throws Exception
+     */
+    public function setAccessToken($accessToken)
+    {
+        $accessToken = trim($accessToken);
+
+        if (!is_string($accessToken)) {
+            throw new Exception('Given $accessToken not a string value.');
+        }
+
+        if (empty($accessToken) === TRUE) {
+            throw new Exception('Given $accessToken is empty.');
+        }
+
+        $this->accessToken = (String) $accessToken;
+    }
+
+    /**
+     * getApiUrl()
+     *
+     * Returns the current apiUrl.
+     *
+     * @return string
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
     }
 
     /**
@@ -110,22 +119,33 @@ class Base extends Auth\Base
      * This method ensures a valid url and set them to our class property.
      *
      * @param $apiUrl
+     * @throws Exception
      */
-    private function setApiUrl($apiUrl)
+    public function setApiUrl($apiUrl)
     {
-        if (!is_null($apiUrl)) {
-            if (Url::isValidUrl($apiUrl)) {
-                $this->apiUrl = trim($apiUrl);
-            } else {
-                $this->apiUrl = $this->defaultApiUrl;
-            }
-        } else {
-            $this->apiUrl = $this->defaultApiUrl;
+        $apiUrl = trim($apiUrl);
+
+        if (!Url::isValidUrl($apiUrl)) {
+            throw new Exception('Invalid url given.');
         }
+
+        $this->apiUrl = $apiUrl;
     }
 
     /**
-     * setAPIVersion(string $apiVersion)
+     * getApiVersion()
+     *
+     * Returns the selected api endpoint version.
+     *
+     * @return string
+     */
+    public function getApiVersion()
+    {
+        return $this->apiVersion;
+    }
+
+    /**
+     * setApiVersion(string $apiVersion)
      *
      * Set the used API version. For validation and parsing we use
      * php-semver.
@@ -133,23 +153,10 @@ class Base extends Auth\Base
      * @param $apiVersion
      * @throws \vierbergenlars\SemVer\SemVerException
      */
-    public function setAPIVersion($apiVersion)
+    public function setApiVersion($apiVersion)
     {
         $semVer = new version($apiVersion);
-        $this->header->addField('Accept-Version', $semVer->getVersion());
-    }
-
-    /**
-     * getAPIVersion()
-     *
-     * Returns the selected API version.
-     *
-     * @return string
-     * @throws Http\Exception
-     */
-    public function getAPIVersion()
-    {
-        return $this->header->getField('Accept-Version');
+        $this->apiVersion = $semVer->getVersion();
     }
 
     /**
@@ -185,138 +192,126 @@ class Base extends Auth\Base
         $this->apiRoute = trim($apiRoute);
     }
 
-    /**
-     * getLastResponse()
-     *
-     * Returns the last response object. If there is no last response
-     * the return value will be NULL.
-     *
-     * @return Response
-     */
-    public function getLastResponse()
+    public function disableSSLVerification()
     {
-        return $this->lastRequestResponse;
+        $this->sslVerification = FALSE;
     }
 
+    protected function addHeader($name, $value)
+    {
+        if (!is_string($name)) {
+            throw new Exception('Parametername must be a string.');
+        }
+
+        if (!is_string($value)) {
+            throw new Exception('Parametervalue must be a string.');
+        }
+
+        $this->headers[$name] = $value;
+    }
+
+    protected function setParameter($name, $value)
+    {
+        if (!is_string($name)) {
+            throw new Exception('Parametername must be a string.');
+        }
+
+        $this->parameters[$name] = $value;
+    }
+
+
     /**
-     * setRequestMethod(string $method)
+     * setRequestMethod($method)
      *
-     * Sets the request method. Actually only the method "POST"
-     * makes a difference, because in this case we need to set CURLOPT_POSTFIELDS
-     * during cURL request.
-     *
-     * Currently we support: GET, POST, PUT, DELETE
+     * Set the method for the next request.
      *
      * @param $method
-     * @throws Http\Exception
+     * @throws Exception
      */
     protected function setRequestMethod($method)
     {
-        $this->request->setRequestMethod($method);
+        $method = strtoupper($method);
+        $valid_methods = array('POST', 'GET', 'PUT', 'DELETE');
+
+        if (!in_array($method, $valid_methods)) {
+            throw new Exception(sprintf('Invalid method called. - Called: %s',
+              $method));
+        }
+
+        $this->requestMethod = $method;
     }
 
-    /**
-     * executeRequest()
-     *
-     * This method sets the required values and objects to the $request instance
-     * and execute request.
-     *
-     * @return Http\Response
-     * @throws Auth\Exception
-     * @throws Http\Exception
-     */
     protected function executeRequest()
     {
-        if (!$this->hasAccessToken()) {
-            throw new Auth\Exception('Missing api key. You have to set them first.');
+        if (empty($this->accessToken)) {
+            throw new Exception('Missing api key. You have to set them first.');
         }
 
-        $xtractorIoCurl = new Curl();
+        $requestClient = $this->getRequestClient();
 
-        $this->request->setUrl($this->getRequestUrl());
-        $this->request->setRequestHeader($this->header);
-        $this->request->setRequestBody($this->body);
-        $this->request->setRequestOptions($this->options);
+        switch ($this->requestMethod) {
+            case 'POST':
+                return $requestClient->post($this->apiRoute,
+                  $this->getRequestParameters());
+                break;
 
-        $this->lastRequestResponse = $xtractorIoCurl->executeRequest($this->request);
-        $this->decodeResponseBody();
+            case 'PUT':
+                return $requestClient->put($this->apiRoute,
+                  $this->getRequestParameters());
+                break;
 
-        return $this->lastRequestResponse;
+            case 'DELETE':
+                return $requestClient->delete($this->apiRoute,
+                  $this->getRequestParameters());
+                break;
+
+            case 'GET':
+                return $requestClient->get($this->apiRoute,
+                  $this->getRequestParameters());
+                break;
+        }
+
     }
 
-    /**
-     * getRequestUrl()
-     *
-     * This method concatinates apiUrl and apiRoute to the final request url
-     * against xtractor.io api.
-     *
-     * @return string
-     * @throws Exception
-     */
-    private function getRequestUrl()
+    private function getRequestClient()
     {
-        $requestUrl = sprintf('%s%s', $this->getApiUrl(), $this->apiRoute);
+        $client = new GuzzleClient(
+          array(
+            'base_uri' => $this->apiUrl,
+            'verify' => $this->sslVerification,
+            'headers' => $this->headers,
+          )
+        );
 
-        if (!Url::isValidUrl($requestUrl)) {
-            throw new Exception('The combination of apiUrl and apiRoute leads to a non-valid request url.');
-        }
-
-        return $requestUrl;
+        return $client;
     }
 
-    /**
-     * getApiUrl()
-     *
-     * Returns the current apiUrl.
-     *
-     * @return string
-     */
-    public function getApiUrl()
+    private function getRequestParameters()
     {
-        return $this->apiUrl;
+        $requestParameters = array();
+
+        if ($this->requestMethod === 'GET') {
+
+        } else {
+
+        }
+
+        $response = $guzzleClient->post('/', array(
+          'multipart' => array(
+            array(
+              'name' => 'file',
+              'contents' => fopen($filePath, 'r'),
+            ),
+            array(
+              'name' => 'extractors',
+              'contents' => ''
+            )
+          )
+        ));
     }
 
-    /**
-     * decodeResponseBody()
-     *
-     * Every response from our API should be a JSON encoded string. This precondition
-     * in mind it makes sense to decode every valid responseBody automatically to
-     * a php usable structure (objects will be converted to arrays).
-     *
-     * This method changes nothing if non JSON string was returned.
-     *
-     * @throws Auth\Exception
-     */
-    private function decodeResponseBody()
+    private function buildQueryParameters()
     {
-        if (!method_exists($this->lastRequestResponse, 'getResponseHeader')) {
-            throw new Auth\Exception('Missing method "getResponseHeader" in class Xtractor\Http\Response.');
-        }
 
-        if (!method_exists($this->lastRequestResponse, 'setResponseBody')) {
-            throw new Auth\Exception('Missing method "setResponseBody" in class Xtractor\Http\Response.');
-        }
-
-        if (!method_exists($this->lastRequestResponse, 'getResponseBody')) {
-            throw new Auth\Exception('Missing method "getResponseBody" in class Xtractor\Http\Response.');
-        }
-
-        $responseHeader = $this->lastRequestResponse->getResponseHeader();
-
-        if (is_array($responseHeader) &&
-          array_key_exists('content-type', $responseHeader) &&
-          strtolower($responseHeader['content-type']) === 'application/json'
-        ) {
-            // Parameter TRUE ensures that every object will be converted to an
-            // associative array.
-            $decodedResponseBody = json_decode($this->lastRequestResponse->getResponseBody(),
-              TRUE);
-
-            if (empty($decodedResponseBody)) {
-                throw new Auth\Exception('Error on decoding responseBody, don\'t match with content-type.');
-            }
-
-            $this->lastRequestResponse->setResponseBody($decodedResponseBody);
-        }
     }
 }

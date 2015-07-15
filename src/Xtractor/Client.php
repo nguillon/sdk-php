@@ -11,8 +11,12 @@
 
 namespace Xtractor;
 
+require_once realpath(__DIR__ . '/../../vendor/') . '/autoload.php';
+
 use Xtractor\Client\Base;
 use Xtractor\Utils\Files;
+use Xtractor\Utils\Arrays;
+
 
 /**
  * Class Client
@@ -47,10 +51,7 @@ final class Client extends Base
      *
      * @param $filePath
      * @param array $extractors
-     * @return Http\Response
-     * @throws Auth\Exception
      * @throws Exception
-     * @throws Utils\Exception
      */
     public function upload($filePath, $extractors = array())
     {
@@ -59,24 +60,30 @@ final class Client extends Base
         }
 
         if (!is_array($extractors)) {
-            throw new Exception('Option "extractors" have to be an array.');
+            throw new Exception('Parameter "extractors" must be an array.');
         }
 
-        //Set URL Route
+        if (!empty($extractors) && !Arrays::allValuesAreStrings($extractors)) {
+            throw new Exception('Every value of parameter "extractors" must be an array.');
+        }
+
+        //Set API URL Route
         $this->setApiRoute('/');
 
         //Set Method
         $this->setRequestMethod('POST');
 
-        //Set Postfields
-        $this->body->addField('extractors', $extractors);
-        $this->body->addField('file', $filePath);
+        //Set Headers
+        $this->addHeader('Accept', 'application/json');
+        $this->addHeader('Accept-Version', $this->getApiVersion());
+        $this->addHeader('X-API-Key', $this->getAccessToken());
 
-        //Set Options
-        $this->options->addOption(CURLOPT_SSL_VERIFYPEER, FALSE);
-        $this->options->addOption(CURLOPT_CONNECTTIMEOUT, 60);
-        $this->options->addOption(CURLOPT_TIMEOUT, 60);
+        //Set Body
+        $this->setBodyParameter('extractors', $extractors);
+        $this->setBodyParameter('file', $filePath);
 
-        return $this->executeRequest();
+        //Execute Request
+        $respone = $this->executeRequest();
+        return $respone->getBody()->getContents();
     }
 }

@@ -1,7 +1,5 @@
 <?php
 require_once realpath(__DIR__ . '/../../src/Xtractor') . '/autoload.php';
-require_once realpath(__DIR__ . '/../../vendor') . '/autoload.php';
-
 
 use Xtractor\Client;
 

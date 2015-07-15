@@ -23,10 +23,10 @@ class ClientBaseTest extends PHPUnit_Framework_TestCase
 
     public function testSetAPIVersion()
     {
-        $this->assertEquals($this->clientBase->getAPIVersion(), '1.0.0');
+        $this->assertEquals($this->clientBase->getApiVersion(), '1.0.0');
 
-        $this->clientBase->setAPIVersion('1.0.1');
-        $this->assertEquals($this->clientBase->getAPIVersion(), '1.0.1');
+        $this->clientBase->setApiVersion('1.0.1');
+        $this->assertEquals($this->clientBase->getApiVersion(), '1.0.1');
     }
 
     /**
@@ -34,7 +34,7 @@ class ClientBaseTest extends PHPUnit_Framework_TestCase
      */
     public function testSetAPIVersionFailure()
     {
-        $this->clientBase->setAPIVersion('non-valid');
+        $this->clientBase->setApiVersion('non-valid');
     }
 
 }

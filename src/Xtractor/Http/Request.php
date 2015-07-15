@@ -188,7 +188,7 @@ class Request
     }
 
     /**
-     * getRequestOptions()
+     * getRequestParameters()
      *
      * Returns current body object.
      *
