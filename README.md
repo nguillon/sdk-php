@@ -148,8 +148,13 @@ Based on our REST API documentation you can create your own methods. Basically t
       //To authenticate your api request or set other header information you have to set them
       //here. Every method needs at least this three headers.
       $this->addHeader('Accept', 'application/json');
-      $this->addHeader('Accept-Version', $this->getApiVersion());
       $this->addHeader('X-API-Key', $this->getAccessToken());
+
+      //By default we use the newest api version. But if a user of your method want to use
+      //a specifc version of thwe api you should insert this code to enable that behavior.
+      if (!empty($this->getApiVersion())) {
+          $this->addHeader('Accept-Version', $this->getApiVersion());
+      }
 
       //Here you can set the paramters the REST API method needs. Maybe there are methods 
       //that don't need any parameter, than you can skip this.

@@ -63,8 +63,11 @@ final class Client extends Base
 
         //Set Headers
         $this->addHeader('Accept', 'application/json');
-        $this->addHeader('Accept-Version', $this->getApiVersion());
         $this->addHeader('X-API-Key', $this->getAccessToken());
+
+        if (!empty($this->getApiVersion())) {
+            $this->addHeader('Accept-Version', $this->getApiVersion());
+        }
 
         //Set Body
         $this->addParameter('extractors', $extractors);

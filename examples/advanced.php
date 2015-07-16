@@ -8,11 +8,12 @@ try {
     $xtractorClient->setAccessToken('ACCESS_TOKEN');
 
     //Optional
-    $xtractorClient->setApiVersion('1.0.0');
+    $xtractorClient->setApiVersion('1.1.0');
     $xtractorClient->disableSSLVerification();
 
     $sourceFile = realpath(__DIR__) . '/files/example.pdf';
     $response = $xtractorClient->upload($sourceFile);
+
 
     if (!$response->hasError()) {
       print_r( $response->getData() );

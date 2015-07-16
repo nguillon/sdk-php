@@ -45,7 +45,7 @@ class Base
      *
      * Version of used api endpoint
      */
-    private $apiVersion = '1.0.0';
+    private $apiVersion = '';
     /**
      * @var array
      *
@@ -163,11 +163,11 @@ class Base
     protected function addHeader($name, $value)
     {
         if (!is_string($name)) {
-            throw new Exception('Parametername must be a string.');
+            throw new Exception('Parameter name must be a string.');
         }
 
         if (!is_string($value)) {
-            throw new Exception('Parametervalue must be a string.');
+            throw new Exception('Parameter value must be a string.');
         }
 
         if (!array_key_exists('headers', $this->options)) {
@@ -191,11 +191,11 @@ class Base
     protected function addParameter($name, $value)
     {
         if (!is_string($name)) {
-            throw new Exception('Parametername must be a string.');
+            throw new Exception('Parameter name must be a string.');
         }
 
         if (!is_array($value) && !is_string($value)) {
-            throw new Exception('Parametervalue must be a string or an array.');
+            throw new Exception('Parameter value must be a string or an array.');
         }
 
         $this->parameters[$name] = $value;
@@ -276,7 +276,7 @@ class Base
         }
 
         if (!preg_match('/^(\/[^\s]*)$/i', $apiRoute)) {
-            throw new Exception('Given apiRoute contain whitespaces.');
+            throw new Exception('Given apiRoute contains whitespaces.');
         }
 
         $this->apiRoute = trim($apiRoute);
@@ -468,7 +468,7 @@ class Base
         foreach ($this->parameters as $name => $value) {
 
             if (!is_string($value)) {
-                throw new Exception('Parametervalue is no string. Try to change requestMethod to POST.');
+                throw new Exception('Parameter value is no string. Try to change requestMethod to POST.');
             }
 
             $parameters['query'][$name] = $value;
