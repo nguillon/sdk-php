@@ -53,9 +53,9 @@ the result in your application. Following methods are available.
 
 | Method | Description |
 | --- | --- |
-| hasError | Returns TRUE if an error occured, otherwise FALSE. (e.g. an error occurs if an invlaid access token is used)   |
+| hasError | Returns TRUE if an error occurred, otherwise FALSE. (e.g. an error occurs if an invalid access token is used)   |
 | getErrorCode | Returns the [HTTP status code] (https://de.wikipedia.org/wiki/HTTP-Statuscode) from response.  |
-| getErrorMessage | Returns the curretn error message |
+| getErrorMessage | Returns the current error message |
 | getError | Returns an object with the public properties "code" and "message".  |
 | getData | Returns the api result. |
 
@@ -69,12 +69,12 @@ The following methods are currently provided out-of-the-box:
 ### upload(string $file[, array $extractors]) ###
 
 
-The upload method pushes a local file to our api and returns meta information and semantic result about the sended document.   
+The upload method pushes a local file to our api and returns meta information and semantic result about the sent document.   
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
-| file | yes | string | Ths string represents the local file you want to upload. Supported filetypes are: PDF, PNG, TIFF, JPEG, JPEG 2000, GIF, BMP, PCX, DCX, JBIG2, XPS, DjVu and WDP |
-| extratcors | no | array | Extractors limits the response object to your desired data. If you want to get only payment data from your document you have contorl with this parameter. Available extractors: types, categories, payment | 
+| file | yes | string | Ths string represents the local file you want to upload. Supported file types are: PDF, PNG, TIFF, JPEG, JPEG 2000, GIF, BMP, PCX, DCX, JBIG2, XPS, DjVu and WDP |
+| extractors | no | array | Extractors limits the response object to your desired data. If you want to get only payment data from your document you have control with this parameter. Available extractors: types, categories, payment | 
 
 #### Response ####
 
@@ -122,7 +122,7 @@ Based on our REST API documentation you can create your own methods. Basically t
 
 ```php
 <?php
-  //Require the autoloadpath of our SDK
+  //Require the autoload path of our SDK
   require_once realpath( __DIR__ ) . '/xtractor-sdk/autoload.php';
 
   //You must set the ClientBase class, because you have to extend your class with this one
@@ -151,12 +151,12 @@ Based on our REST API documentation you can create your own methods. Basically t
       $this->addHeader('X-API-Key', $this->getAccessToken());
 
       //By default we use the newest api version. But if a user of your method want to use
-      //a specifc version of thwe api you should insert this code to enable that behavior.
+      //a specific version of the api you should insert this code to enable that behavior.
       if (!empty($this->getApiVersion())) {
           $this->addHeader('Accept-Version', $this->getApiVersion());
       }
 
-      //Here you can set the paramters the REST API method needs. Maybe there are methods 
+      //Here you can set the parameters the REST API method needs. Maybe there are methods 
       //that don't need any parameter, than you can skip this.
       $this->addParameter('extractors', $extractors);
       $this->addParameter('file', $filePath);
@@ -191,7 +191,7 @@ You need to install composer. Follow the instructions on this [website.] (https:
 ## Generate documentation ##
 
 1. Install [phpDocumentor] (http://www.phpdoc.org/docs/latest/getting-started/installing.html)
-2. Read the [instructions] (http://www.phpdoc.org/docs/latest/guides/running-phpdocumentor.html) how to run phpDocumentor on commadline
+2. Read the [instructions] (http://www.phpdoc.org/docs/latest/guides/running-phpdocumentor.html) how to run phpDocumentor on commandline
 3. Open your commandline and navigate to project root
 4. Following command generates the documentation:
 

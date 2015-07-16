@@ -26,7 +26,7 @@ use GuzzleHttp\Psr7\Response;
  *
  * This class contain methods for our client class.
  *
- * We move ththa methods from our client class to ensure a readable, clean
+ * We move that methods from our client class to ensure a readable, clean
  * source in that file.
  *
  * @package Xtractor\Client
@@ -143,7 +143,7 @@ class Base
     /**
      * disableSSLVerification()
      *
-     * You can disable SSL Verifaction.
+     * You can disable SSL Verification.
      */
     public function disableSSLVerification()
     {
@@ -229,7 +229,7 @@ class Base
     /**
      * setApiUrl(string $apiUrl)
      *
-     * During instanciation of client object a user can override default api url.
+     * During instantiation of client object a user can override default api url.
      * (e.g. we have a complete new url for future api versions or for prod,
      * dev environment)
      *
@@ -322,7 +322,7 @@ class Base
      * the method receives client object. After that we have a switch based on
      * request method to perform the right call.
      *
-     * Every request method can handeles the request parameters in a different
+     * Every request method can handles the request parameters in a different
      * way. For POST,PUT & DELETE we use a parameter array with a multipart
      * structure. For GET request we use a parameter array with a query structure.
      *
@@ -377,7 +377,7 @@ class Base
     /**
      * createRequestClient()
      *
-     * Returns a guzzle client object with setted options and headers.
+     * Returns a guzzle client object with options and headers.
      *
      * @return GuzzleClient
      */
@@ -389,18 +389,18 @@ class Base
     /**
      * buildMultipartParameters()
      *
-     * For POST, PUT & DELETE methods build a parameter strucutre like this:
-     *  'mulitpart' =>
+     * For POST, PUT & DELETE methods build a parameter structure like this:
+     *  'multipart' =>
      *  [
      *      [
      *          'name' => 'parameter name'
-     *          'contents' => string|filestream
+     *          'contents' => string|file stream
      *      ]
      *  ]
      *
      * If a parameter value is an array the method transform that to a string.
-     * But if you paramater value is an array with nested arrays you will get an
-     * error. The onkly thing that is supported is an array of strings.
+     * But if you parameter value is an array with nested arrays you will get an
+     * error. The only thing that is supported is an array of strings.
      *
      * e.g.
      *  valid: 'param' => array('val1', 'val2', 'val3');

@@ -38,7 +38,7 @@ final class Client extends Base
      *
      * @param $filePath
      * @param array $extractors
-     * @return array|null
+     * @return Client\Result
      * @throws Exception
      */
     public function upload($filePath, $extractors = [])

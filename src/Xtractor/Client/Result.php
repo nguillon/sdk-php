@@ -19,12 +19,22 @@ class Result
     /**
      * @var mixed
      *
-     * Contains resultdata of a response
+     * Contains result data of a response
      */
     private $data = null;
 
+    /**
+     * @var null
+     *
+     * Contains the error code of a result
+     */
     private $errorCode = null;
 
+    /**
+     * @var string
+     *
+     * Contains the error message of a result
+     */
     private $errorMessage = '';
 
     public function __construct(Response $response)
@@ -39,7 +49,7 @@ class Result
      * error. If it is TRUE we set an error object.
      *
      * Otherwise we check the response body and decode them. We assume that
-     * out api only responde JSOn encoded results.
+     * out api only respond JSON encoded results.
      *
      * @param $response
      * @throws Exception
@@ -73,7 +83,7 @@ class Result
     /**
      * setError(string $code, string $message)
      *
-     * Set an occured error.
+     * Set an occurred error.
      *
      * @param $code
      * @param $message
@@ -87,7 +97,7 @@ class Result
     /**
      * hasError()
      *
-     * Returns TRUE if an error occured, otherwise FALSE.
+     * Returns TRUE if an error occurred, otherwise FALSE.
      *
      * @return bool
      */
@@ -120,7 +130,7 @@ class Result
      *
      * Returns an error object with current error code and error message.
      *
-     * @return StdClass
+     * @return \StdClass
      */
     public function getError()
     {
