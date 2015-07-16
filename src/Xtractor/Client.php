@@ -2,7 +2,7 @@
 /**
  * xtractor.io-php-sdk
  *
- * PHP Version 5.3
+ * PHP Version 5.5.0 or above
  *
  * @copyright 2015 organize.me GmbH (https://www.organize.me)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT
@@ -29,19 +29,6 @@ use Xtractor\Utils\Arrays;
 final class Client extends Base
 {
     /**
-     * __construct([string $apiUrl = NULL])
-     *
-     * A user can overwrite default api url. Further explanations:
-     * Xtractor\Client\Base::_setApiUrl
-     *
-     * @param null $apiUrl
-     */
-    public function __construct($apiUrl = NULL)
-    {
-        parent::__construct($apiUrl);
-    }
-
-    /**
      * upload(string $filePath[, array $extractors = array())
      *
      * This method uploads a file to our api and returns the response body
@@ -51,9 +38,10 @@ final class Client extends Base
      *
      * @param $filePath
      * @param array $extractors
+     * @return array|null
      * @throws Exception
      */
-    public function upload($filePath, $extractors = array())
+    public function upload($filePath, $extractors = [])
     {
         if (!Files::isValidFilePath($filePath)) {
             throw new Exception('Invalid file path.');
@@ -64,7 +52,7 @@ final class Client extends Base
         }
 
         if (!empty($extractors) && !Arrays::allValuesAreStrings($extractors)) {
-            throw new Exception('Every value of parameter "extractors" must be an array.');
+            throw new Exception('Every value of parameter "extractors" must be a string.');
         }
 
         //Set API URL Route
@@ -79,11 +67,14 @@ final class Client extends Base
         $this->addHeader('X-API-Key', $this->getAccessToken());
 
         //Set Body
-        $this->setBodyParameter('extractors', $extractors);
-        $this->setBodyParameter('file', $filePath);
+        $this->addParameter('extractors', $extractors);
+        $this->addParameter('file', $filePath);
 
         //Execute Request
         $respone = $this->executeRequest();
-        return $respone->getBody()->getContents();
+
+        return $this->decodeJSON(
+          $respone->getBody()->getContents()
+        );
     }
 }

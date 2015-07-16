@@ -3,15 +3,10 @@
   <testsuites>
     <testsuite name="xtractor">
       <file>tests/src/Client.php</file>
-      <file>tests/src/Auth/Base.php</file>
       <file>tests/src/Client/Base.php</file>
-      <file>tests/src/Http/Body.php</file>
-      <file>tests/src/Http/Header.php</file>
-      <file>tests/src/Http/Options.php</file>
-      <file>tests/src/Http/Request.php</file>
-      <file>tests/src/Http/Response.php</file>
-      <file>tests/src/Utils/Url.php</file>
+      <file>tests/src/Utils/Arrays.php</file>
       <file>tests/src/Utils/Files.php</file>
+      <file>tests/src/Utils/Url.php</file>
     </testsuite>
   </testsuites>
   <php>

@@ -19,19 +19,10 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Xtractor\Client', new Client);
     }
 
-    /*
-     * @depends testConstruct
-     */
-    public function testConstructWithUrlOverride()
-    {
-        $client = new Client('non-valid-api-url');
-        $this->assertNotEquals($client->getApiUrl(), 'non-valid-api-url');
-        $this->assertEquals($client->getApiUrl(), 'https://api.xtractor.io');
-    }
 
     /**
-     * @expectedException \Xtractor\Exception
-     * @expectedExceptionMessage Missing api key. You have to set them first.
+     * @expectedException Exception
+     * @expectedExceptionMessage Missing api access token.
      */
     public function testUploadFailureMissingApiKey()
     {
@@ -63,6 +54,8 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
     {
         $xtractorClient = new Client();
         $xtractorClient->setAccessToken(XTRACTOR_ACCESS_TOKEN);
+        $xtractorClient->disableSSLVerification();
+
         $response = $xtractorClient->upload($this->filesDir . '/example.pdf');
 
         $this->assertInstanceOf('Xtractor\Http\Response', $response);
@@ -82,6 +75,8 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
     {
         $xtractorClient = new Client();
         $xtractorClient->setAccessToken(XTRACTOR_ACCESS_TOKEN);
+        $xtractorClient->disableSSLVerification();
+
         $response = $xtractorClient->upload($this->filesDir . '/example.pdf', array('types'));
 
         $this->assertInstanceOf('Xtractor\Http\Response', $response);

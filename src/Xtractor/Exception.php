@@ -2,7 +2,7 @@
 /**
  * xtractor.io-php-sdk
  *
- * PHP Version 5.3
+ * PHP Version 5.5.0 or above
  *
  * @copyright 2015 organize.me GmbH (https://www.organize.me)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT

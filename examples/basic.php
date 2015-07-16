@@ -13,9 +13,9 @@ try {
     $xtractorClient->disableSSLVerification();
 
     $sourceFile = realpath(__DIR__) . '/files/example.pdf';
-    $responseObject = $xtractorClient->upload($sourceFile);
+    $response = $xtractorClient->upload($sourceFile);
 
-    print_r($responseObject);
+    print_r($response);
 
 } catch (Exception $e) {
     print $e->getMessage() . "\n";
