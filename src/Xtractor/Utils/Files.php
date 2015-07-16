@@ -11,7 +11,7 @@
 
 namespace Xtractor\Utils;
 
-use Xtractor\Utils;
+use Xtractor\Exception;
 
 /**
  * Class Files
@@ -50,16 +50,16 @@ class Files
      *
      * @param $filePath
      * @return string
-     * @throws Utils\Exception
+     * @throws Exception
      */
     public static function getMimeType($filePath)
     {
         if (!extension_loaded('fileinfo')) {
-            throw new Utils\Exception('Required extension "fileinfo" is not enabled.');
+            throw new Exception('Required extension "fileinfo" is not enabled.');
         }
 
         if (!self::isValidFilePath($filePath)) {
-            throw new Utils\Exception('Invalid file path.');
+            throw new Exception('Invalid file path.');
         }
 
         $infoResource = finfo_open(FILEINFO_MIME_TYPE);
