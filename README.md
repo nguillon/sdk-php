@@ -164,6 +164,17 @@ Based on our REST API documentation you can create your own methods. Basically t
 
 # Miscellaneous #
 
+## Install composer ##
+
+You need to install composer. Follow the instructions on this [website.] (https://getcomposer.org/doc/00-intro.md)
+
+## Run Examples ##
+1. Ensure you have installed all required dependencies
+2. Get an access token [xtractor.io API console] (https://console.xtractor.io)
+3. Replace the access token variable in example file(s) with your received access token.
+4. Open your commandline and navigate to examples folder.
+5. Run basic example with: *php basic.php*
+
 ## Run unit tests ##
 
 1. [Install phpUnit] (https://phpunit.de/manual/current/en/installation.html) to your system

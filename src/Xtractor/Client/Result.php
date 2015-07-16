@@ -124,7 +124,7 @@ class Result
      */
     public function getError()
     {
-        $error = new StdClass();
+        $error = new \StdClass();
         $error->code = $this->getErrorCode();
         $error->message = $this->getErrorMessage();
 

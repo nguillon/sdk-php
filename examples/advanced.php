@@ -14,7 +14,19 @@ try {
     $sourceFile = realpath(__DIR__) . '/files/example.pdf';
     $response = $xtractorClient->upload($sourceFile);
 
-    print_r( $response->getData() );
+    if (!$response->hasError()) {
+      print_r( $response->getData() );
+    } else {
+        $error = $response->getError();
+
+        print "Error code: " . $error->code . "\n";
+        print "Error message: " . $error->message . "\n";
+
+        //You can also get this as single values.
+
+        print "Error code: " . $response->getErrorCode() . "\n";
+        print "Error message: " . $response->getErrorMessage() . "\n";
+    }
 
 } catch (Exception $e) {
     print $e->getMessage() . "\n";
