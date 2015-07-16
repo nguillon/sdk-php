@@ -10,16 +10,20 @@
 
 ## Setup ##
 
-### composer ###
-
-
 ### github ###
 
 1. Create an access token with [xtractor.io API console] (https://console.xtractor.io). 
-2. Clone git repository to your local project folder and include autoload file into your project.
+2. Clone git repository to your local project folder.
+3. Open commandline and navigate to the directory where you placed the SDK.
+4. Run *composer install* . All dependencies for our SDK will be downloaded.
+5. Include our autoload file into your project.
 
 ### manually ###
-
+1. Download zip-file of project from github.
+2. Unzip the file in a subdirectory of your local project directory
+3. Open commandline and navigate to the directory where you have unzipped SDK.
+4. Run *composer install* . All dependencies for our SDK will be downloaded.
+5. Include our autoload file into your project.
 
 # Usage #
 
@@ -45,24 +49,118 @@
 
 # Response Object #
 
-Every method that calls our api returns an instance of the Response class. Following methods are provided:
+Every method that calls our api returns an instance of the Result class. This class provides methods to handle
+the result in your application. Following methods are available.
 
 | Method | Description |
 | --- | --- |
-| getResponseCode | [HTTP status code] (https://de.wikipedia.org/wiki/HTTP-Statuscode) from cURL request.  |
-| getResponseHeader | Response header information provided as associative array. |
-| getResponseBody | This is the response of our api. The SDK convert response in an associative array if response header says the body is encodes JSON string. In other cases you will get the string without parsing value.  |
-| getTotalTime | Welt |
+| hasError | Returns TRUE if an error occured, otherwise FALSE. (e.g. an error occurs if an invlaid access token is used)   |
+| getErrorCode | Returns the [HTTP status code] (https://de.wikipedia.org/wiki/HTTP-Statuscode) from response.  |
+| getErrorMessage | Returns the curretn error message |
+| getError | Returns an object with the public properties "code" and "message".  |
+| getData | Returns the api result. |
 
 # Methods #
 
 ## Methods provided by SDK ##
 
+The following methods are currently provided out-of-the-box:
+
+
+### upload(string $file[, array $extractors]) ###
+
+
+The upload method pushes a local file to our api and returns meta information and semantic result about the sended document.   
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| file | yes | string | Ths string represents the local file you want to upload. Supported filetypes are: PDF, PNG, TIFF, JPEG, JPEG 2000, GIF, BMP, PCX, DCX, JBIG2, XPS, DjVu and WDP |
+| extratcors | no | array | Extractors limits the response object to your desired data. If you want to get only payment data from your document you have contorl with this parameter. Available extractors: types, categories, payment | 
+
+#### Response ####
+
+    [
+        "results" => [
+            "types" => [...],
+            "categories" => [...],
+            "payment" => [...],
+        ],
+        "meta" => [
+            "id" => "123-45-67-890",
+            "extractors" => [...],
+            "file" => [
+                "size" => 12345,
+                "type" => "application/pdf",
+                "name" => "upload_12345.pdf"
+            ],
+            "version" => "1.0.0",
+            "processingTime" => 369
+        ]
+    ]
+
+#### Example ####
+
+    $xtractorClient = new Client();
+    $xtractorClient->setAccessToken('ACCESS_TOKEN');
+
+    $sourceFile = realpath(__DIR__) . '/files/example.pdf';
+    $response = $xtractorClient->upload($sourceFile, ['payment', 'types']);
+
+    print_r( $response->getData() );
+
 ## Methods provided by REST API ##
+
+Our REST API may provide more methods than implemented in the SDK. In the next topic we will show you how to use this 
+SDK to work with "unsupported" methods. 
+
+You can find an overview of our REST API on our [homepage.] (https://console.xtractor.io/#/api/docs)
 
 ## Create custom methods ##
 
-Based on our REST API documentation you can create your own methods to combine two or more features.
+Based on our REST API documentation you can create your own methods. Basically the source code is the same like in our Client.php. If you look at this file it's easy to see how to use methods and settings to build your own set of methods.
+
+    <?php
+      //Require the autoladpath of our SDK
+      require_once realpath(__DIR__ . '/../../vendor/') . '/autoload.php';
+
+      //You must set the ClientBase class, because you have to extend your class with this one
+      use Xtractor\Client\Base;
+    
+
+      class MyCustomClient extends Base
+      {
+        public function myCustomMethod($parameters = array())
+        {
+          //Here you can add checks for your method parameters
+          //Maybe our Utils classes helps you with that but this
+          //is not required.
+
+          //Every REST API Url is built of base uri and a route (see documentation)
+          //here you have to define the route you want to use.
+          $this->setApiRoute('/');
+
+          //Every REST API method is built on a expected request type. The default is "GET"
+          //but we recommend to set this manually.
+          $this->setRequestMethod('POST');
+
+          //To authenticate your api request or set other header information you have to set them
+          //here. Every method needs at least this three headers.
+          $this->addHeader('Accept', 'application/json');
+          $this->addHeader('Accept-Version', $this->getApiVersion());
+          $this->addHeader('X-API-Key', $this->getAccessToken());
+
+          //Here you can set the paramters the REST API method needs. Maybe there are methods 
+          //that don't need any parameter, than you can skip this.
+          $this->addParameter('extractors', $extractors);
+          $this->addParameter('file', $filePath);
+
+          //This call is required. If you don't implement this your method won't call against our api.
+          //You won't get any result ;)
+          $response = $this->executeRequest();
+          return $this->buildResultObject($response);
+    }
+}
+
 
 # Miscellaneous #
 

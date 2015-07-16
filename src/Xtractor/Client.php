@@ -71,10 +71,9 @@ final class Client extends Base
         $this->addParameter('file', $filePath);
 
         //Execute Request
-        $respone = $this->executeRequest();
+        $response = $this->executeRequest();
 
-        return $this->decodeJSON(
-          $respone->getBody()->getContents()
-        );
+        //Return ResultObject
+        return $this->buildResultObject($response);
     }
 }

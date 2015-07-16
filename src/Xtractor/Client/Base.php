@@ -18,6 +18,8 @@ use Xtractor\Utils\Url;
 
 use vierbergenlars\SemVer\version;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * Class Base
@@ -72,7 +74,7 @@ class Base
     {
         //Set defaults
         $this->options = [
-            'base_uri' => 'https://api.xtractor.io',
+          'base_uri' => 'https://api.xtractor.io',
         ];
     }
 
@@ -104,7 +106,7 @@ class Base
             throw new Exception('Given $accessToken not a string value.');
         }
 
-        if (empty($accessToken) === TRUE) {
+        if (empty($accessToken) === true) {
             throw new Exception('Given $accessToken is empty.');
         }
 
@@ -145,7 +147,7 @@ class Base
      */
     public function disableSSLVerification()
     {
-        $this->options['verify'] = FALSE;
+        $this->options['verify'] = false;
     }
 
     /**
@@ -200,22 +202,16 @@ class Base
     }
 
     /**
-     * decodeJSON(string $string)
+     * buildResultObject(object $response)
      *
-     * This methods decodes JSON string to an associative array. If this given
-     * string is non valid JSON the return value is empty.
+     * This method ensures a defined result object.
      *
-     * @param $string
-     * @return null|array
-     * @throws Exception
+     * @param $response
+     * @return Result
      */
-    protected function decodeJSON($string)
+    protected function buildResultObject(Response $response)
     {
-        if (!is_string($string)) {
-            throw new Exception('Given parameter must be a string value.');
-        }
-
-        return json_decode($string, TRUE);
+        return new Result($response);
     }
 
     /**
@@ -293,7 +289,8 @@ class Base
      *
      * @return string
      */
-    protected function getRequestMethod() {
+    protected function getRequestMethod()
+    {
         return $this->requestMethod;
     }
 
@@ -342,35 +339,38 @@ class Base
         }
 
         $requestClient = $this->createRequestClient();
+        try {
+            switch ($this->requestMethod) {
+                case 'POST':
+                    return $requestClient->post($this->apiRoute,
+                      $this->buildMultipartParameters()
+                    );
+                    break;
 
-        switch ($this->requestMethod) {
-            case 'POST':
-                return $requestClient->post($this->apiRoute,
-                  $this->buildMultipartParameters()
-                );
-                break;
+                case 'PUT':
+                    return $requestClient->put($this->apiRoute,
+                      $this->buildMultipartParameters()
+                    );
+                    break;
 
-            case 'PUT':
-                return $requestClient->put($this->apiRoute,
-                  $this->buildMultipartParameters()
-                );
-                break;
+                case 'DELETE':
+                    return $requestClient->delete($this->apiRoute,
+                      $this->buildMultipartParameters()
+                    );
+                    break;
 
-            case 'DELETE':
-                return $requestClient->delete($this->apiRoute,
-                  $this->buildMultipartParameters()
-                );
-                break;
+                case 'GET':
+                    return $requestClient->get($this->apiRoute,
+                      $this->buildQueryParameters()
+                    );
+                    break;
 
-            case 'GET':
-                return $requestClient->get($this->apiRoute,
-                  $this->buildQueryParameters()
-                );
-                break;
-
-            default:
-                throw new Exception('Cannot execute request. No valid request method found.');
-                break;
+                default:
+                    throw new Exception('Cannot execute request. No valid request method found.');
+                    break;
+            }
+        } catch (ClientException $e) {
+            return $e->getResponse();
         }
     }
 
@@ -425,7 +425,8 @@ class Base
             if (is_array($value)) {
 
                 if (!Arrays::allValuesAreStrings($value)) {
-                    throw new Exception(sprintf('Every value of given parameter "%s" must be a string.', $name));
+                    throw new Exception(sprintf('Every value of given parameter "%s" must be a string.',
+                      $name));
                 }
 
                 $parameter['contents'] = implode(',',
