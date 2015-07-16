@@ -367,6 +367,10 @@ class Base
                   $this->buildQueryParameters()
                 );
                 break;
+
+            default:
+                throw new Exception('Cannot execute request. No valid request method found.');
+                break;
         }
     }
 
