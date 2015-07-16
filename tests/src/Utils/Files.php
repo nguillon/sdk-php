@@ -29,11 +29,4 @@ class XtractorUtilsFilesTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(Files::isValidFilePath($this->filesDir . '/example.pdf'));
     }
 
-    public function testGetMimeType()
-    {
-        $this->assertEquals(Files::getMimeType($this->filesDir . '/example.pdf'), 'application/pdf');
-        $this->assertEquals(Files::getMimeType($this->filesDir . '/example.jpg'), 'image/jpeg');
-        $this->assertEquals(Files::getMimeType($this->filesDir . '/example.png'), 'image/png');
-    }
-
 }

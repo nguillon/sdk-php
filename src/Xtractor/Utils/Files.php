@@ -43,29 +43,4 @@ class Files
         return TRUE;
     }
 
-    /**
-     * getMimeType(string $filePath)
-     *
-     * Returns the mime-type of a given file path.
-     *
-     * @param $filePath
-     * @return string
-     * @throws Exception
-     */
-    public static function getMimeType($filePath)
-    {
-        if (!extension_loaded('fileinfo')) {
-            throw new Exception('Required extension "fileinfo" is not enabled.');
-        }
-
-        if (!self::isValidFilePath($filePath)) {
-            throw new Exception('Invalid file path.');
-        }
-
-        $infoResource = finfo_open(FILEINFO_MIME_TYPE);
-        $mimeType = finfo_file($infoResource, $filePath);
-        finfo_close($infoResource);
-
-        return (String) $mimeType;
-    }
 }

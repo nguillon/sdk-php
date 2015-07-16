@@ -5,7 +5,6 @@
 ## Requirements ##
 
   - PHP 5.5.0 or above
-  - enabled cURL extension
   - enabled fileinfo extension
 
 ## Setup ##
