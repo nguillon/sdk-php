@@ -44,9 +44,6 @@
       //response object contains all extracted information
       print_r($responseObject);
 
-## Advanced Usage ##
-
-
 # Response Object #
 
 Every method that calls our api returns an instance of the Result class. This class provides methods to handle
