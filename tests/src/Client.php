@@ -58,17 +58,14 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
 
         $response = $xtractorClient->upload($this->filesDir . '/example.pdf');
 
-        $this->assertInstanceOf('Xtractor\Http\Response', $response);
-        $responseBody  = $response->getResponseBody();
+        $this->assertTrue(is_array($response));
+        $this->assertArrayHasKey('meta', $response);
+        $this->assertArrayHasKey('results', $response);
 
-        $this->assertTrue(is_array($responseBody));
-        $this->assertArrayHasKey('meta', $responseBody);
-        $this->assertArrayHasKey('results', $responseBody);
-
-        $this->assertTrue(is_array($responseBody['results']));
-        $this->assertArrayHasKey('types', $responseBody['results']);
-        $this->assertArrayHasKey('categories', $responseBody['results']);
-        $this->assertArrayHasKey('payment', $responseBody['results']);
+        $this->assertTrue(is_array($response['results']));
+        $this->assertArrayHasKey('types', $response['results']);
+        $this->assertArrayHasKey('categories', $response['results']);
+        $this->assertArrayHasKey('payment', $response['results']);
     }
 
     public function testUploadWithOneExtractor()
@@ -79,16 +76,13 @@ class XtractorClientTest extends PHPUnit_Framework_TestCase
 
         $response = $xtractorClient->upload($this->filesDir . '/example.pdf', array('types'));
 
-        $this->assertInstanceOf('Xtractor\Http\Response', $response);
-        $responseBody  = $response->getResponseBody();
+        $this->assertTrue(is_array($response));
+        $this->assertArrayHasKey('meta', $response);
+        $this->assertArrayHasKey('results', $response);
 
-        $this->assertTrue(is_array($responseBody));
-        $this->assertArrayHasKey('meta', $responseBody);
-        $this->assertArrayHasKey('results', $responseBody);
-
-        $this->assertTrue(is_array($responseBody['results']));
-        $this->assertArrayHasKey('types', $responseBody['results']);
-        $this->assertFalse(array_key_exists('categories', $responseBody['results']));
-        $this->assertFalse(array_key_exists('payment', $responseBody['results']));
+        $this->assertTrue(is_array($response['results']));
+        $this->assertArrayHasKey('types', $response['results']);
+        $this->assertFalse(array_key_exists('categories', $response['results']));
+        $this->assertFalse(array_key_exists('payment', $response['results']));
     }
 }
