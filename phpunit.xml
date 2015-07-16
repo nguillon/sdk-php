@@ -10,6 +10,6 @@
     </testsuite>
   </testsuites>
   <php>
-    <const name="XTRACTOR_ACCESS_TOKEN" value="m1HHn/2Ph5H3SjIdkfEQI7szgo0Pv38T5CtlXREJwjk="/>
+    <const name="XTRACTOR_ACCESS_TOKEN" value="ACCESS_TOKEN"/>
   </php>
 </phpunit>

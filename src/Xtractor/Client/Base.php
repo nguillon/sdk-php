@@ -16,7 +16,6 @@ use Xtractor\Utils\Arrays;
 use Xtractor\Utils\Files;
 use Xtractor\Utils\Url;
 
-use vierbergenlars\SemVer\version;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Response;
@@ -128,16 +127,18 @@ class Base
     /**
      * setApiVersion(string $apiVersion)
      *
-     * Set the used API version. For validation and parsing we use
-     * php-semver.
+     * Set the used API version.
      *
      * @param $apiVersion
-     * @throws \vierbergenlars\SemVer\SemVerException
+     * @throws Exception
      */
     public function setApiVersion($apiVersion)
     {
-        $semVer = new version($apiVersion);
-        $this->apiVersion = $semVer->getVersion();
+        if (!is_string($apiVersion)) {
+            throw new Exception('The parameter $apiVersion must be a string.');
+        }
+
+        $this->apiVersion = $apiVersion;
     }
 
     /**

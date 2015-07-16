@@ -73,29 +73,12 @@ The upload method pushes a local file to our api and returns meta information an
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
-| file | yes | string | Ths string represents the local file you want to upload. Supported file types are: PDF, PNG, TIFF, JPEG, JPEG 2000, GIF, BMP, PCX, DCX, JBIG2, XPS, DjVu and WDP |
-| extractors | no | array | Extractors limits the response object to your desired data. If you want to get only payment data from your document you have control with this parameter. Available extractors: types, categories, payment | 
+| file | yes | string | Ths string represents the local file you want to upload. For more information, read the [official documentation] (https://console.xtractor.io/#/api/docs) |
+| extractors | no | array | Extractors limits the response object to your desired data. If you want to get only payment data from your document you have control with this parameter. For more information, read the [official documentation] (https://console.xtractor.io/#/api/docs) | 
 
 #### Response ####
 
-    [
-        "results" => [
-            "types" => [...],
-            "categories" => [...],
-            "payment" => [...],
-        ],
-        "meta" => [
-            "id" => "123-45-67-890",
-            "extractors" => [...],
-            "file" => [
-                "size" => 12345,
-                "type" => "application/pdf",
-                "name" => "upload_12345.pdf"
-            ],
-            "version" => "1.0.0",
-            "processingTime" => 369
-        ]
-    ]
+    [See the official documentation] (https://console.xtractor.io/#/api/docs)
 
 #### Example ####
 
@@ -184,7 +167,9 @@ You need to install composer. Follow the instructions on this [website.] (https:
 
 ## Run unit tests ##
 
-1. [Install phpUnit] (https://phpunit.de/manual/current/en/installation.html) to your system
+1. Get an access token [xtractor.io API console] (https://console.xtractor.io)
+2. Edit phpunit.xml and replace "ACCESS_TOKEN" with your personal access token.
+3. [Install phpUnit] (https://phpunit.de/manual/current/en/installation.html) to your system
 2. Open your commandline and navigate to project root
 3. Run phpunit (e.g. php phpunit.phar) 
 
