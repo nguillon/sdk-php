@@ -29,20 +29,22 @@
 
 ## Basic Usage ##
 
-    <?php
-      namespace Xtractor;
-      require_once realpath(__DIR__ . '/../') . '/src/Xtractor/autoload.php';
-      
-      $sourceFile = <fullpath_to_my_local_file>;
-      
-      $xtractorClient = new Client();
-      $xtractorClient->setAccessToken('ACCESS_TOKEN');
-      
-      //call upload method
-      $responseObject = $xtractorClient->upload($sourceFile);
-      
-      //response object contains all extracted information
-      print_r($responseObject);
+```php
+<?php
+  namespace Xtractor;
+  require_once realpath(__DIR__ . '/../') . '/src/Xtractor/autoload.php';
+  
+  $sourceFile = <fullpath_to_my_local_file>;
+  
+  $xtractorClient = new Client();
+  $xtractorClient->setAccessToken('ACCESS_TOKEN');
+  
+  //call upload method
+  $responseObject = $xtractorClient->upload($sourceFile);
+  
+  //response object contains all extracted information
+  print_r($responseObject);
+```
 
 # Response Object #
 
@@ -97,13 +99,15 @@ The upload method pushes a local file to our api and returns meta information an
 
 #### Example ####
 
-    $xtractorClient = new Client();
-    $xtractorClient->setAccessToken('ACCESS_TOKEN');
+```php
+$xtractorClient = new Client();
+$xtractorClient->setAccessToken('ACCESS_TOKEN');
 
-    $sourceFile = realpath(__DIR__) . '/files/example.pdf';
-    $response = $xtractorClient->upload($sourceFile, ['payment', 'types']);
+$sourceFile = realpath(__DIR__) . '/files/example.pdf';
+$response = $xtractorClient->upload($sourceFile, ['payment', 'types']);
 
-    print_r( $response->getData() );
+print_r( $response->getData() );
+```
 
 ## Methods provided by REST API ##
 
@@ -116,48 +120,49 @@ You can find an overview of our REST API on our [homepage.] (https://console.xtr
 
 Based on our REST API documentation you can create your own methods. Basically the source code is the same like in our Client.php. If you look at this file it's easy to see how to use methods and settings to build your own set of methods.
 
-    <?php
-      //Require the autoladpath of our SDK
-      require_once realpath(__DIR__ . '/../../vendor/') . '/autoload.php';
+```php
+<?php
+  //Require the autoloadpath of our SDK
+  require_once realpath( __DIR__ ) . '/xtractor-sdk/autoload.php';
 
-      //You must set the ClientBase class, because you have to extend your class with this one
-      use Xtractor\Client\Base;
-    
+  //You must set the ClientBase class, because you have to extend your class with this one
+  use Xtractor\Client\Base;
 
-      class MyCustomClient extends Base
-      {
-        public function myCustomMethod($parameters = array())
-        {
-          //Here you can add checks for your method parameters
-          //Maybe our Utils classes helps you with that but this
-          //is not required.
 
-          //Every REST API Url is built of base uri and a route (see documentation)
-          //here you have to define the route you want to use.
-          $this->setApiRoute('/');
+  class MyCustomClient extends Base
+  {
+    public function myCustomMethod($parameters = array())
+    {
+      //Here you can add checks for your method parameters
+      //Maybe our Utils classes helps you with that but this
+      //is not required.
 
-          //Every REST API method is built on a expected request type. The default is "GET"
-          //but we recommend to set this manually.
-          $this->setRequestMethod('POST');
+      //Every REST API Url is built of base uri and a route (see documentation)
+      //here you have to define the route you want to use.
+      $this->setApiRoute('/');
 
-          //To authenticate your api request or set other header information you have to set them
-          //here. Every method needs at least this three headers.
-          $this->addHeader('Accept', 'application/json');
-          $this->addHeader('Accept-Version', $this->getApiVersion());
-          $this->addHeader('X-API-Key', $this->getAccessToken());
+      //Every REST API method is built on a expected request type. The default is "GET"
+      //but we recommend to set this manually.
+      $this->setRequestMethod('POST');
 
-          //Here you can set the paramters the REST API method needs. Maybe there are methods 
-          //that don't need any parameter, than you can skip this.
-          $this->addParameter('extractors', $extractors);
-          $this->addParameter('file', $filePath);
+      //To authenticate your api request or set other header information you have to set them
+      //here. Every method needs at least this three headers.
+      $this->addHeader('Accept', 'application/json');
+      $this->addHeader('Accept-Version', $this->getApiVersion());
+      $this->addHeader('X-API-Key', $this->getAccessToken());
 
-          //This call is required. If you don't implement this your method won't call against our api.
-          //You won't get any result ;)
-          $response = $this->executeRequest();
-          return $this->buildResultObject($response);
+      //Here you can set the paramters the REST API method needs. Maybe there are methods 
+      //that don't need any parameter, than you can skip this.
+      $this->addParameter('extractors', $extractors);
+      $this->addParameter('file', $filePath);
+
+      //This call is required. If you don't implement this your method won't call against our api.
+      //You won't get any result ;)
+      $response = $this->executeRequest();
+      return $this->buildResultObject($response);
     }
 }
-
+```
 
 # Miscellaneous #
 
