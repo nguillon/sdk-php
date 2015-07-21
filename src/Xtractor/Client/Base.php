@@ -36,13 +36,13 @@ class Base
     /**
      * @var string
      *
-     * Current request api route
+     * Current request API route
      */
     private $apiRoute = '/';
     /**
      * @var string
      *
-     * Version of used api endpoint
+     * Version of used API endpoint
      */
     private $apiVersion = '';
     /**
@@ -67,7 +67,7 @@ class Base
     /**
      * __construct()
      *
-     * Set the default api endpoint url.
+     * Set the default API endpoint url.
      */
     public function __construct()
     {
@@ -115,7 +115,7 @@ class Base
     /**
      * getApiVersion()
      *
-     * Returns the selected api endpoint version.
+     * Returns the selected API endpoint version.
      *
      * @return string
      */
@@ -164,11 +164,11 @@ class Base
     protected function addHeader($name, $value)
     {
         if (!is_string($name)) {
-            throw new Exception('Parameter name must be a string.');
+            throw new Exception('Parameter $name must be a string.');
         }
 
         if (!is_string($value)) {
-            throw new Exception('Parameter value must be a string.');
+            throw new Exception('Parameter $value must be a string.');
         }
 
         if (!array_key_exists('headers', $this->options)) {
@@ -192,11 +192,11 @@ class Base
     protected function addParameter($name, $value)
     {
         if (!is_string($name)) {
-            throw new Exception('Parameter name must be a string.');
+            throw new Exception('Parameter $name must be a string.');
         }
 
         if (!is_array($value) && !is_string($value)) {
-            throw new Exception('Parameter value must be a string or an array.');
+            throw new Exception('Parameter $value must be a string or an array.');
         }
 
         $this->parameters[$name] = $value;
@@ -230,8 +230,8 @@ class Base
     /**
      * setApiUrl(string $apiUrl)
      *
-     * During instantiation of client object a user can override default api url.
-     * (e.g. we have a complete new url for future api versions or for prod,
+     * During instantiation of client object a user can override default API url.
+     * (e.g. we have a complete new url for future API versions or for prod,
      * dev environment)
      *
      * This method ensures a valid url and set them to our class property.
@@ -244,7 +244,7 @@ class Base
         $apiUrl = trim($apiUrl);
 
         if (!Url::isValidUrl($apiUrl)) {
-            throw new Exception('Invalid url given.');
+            throw new Exception('Invalid $apiUrl given.');
         }
 
         $this->options['base_uri'] = $apiUrl;
@@ -273,11 +273,11 @@ class Base
     protected function setApiRoute($apiRoute)
     {
         if (empty($apiRoute)) {
-            throw new Exception('Cannot set empty apiRoute.');
+            throw new Exception('Cannot set empty $apiRoute.');
         }
 
         if (!preg_match('/^(\/[^\s]*)$/i', $apiRoute)) {
-            throw new Exception('Given apiRoute contains whitespaces.');
+            throw new Exception('Given $apiRoute contains whitespaces.');
         }
 
         $this->apiRoute = trim($apiRoute);
@@ -309,7 +309,7 @@ class Base
         $valid_methods = ['POST', 'GET', 'PUT', 'DELETE'];
 
         if (!in_array($method, $valid_methods)) {
-            throw new Exception(sprintf('Invalid method called. - Called: %s',
+            throw new Exception(sprintf('Invalid $method called. - Called: %s',
               $method));
         }
 
@@ -336,7 +336,7 @@ class Base
     protected function executeRequest()
     {
         if (empty($this->accessToken)) {
-            throw new Exception('Missing api access token.');
+            throw new Exception('Missing API access token.');
         }
 
         $requestClient = $this->createRequestClient();
@@ -469,7 +469,7 @@ class Base
         foreach ($this->parameters as $name => $value) {
 
             if (!is_string($value)) {
-                throw new Exception('Parameter value is no string. Try to change requestMethod to POST.');
+                throw new Exception('Parameter $value is no string. Try to change requestMethod to POST.');
             }
 
             $parameters['query'][$name] = $value;
@@ -477,5 +477,4 @@ class Base
 
         return $parameters;
     }
-
 }

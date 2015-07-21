@@ -21,8 +21,8 @@ use Xtractor\Utils\Arrays;
 /**
  * Class Client
  *
- * This class is the gateway to our api.
- * Here are all supported api methods declared.
+ * This class is the gateway to our API.
+ * Here are all supported API methods declared.
  *
  * @package Xtractor
  */
@@ -31,7 +31,7 @@ final class Client extends Base
     /**
      * upload(string $filePath[, array $extractors = array())
      *
-     * This method uploads a file to our api and returns the response body
+     * This method uploads a file to our API and returns the response body
      * from that request.
      *
      * A user can define used extractors as an array of strings.

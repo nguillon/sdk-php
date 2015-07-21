@@ -49,7 +49,7 @@ class Result
      * error. If it is TRUE we set an error object.
      *
      * Otherwise we check the response body and decode them. We assume that
-     * out api only respond JSON encoded results.
+     * our API only responds JSON encoded results.
      *
      * @param $response
      * @throws Exception
@@ -72,7 +72,7 @@ class Result
             if (empty($contentType) || $contentType[0] != 'application/json') {
                 $this->setError(
                   500,
-                  'Invalid response from api.'
+                  'Invalid response from API.'
                 );
             } else {
                 $this->data = $this->decodeJSON($responseBody);
