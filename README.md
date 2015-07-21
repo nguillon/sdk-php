@@ -5,7 +5,6 @@
 ## Requirements ##
 
   - PHP 5.5.0 or above
-  - enabled fileinfo extension
 
 ## Setup ##
 
@@ -32,15 +31,15 @@
 <?php
   namespace Xtractor;
   require_once realpath(__DIR__ . '/../') . '/src/Xtractor/autoload.php';
-  
+
   $sourceFile = <fullpath_to_my_local_file>;
-  
+
   $xtractorClient = new Client();
   $xtractorClient->setAccessToken('ACCESS_TOKEN');
-  
+
   //call upload method
   $responseObject = $xtractorClient->upload($sourceFile);
-  
+
   //response object contains all extracted information
   print_r($responseObject);
 ```
@@ -64,9 +63,7 @@ the result in your application. Following methods are available.
 
 The following methods are currently provided out-of-the-box:
 
-
 ### upload(string $file[, array $extractors]) ###
-
 
 The upload method pushes a local file to our api and returns meta information and semantic result about the sent document.   
 
@@ -178,7 +175,6 @@ You need to install composer. Follow the instructions on this [website.] (https:
 2. Read the [instructions] (http://www.phpdoc.org/docs/latest/guides/running-phpdocumentor.html) how to run phpDocumentor on commandline
 3. Open your commandline and navigate to project root
 4. Following command generates the documentation:
-
 
     phpdoc -d src -t documentation --title "xtractor.io" --defaultpackagename "Xtractor" --sourcecode
 
