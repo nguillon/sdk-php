@@ -1,4 +1,4 @@
-# xtractor.io-sdk-php
+# PHP SDK for xtractor.io
 
 PHP SDK for accessing the [xtractor.io API](https://console.xtractor.io).
 
