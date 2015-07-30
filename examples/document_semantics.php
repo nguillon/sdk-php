@@ -3,12 +3,12 @@
 require_once realpath(__DIR__ . '/../') . '/autoload.php';
 
 $apiKey = '<YOUR_API_KEY>';
+$file = __DIR__ . '/files/example.pdf';
 
 try {
   $xtractorApi = new Swagger\Client\Api\SemanticsApi();
   $xtractorApi->getApiClient()->getConfig()->addDefaultHeader('X-API-Key', $apiKey);
 
-  $file = __DIR__ . '/files/example.pdf';
   $result = $xtractorApi->documentSemantics($file);
 
   echo "<pre>";
