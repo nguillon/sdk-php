@@ -1,6 +1,6 @@
 <?php
 
-require_once '../xtractor.php';
+require_once __DIR__ . '/../xtractor.php';
 
 $xtractorApi = new Xtractor('<YOUR_API_KEY>');
 $file = __DIR__ . '/files/example.pdf';
