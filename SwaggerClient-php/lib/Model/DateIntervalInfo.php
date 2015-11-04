@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * DateIntervalInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * DateIntervalInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class DateIntervalInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'date_begin' => 'string',
+        'date_end' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'date_begin' => 'date_begin',
+        'date_end' => 'date_end'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'date_begin' => 'setDateBegin',
+        'date_end' => 'setDateEnd'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'date_begin' => 'getDateBegin',
+        'date_end' => 'getDateEnd'
     );
   
     
     /**
-      * $code Error code.
+      * $date_begin 
       * @var string
       */
-    protected $code;
+    protected $date_begin;
     
     /**
-      * $message Error message.
+      * $date_end 
       * @var string
       */
-    protected $message;
+    protected $date_end;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->date_begin = $data["date_begin"];
+            $this->date_end = $data["date_end"];
         }
     }
     
     /**
-     * Gets code
+     * Gets date_begin
      * @return string
      */
-    public function getCode()
+    public function getDateBegin()
     {
-        return $this->code;
+        return $this->date_begin;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets date_begin
+     * @param string $date_begin 
      * @return $this
      */
-    public function setCode($code)
+    public function setDateBegin($date_begin)
     {
         
-        $this->code = $code;
+        $this->date_begin = $date_begin;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets date_end
      * @return string
      */
-    public function getMessage()
+    public function getDateEnd()
     {
-        return $this->message;
+        return $this->date_end;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets date_end
+     * @param string $date_end 
      * @return $this
      */
-    public function setMessage($message)
+    public function setDateEnd($date_end)
     {
         
-        $this->message = $message;
+        $this->date_end = $date_end;
         return $this;
     }
     

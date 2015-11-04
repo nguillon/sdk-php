@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsRelCoords
  *
  * PHP version 5
  *
@@ -35,24 +35,26 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsRelCoords Class Doc Comment
  *
  * @category    Class
- * @description 
+ * @description Bounding box of element, relative to page&#39;s bounding box.
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsRelCoords implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'x0' => 'float',
+        'x1' => 'float',
+        'y0' => 'float',
+        'y1' => 'float'
     );
   
     /** 
@@ -60,8 +62,10 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'x0' => 'x0',
+        'x1' => 'x1',
+        'y0' => 'y0',
+        'y1' => 'y1'
     );
   
     /**
@@ -69,8 +73,10 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'x0' => 'setX0',
+        'x1' => 'setX1',
+        'y0' => 'setY0',
+        'y1' => 'setY1'
     );
   
     /**
@@ -78,22 +84,36 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'x0' => 'getX0',
+        'x1' => 'getX1',
+        'y0' => 'getY0',
+        'y1' => 'getY1'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $x0 Left border of bounding box.
+      * @var float
       */
-    protected $code;
+    protected $x0;
     
     /**
-      * $message Error message.
-      * @var string
+      * $x1 Right border of bounding box.
+      * @var float
       */
-    protected $message;
+    protected $x1;
+    
+    /**
+      * $y0 Top of bounding box.
+      * @var float
+      */
+    protected $y0;
+    
+    /**
+      * $y1 Bottom of bounding box.
+      * @var float
+      */
+    protected $y1;
     
 
     /**
@@ -103,50 +123,94 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->x0 = $data["x0"];
+            $this->x1 = $data["x1"];
+            $this->y0 = $data["y0"];
+            $this->y1 = $data["y1"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets x0
+     * @return float
      */
-    public function getCode()
+    public function getX0()
     {
-        return $this->code;
+        return $this->x0;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets x0
+     * @param float $x0 Left border of bounding box.
      * @return $this
      */
-    public function setCode($code)
+    public function setX0($x0)
     {
         
-        $this->code = $code;
+        $this->x0 = $x0;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets x1
+     * @return float
      */
-    public function getMessage()
+    public function getX1()
     {
-        return $this->message;
+        return $this->x1;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets x1
+     * @param float $x1 Right border of bounding box.
      * @return $this
      */
-    public function setMessage($message)
+    public function setX1($x1)
     {
         
-        $this->message = $message;
+        $this->x1 = $x1;
+        return $this;
+    }
+    
+    /**
+     * Gets y0
+     * @return float
+     */
+    public function getY0()
+    {
+        return $this->y0;
+    }
+  
+    /**
+     * Sets y0
+     * @param float $y0 Top of bounding box.
+     * @return $this
+     */
+    public function setY0($y0)
+    {
+        
+        $this->y0 = $y0;
+        return $this;
+    }
+    
+    /**
+     * Gets y1
+     * @return float
+     */
+    public function getY1()
+    {
+        return $this->y1;
+    }
+  
+    /**
+     * Sets y1
+     * @param float $y1 Bottom of bounding box.
+     * @return $this
+     */
+    public function setY1($y1)
+    {
+        
+        $this->y1 = $y1;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsStyle
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsStyle Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsStyle implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'font_family' => 'string',
+        'font_size' => 'int',
+        'bold' => 'bool'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'font_family' => 'font_family',
+        'font_size' => 'font_size',
+        'bold' => 'bold'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'font_family' => 'setFontFamily',
+        'font_size' => 'setFontSize',
+        'bold' => 'setBold'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'font_family' => 'getFontFamily',
+        'font_size' => 'getFontSize',
+        'bold' => 'getBold'
     );
   
     
     /**
-      * $code Error code.
+      * $font_family 
       * @var string
       */
-    protected $code;
+    protected $font_family;
     
     /**
-      * $message Error message.
-      * @var string
+      * $font_size 
+      * @var int
       */
-    protected $message;
+    protected $font_size;
+    
+    /**
+      * $bold 
+      * @var bool
+      */
+    protected $bold;
     
 
     /**
@@ -103,50 +113,72 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->font_family = $data["font_family"];
+            $this->font_size = $data["font_size"];
+            $this->bold = $data["bold"];
         }
     }
     
     /**
-     * Gets code
+     * Gets font_family
      * @return string
      */
-    public function getCode()
+    public function getFontFamily()
     {
-        return $this->code;
+        return $this->font_family;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets font_family
+     * @param string $font_family 
      * @return $this
      */
-    public function setCode($code)
+    public function setFontFamily($font_family)
     {
         
-        $this->code = $code;
+        $this->font_family = $font_family;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets font_size
+     * @return int
      */
-    public function getMessage()
+    public function getFontSize()
     {
-        return $this->message;
+        return $this->font_size;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets font_size
+     * @param int $font_size 
      * @return $this
      */
-    public function setMessage($message)
+    public function setFontSize($font_size)
     {
         
-        $this->message = $message;
+        $this->font_size = $font_size;
+        return $this;
+    }
+    
+    /**
+     * Gets bold
+     * @return bool
+     */
+    public function getBold()
+    {
+        return $this->bold;
+    }
+  
+    /**
+     * Sets bold
+     * @param bool $bold 
+     * @return $this
+     */
+    public function setBold($bold)
+    {
+        
+        $this->bold = $bold;
         return $this;
     }
     

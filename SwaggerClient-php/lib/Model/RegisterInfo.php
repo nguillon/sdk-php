@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * RegisterInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * RegisterInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,18 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class RegisterInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
+        'register' => 'string',
+        'country' => 'string',
         'code' => 'string',
-        'message' => 'string'
+        'business_register' => 'string',
+        'court' => 'string'
     );
   
     /** 
@@ -60,8 +63,11 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
+        'register' => 'register',
+        'country' => 'country',
         'code' => 'code',
-        'message' => 'message'
+        'business_register' => 'business_register',
+        'court' => 'court'
     );
   
     /**
@@ -69,8 +75,11 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
+        'register' => 'setRegister',
+        'country' => 'setCountry',
         'code' => 'setCode',
-        'message' => 'setMessage'
+        'business_register' => 'setBusinessRegister',
+        'court' => 'setCourt'
     );
   
     /**
@@ -78,22 +87,43 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
+        'register' => 'getRegister',
+        'country' => 'getCountry',
         'code' => 'getCode',
-        'message' => 'getMessage'
+        'business_register' => 'getBusinessRegister',
+        'court' => 'getCourt'
     );
   
     
     /**
-      * $code Error code.
+      * $register The register this code refers to.
+      * @var string
+      */
+    protected $register;
+    
+    /**
+      * $country Country of register (2-letter code).
+      * @var string
+      */
+    protected $country;
+    
+    /**
+      * $code ID code of register entry.
       * @var string
       */
     protected $code;
     
     /**
-      * $message Error message.
+      * $business_register Section of business register. FN is the Austrian 'Firmenbuch' register. Only present if this element represents a business register entry.
       * @var string
       */
-    protected $message;
+    protected $business_register;
+    
+    /**
+      * $court City of register court. Only present if this element represents a business register entry.
+      * @var string
+      */
+    protected $court;
     
 
     /**
@@ -103,9 +133,57 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
+            $this->register = $data["register"];
+            $this->country = $data["country"];
             $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->business_register = $data["business_register"];
+            $this->court = $data["court"];
         }
+    }
+    
+    /**
+     * Gets register
+     * @return string
+     */
+    public function getRegister()
+    {
+        return $this->register;
+    }
+  
+    /**
+     * Sets register
+     * @param string $register The register this code refers to.
+     * @return $this
+     */
+    public function setRegister($register)
+    {
+        $allowed_values = array("national_tax_id", "VATIN", "business_register");
+        if (!in_array($register, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'register', must be one of 'national_tax_id', 'VATIN', 'business_register'");
+        }
+        $this->register = $register;
+        return $this;
+    }
+    
+    /**
+     * Gets country
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+  
+    /**
+     * Sets country
+     * @param string $country Country of register (2-letter code).
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        
+        $this->country = $country;
+        return $this;
     }
     
     /**
@@ -119,7 +197,7 @@ class GeneralError implements ArrayAccess
   
     /**
      * Sets code
-     * @param string $code Error code.
+     * @param string $code ID code of register entry.
      * @return $this
      */
     public function setCode($code)
@@ -130,23 +208,47 @@ class GeneralError implements ArrayAccess
     }
     
     /**
-     * Gets message
+     * Gets business_register
      * @return string
      */
-    public function getMessage()
+    public function getBusinessRegister()
     {
-        return $this->message;
+        return $this->business_register;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets business_register
+     * @param string $business_register Section of business register. FN is the Austrian 'Firmenbuch' register. Only present if this element represents a business register entry.
      * @return $this
      */
-    public function setMessage($message)
+    public function setBusinessRegister($business_register)
+    {
+        $allowed_values = array("HRA", "HRB", "GnR", "VR", "PR", "FN");
+        if (!in_array($business_register, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'business_register', must be one of 'HRA', 'HRB', 'GnR', 'VR', 'PR', 'FN'");
+        }
+        $this->business_register = $business_register;
+        return $this;
+    }
+    
+    /**
+     * Gets court
+     * @return string
+     */
+    public function getCourt()
+    {
+        return $this->court;
+    }
+  
+    /**
+     * Sets court
+     * @param string $court City of register court. Only present if this element represents a business register entry.
+     * @return $this
+     */
+    public function setCourt($court)
     {
         
-        $this->message = $message;
+        $this->court = $court;
         return $this;
     }
     

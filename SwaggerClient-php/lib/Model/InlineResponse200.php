@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * InlineResponse200
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * InlineResponse200 Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class InlineResponse200 implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'candidates' => '\Swagger\Client\Model\ContentSimilarityResultCandidate[]',
+        'best_candidate' => '\Swagger\Client\Model\ContentSimilarityResultCandidate',
+        'properties' => '\Swagger\Client\Model\InlineResponse200Properties'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'candidates' => 'candidates',
+        'best_candidate' => 'bestCandidate',
+        'properties' => 'properties'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'candidates' => 'setCandidates',
+        'best_candidate' => 'setBestCandidate',
+        'properties' => 'setProperties'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'candidates' => 'getCandidates',
+        'best_candidate' => 'getBestCandidate',
+        'properties' => 'getProperties'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $candidates 
+      * @var \Swagger\Client\Model\ContentSimilarityResultCandidate[]
       */
-    protected $code;
+    protected $candidates;
     
     /**
-      * $message Error message.
-      * @var string
+      * $best_candidate 
+      * @var \Swagger\Client\Model\ContentSimilarityResultCandidate
       */
-    protected $message;
+    protected $best_candidate;
+    
+    /**
+      * $properties 
+      * @var \Swagger\Client\Model\InlineResponse200Properties
+      */
+    protected $properties;
     
 
     /**
@@ -103,50 +113,72 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->candidates = $data["candidates"];
+            $this->best_candidate = $data["best_candidate"];
+            $this->properties = $data["properties"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets candidates
+     * @return \Swagger\Client\Model\ContentSimilarityResultCandidate[]
      */
-    public function getCode()
+    public function getCandidates()
     {
-        return $this->code;
+        return $this->candidates;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets candidates
+     * @param \Swagger\Client\Model\ContentSimilarityResultCandidate[] $candidates 
      * @return $this
      */
-    public function setCode($code)
+    public function setCandidates($candidates)
     {
         
-        $this->code = $code;
+        $this->candidates = $candidates;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets best_candidate
+     * @return \Swagger\Client\Model\ContentSimilarityResultCandidate
      */
-    public function getMessage()
+    public function getBestCandidate()
     {
-        return $this->message;
+        return $this->best_candidate;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets best_candidate
+     * @param \Swagger\Client\Model\ContentSimilarityResultCandidate $best_candidate 
      * @return $this
      */
-    public function setMessage($message)
+    public function setBestCandidate($best_candidate)
     {
         
-        $this->message = $message;
+        $this->best_candidate = $best_candidate;
+        return $this;
+    }
+    
+    /**
+     * Gets properties
+     * @return \Swagger\Client\Model\InlineResponse200Properties
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+  
+    /**
+     * Sets properties
+     * @param \Swagger\Client\Model\InlineResponse200Properties $properties 
+     * @return $this
+     */
+    public function setProperties($properties)
+    {
+        
+        $this->properties = $properties;
         return $this;
     }
     

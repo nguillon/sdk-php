@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * GatewayItemListResultItem
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * GatewayItemListResultItem Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,17 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class GatewayItemListResultItem implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'id' => 'string',
+        'title' => 'string',
+        'type' => 'string',
+        'meta' => '\Swagger\Client\Model\GatewayItemListResultItemMeta'
     );
   
     /** 
@@ -60,8 +62,10 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'id' => 'id',
+        'title' => 'title',
+        'type' => 'type',
+        'meta' => 'meta'
     );
   
     /**
@@ -69,8 +73,10 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'id' => 'setId',
+        'title' => 'setTitle',
+        'type' => 'setType',
+        'meta' => 'setMeta'
     );
   
     /**
@@ -78,22 +84,36 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'id' => 'getId',
+        'title' => 'getTitle',
+        'type' => 'getType',
+        'meta' => 'getMeta'
     );
   
     
     /**
-      * $code Error code.
+      * $id Item ID, can be used to fetch the item content via /gateway/item/content call.
       * @var string
       */
-    protected $code;
+    protected $id;
     
     /**
-      * $message Error message.
+      * $title Title of the item.
       * @var string
       */
-    protected $message;
+    protected $title;
+    
+    /**
+      * $type Type of the item.
+      * @var string
+      */
+    protected $type;
+    
+    /**
+      * $meta 
+      * @var \Swagger\Client\Model\GatewayItemListResultItemMeta
+      */
+    protected $meta;
     
 
     /**
@@ -103,50 +123,94 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->id = $data["id"];
+            $this->title = $data["title"];
+            $this->type = $data["type"];
+            $this->meta = $data["meta"];
         }
     }
     
     /**
-     * Gets code
+     * Gets id
      * @return string
      */
-    public function getCode()
+    public function getId()
     {
-        return $this->code;
+        return $this->id;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets id
+     * @param string $id Item ID, can be used to fetch the item content via /gateway/item/content call.
      * @return $this
      */
-    public function setCode($code)
+    public function setId($id)
     {
         
-        $this->code = $code;
+        $this->id = $id;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets title
      * @return string
      */
-    public function getMessage()
+    public function getTitle()
     {
-        return $this->message;
+        return $this->title;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets title
+     * @param string $title Title of the item.
      * @return $this
      */
-    public function setMessage($message)
+    public function setTitle($title)
     {
         
-        $this->message = $message;
+        $this->title = $title;
+        return $this;
+    }
+    
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+  
+    /**
+     * Sets type
+     * @param string $type Type of the item.
+     * @return $this
+     */
+    public function setType($type)
+    {
+        
+        $this->type = $type;
+        return $this;
+    }
+    
+    /**
+     * Gets meta
+     * @return \Swagger\Client\Model\GatewayItemListResultItemMeta
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+  
+    /**
+     * Sets meta
+     * @param \Swagger\Client\Model\GatewayItemListResultItemMeta $meta 
+     * @return $this
+     */
+    public function setMeta($meta)
+    {
+        
+        $this->meta = $meta;
         return $this;
     }
     

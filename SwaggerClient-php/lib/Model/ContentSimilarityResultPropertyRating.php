@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * ContentSimilarityResultPropertyRating
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * ContentSimilarityResultPropertyRating Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class ContentSimilarityResultPropertyRating implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'text' => 'string',
+        'rating' => 'float'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'text' => 'text',
+        'rating' => 'rating'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'text' => 'setText',
+        'rating' => 'setRating'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'text' => 'getText',
+        'rating' => 'getRating'
     );
   
     
     /**
-      * $code Error code.
+      * $text 
       * @var string
       */
-    protected $code;
+    protected $text;
     
     /**
-      * $message Error message.
-      * @var string
+      * $rating 
+      * @var float
       */
-    protected $message;
+    protected $rating;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->text = $data["text"];
+            $this->rating = $data["rating"];
         }
     }
     
     /**
-     * Gets code
+     * Gets text
      * @return string
      */
-    public function getCode()
+    public function getText()
     {
-        return $this->code;
+        return $this->text;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets text
+     * @param string $text 
      * @return $this
      */
-    public function setCode($code)
+    public function setText($text)
     {
         
-        $this->code = $code;
+        $this->text = $text;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets rating
+     * @return float
      */
-    public function getMessage()
+    public function getRating()
     {
-        return $this->message;
+        return $this->rating;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets rating
+     * @param float $rating 
      * @return $this
      */
-    public function setMessage($message)
+    public function setRating($rating)
     {
         
-        $this->message = $message;
+        $this->rating = $rating;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * Payload1
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * Payload1 Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,14 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class Payload1 implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'feedback_info' => 'object[]'
     );
   
     /** 
@@ -60,8 +59,7 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'feedback_info' => 'feedback_info'
     );
   
     /**
@@ -69,8 +67,7 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'feedback_info' => 'setFeedbackInfo'
     );
   
     /**
@@ -78,22 +75,15 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'feedback_info' => 'getFeedbackInfo'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $feedback_info JSON object containing feedback data
+      * @var object[]
       */
-    protected $code;
-    
-    /**
-      * $message Error message.
-      * @var string
-      */
-    protected $message;
+    protected $feedback_info;
     
 
     /**
@@ -103,50 +93,28 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->feedback_info = $data["feedback_info"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets feedback_info
+     * @return object[]
      */
-    public function getCode()
+    public function getFeedbackInfo()
     {
-        return $this->code;
+        return $this->feedback_info;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets feedback_info
+     * @param object[] $feedback_info JSON object containing feedback data
      * @return $this
      */
-    public function setCode($code)
+    public function setFeedbackInfo($feedback_info)
     {
         
-        $this->code = $code;
-        return $this;
-    }
-    
-    /**
-     * Gets message
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-  
-    /**
-     * Sets message
-     * @param string $message Error message.
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        
-        $this->message = $message;
+        $this->feedback_info = $feedback_info;
         return $this;
     }
     

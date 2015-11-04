@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * AmountInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * AmountInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class AmountInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'currency' => 'string',
+        'value' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'currency' => 'currency',
+        'value' => 'value'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'currency' => 'setCurrency',
+        'value' => 'setValue'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'currency' => 'getCurrency',
+        'value' => 'getValue'
     );
   
     
     /**
-      * $code Error code.
+      * $currency 3-letter code of the currency. Examples: 'EUR', 'USD'.
       * @var string
       */
-    protected $code;
+    protected $currency;
     
     /**
-      * $message Error message.
+      * $value Value of this amount, formatted with 2 positions after the decimal point. Example: '-12345.00'.
       * @var string
       */
-    protected $message;
+    protected $value;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->currency = $data["currency"];
+            $this->value = $data["value"];
         }
     }
     
     /**
-     * Gets code
+     * Gets currency
      * @return string
      */
-    public function getCode()
+    public function getCurrency()
     {
-        return $this->code;
+        return $this->currency;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets currency
+     * @param string $currency 3-letter code of the currency. Examples: 'EUR', 'USD'.
      * @return $this
      */
-    public function setCode($code)
+    public function setCurrency($currency)
     {
         
-        $this->code = $code;
+        $this->currency = $currency;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets value
      * @return string
      */
-    public function getMessage()
+    public function getValue()
     {
-        return $this->message;
+        return $this->value;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets value
+     * @param string $value Value of this amount, formatted with 2 positions after the decimal point. Example: '-12345.00'.
      * @return $this
      */
-    public function setMessage($message)
+    public function setValue($value)
     {
         
-        $this->message = $message;
+        $this->value = $value;
         return $this;
     }
     

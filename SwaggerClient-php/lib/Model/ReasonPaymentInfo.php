@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * ReasonPaymentInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * ReasonPaymentInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,7 +44,7 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class ReasonPaymentInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
@@ -52,7 +52,7 @@ class GeneralError implements ArrayAccess
       */
     static $swaggerTypes = array(
         'code' => 'string',
-        'message' => 'string'
+        'code_type' => 'string'
     );
   
     /** 
@@ -61,7 +61,7 @@ class GeneralError implements ArrayAccess
       */
     static $attributeMap = array(
         'code' => 'code',
-        'message' => 'message'
+        'code_type' => 'code_type'
     );
   
     /**
@@ -70,7 +70,7 @@ class GeneralError implements ArrayAccess
       */
     static $setters = array(
         'code' => 'setCode',
-        'message' => 'setMessage'
+        'code_type' => 'setCodeType'
     );
   
     /**
@@ -79,21 +79,21 @@ class GeneralError implements ArrayAccess
       */
     static $getters = array(
         'code' => 'getCode',
-        'message' => 'getMessage'
+        'code_type' => 'getCodeType'
     );
   
     
     /**
-      * $code Error code.
+      * $code Code value of this element.
       * @var string
       */
     protected $code;
     
     /**
-      * $message Error message.
+      * $code_type Type of this element's code.
       * @var string
       */
-    protected $message;
+    protected $code_type;
     
 
     /**
@@ -104,7 +104,7 @@ class GeneralError implements ArrayAccess
     {
         if ($data != null) {
             $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->code_type = $data["code_type"];
         }
     }
     
@@ -119,7 +119,7 @@ class GeneralError implements ArrayAccess
   
     /**
      * Sets code
-     * @param string $code Error code.
+     * @param string $code Code value of this element.
      * @return $this
      */
     public function setCode($code)
@@ -130,23 +130,26 @@ class GeneralError implements ArrayAccess
     }
     
     /**
-     * Gets message
+     * Gets code_type
      * @return string
      */
-    public function getMessage()
+    public function getCodeType()
     {
-        return $this->message;
+        return $this->code_type;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets code_type
+     * @param string $code_type Type of this element's code.
      * @return $this
      */
-    public function setMessage($message)
+    public function setCodeType($code_type)
     {
-        
-        $this->message = $message;
+        $allowed_values = array("customer_number", "invoice_number", "order_number");
+        if (!in_array($code_type, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'code_type', must be one of 'customer_number', 'invoice_number', 'order_number'");
+        }
+        $this->code_type = $code_type;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * GatewayItemListResult
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * GatewayItemListResult Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,14 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class GatewayItemListResult implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'results' => '\Swagger\Client\Model\GatewayItemListResultItem'
     );
   
     /** 
@@ -60,8 +59,7 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'results' => 'results'
     );
   
     /**
@@ -69,8 +67,7 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'results' => 'setResults'
     );
   
     /**
@@ -78,22 +75,15 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'results' => 'getResults'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $results 
+      * @var \Swagger\Client\Model\GatewayItemListResultItem
       */
-    protected $code;
-    
-    /**
-      * $message Error message.
-      * @var string
-      */
-    protected $message;
+    protected $results;
     
 
     /**
@@ -103,50 +93,28 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->results = $data["results"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets results
+     * @return \Swagger\Client\Model\GatewayItemListResultItem
      */
-    public function getCode()
+    public function getResults()
     {
-        return $this->code;
+        return $this->results;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets results
+     * @param \Swagger\Client\Model\GatewayItemListResultItem $results 
      * @return $this
      */
-    public function setCode($code)
+    public function setResults($results)
     {
         
-        $this->code = $code;
-        return $this;
-    }
-    
-    /**
-     * Gets message
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-  
-    /**
-     * Sets message
-     * @param string $message Error message.
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        
-        $this->message = $message;
+        $this->results = $results;
         return $this;
     }
     

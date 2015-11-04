@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsResultMetaFile
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsResultMetaFile Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsResultMetaFile implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'size' => 'int',
+        'type' => 'string',
+        'name' => 'string'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'size' => 'size',
+        'type' => 'type',
+        'name' => 'name'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'size' => 'setSize',
+        'type' => 'setType',
+        'name' => 'setName'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'size' => 'getSize',
+        'type' => 'getType',
+        'name' => 'getName'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $size Size of the analyzed file.
+      * @var int
       */
-    protected $code;
+    protected $size;
     
     /**
-      * $message Error message.
+      * $type Mimetype of the analyzed file.
       * @var string
       */
-    protected $message;
+    protected $type;
+    
+    /**
+      * $name Name of the analyzed file.
+      * @var string
+      */
+    protected $name;
     
 
     /**
@@ -103,50 +113,72 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->size = $data["size"];
+            $this->type = $data["type"];
+            $this->name = $data["name"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets size
+     * @return int
      */
-    public function getCode()
+    public function getSize()
     {
-        return $this->code;
+        return $this->size;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets size
+     * @param int $size Size of the analyzed file.
      * @return $this
      */
-    public function setCode($code)
+    public function setSize($size)
     {
         
-        $this->code = $code;
+        $this->size = $size;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets type
      * @return string
      */
-    public function getMessage()
+    public function getType()
     {
-        return $this->message;
+        return $this->type;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets type
+     * @param string $type Mimetype of the analyzed file.
      * @return $this
      */
-    public function setMessage($message)
+    public function setType($type)
     {
         
-        $this->message = $message;
+        $this->type = $type;
+        return $this;
+    }
+    
+    /**
+     * Gets name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+  
+    /**
+     * Sets name
+     * @param string $name Name of the analyzed file.
+     * @return $this
+     */
+    public function setName($name)
+    {
+        
+        $this->name = $name;
         return $this;
     }
     

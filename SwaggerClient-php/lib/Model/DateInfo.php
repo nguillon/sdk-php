@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * DateInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * DateInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class DateInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'date' => 'string',
+        'time' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'date' => 'date',
+        'time' => 'time'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'date' => 'setDate',
+        'time' => 'setTime'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'date' => 'getDate',
+        'time' => 'getTime'
     );
   
     
     /**
-      * $code Error code.
+      * $date Date (YYYY-MM-DD).
       * @var string
       */
-    protected $code;
+    protected $date;
     
     /**
-      * $message Error message.
+      * $time Time (HH:MM:SS). Can be null.
       * @var string
       */
-    protected $message;
+    protected $time;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->date = $data["date"];
+            $this->time = $data["time"];
         }
     }
     
     /**
-     * Gets code
+     * Gets date
      * @return string
      */
-    public function getCode()
+    public function getDate()
     {
-        return $this->code;
+        return $this->date;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets date
+     * @param string $date Date (YYYY-MM-DD).
      * @return $this
      */
-    public function setCode($code)
+    public function setDate($date)
     {
         
-        $this->code = $code;
+        $this->date = $date;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets time
      * @return string
      */
-    public function getMessage()
+    public function getTime()
     {
-        return $this->message;
+        return $this->time;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets time
+     * @param string $time Time (HH:MM:SS). Can be null.
      * @return $this
      */
-    public function setMessage($message)
+    public function setTime($time)
     {
         
-        $this->message = $message;
+        $this->time = $time;
         return $this;
     }
     

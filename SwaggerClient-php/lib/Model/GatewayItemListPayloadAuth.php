@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * GatewayItemListPayloadAuth
  *
  * PHP version 5
  *
@@ -35,24 +35,24 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * GatewayItemListPayloadAuth Class Doc Comment
  *
  * @category    Class
- * @description 
+ * @description Authentication for the specific gateway type.
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class GatewayItemListPayloadAuth implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'password' => 'string',
+        'username' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'password' => 'password',
+        'username' => 'username'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'password' => 'setPassword',
+        'username' => 'setUsername'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'password' => 'getPassword',
+        'username' => 'getUsername'
     );
   
     
     /**
-      * $code Error code.
+      * $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
       * @var string
       */
-    protected $code;
+    protected $password;
     
     /**
-      * $message Error message.
+      * $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
       * @var string
       */
-    protected $message;
+    protected $username;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->password = $data["password"];
+            $this->username = $data["username"];
         }
     }
     
     /**
-     * Gets code
+     * Gets password
      * @return string
      */
-    public function getCode()
+    public function getPassword()
     {
-        return $this->code;
+        return $this->password;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets password
+     * @param string $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
      * @return $this
      */
-    public function setCode($code)
+    public function setPassword($password)
     {
         
-        $this->code = $code;
+        $this->password = $password;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets username
      * @return string
      */
-    public function getMessage()
+    public function getUsername()
     {
-        return $this->message;
+        return $this->username;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets username
+     * @param string $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
      * @return $this
      */
-    public function setMessage($message)
+    public function setUsername($username)
     {
         
-        $this->message = $message;
+        $this->username = $username;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * Payload
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * Payload Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class Payload implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'source' => '\Swagger\Client\Model\ContentsimilaritySource',
+        'candidates' => 'object[]',
+        'modifiers' => '\Swagger\Client\Model\ContentsimilarityModifiers'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'source' => 'source',
+        'candidates' => 'candidates',
+        'modifiers' => 'modifiers'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'source' => 'setSource',
+        'candidates' => 'setCandidates',
+        'modifiers' => 'setModifiers'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'source' => 'getSource',
+        'candidates' => 'getCandidates',
+        'modifiers' => 'getModifiers'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $source 
+      * @var \Swagger\Client\Model\ContentsimilaritySource
       */
-    protected $code;
+    protected $source;
     
     /**
-      * $message Error message.
-      * @var string
+      * $candidates Object should match structure of source.
+      * @var object[]
       */
-    protected $message;
+    protected $candidates;
+    
+    /**
+      * $modifiers 
+      * @var \Swagger\Client\Model\ContentsimilarityModifiers
+      */
+    protected $modifiers;
     
 
     /**
@@ -103,50 +113,72 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->source = $data["source"];
+            $this->candidates = $data["candidates"];
+            $this->modifiers = $data["modifiers"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets source
+     * @return \Swagger\Client\Model\ContentsimilaritySource
      */
-    public function getCode()
+    public function getSource()
     {
-        return $this->code;
+        return $this->source;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets source
+     * @param \Swagger\Client\Model\ContentsimilaritySource $source 
      * @return $this
      */
-    public function setCode($code)
+    public function setSource($source)
     {
         
-        $this->code = $code;
+        $this->source = $source;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets candidates
+     * @return object[]
      */
-    public function getMessage()
+    public function getCandidates()
     {
-        return $this->message;
+        return $this->candidates;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets candidates
+     * @param object[] $candidates Object should match structure of source.
      * @return $this
      */
-    public function setMessage($message)
+    public function setCandidates($candidates)
     {
         
-        $this->message = $message;
+        $this->candidates = $candidates;
+        return $this;
+    }
+    
+    /**
+     * Gets modifiers
+     * @return \Swagger\Client\Model\ContentsimilarityModifiers
+     */
+    public function getModifiers()
+    {
+        return $this->modifiers;
+    }
+  
+    /**
+     * Sets modifiers
+     * @param \Swagger\Client\Model\ContentsimilarityModifiers $modifiers 
+     * @return $this
+     */
+    public function setModifiers($modifiers)
+    {
+        
+        $this->modifiers = $modifiers;
         return $this;
     }
     

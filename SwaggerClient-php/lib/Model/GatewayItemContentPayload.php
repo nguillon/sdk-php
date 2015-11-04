@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * GatewayItemContentPayload
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * GatewayItemContentPayload Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class GatewayItemContentPayload implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'type' => 'string',
+        'auth' => '\Swagger\Client\Model\GatewayItemListPayloadAuth',
+        'id' => 'string'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'type' => 'type',
+        'auth' => 'auth',
+        'id' => 'id'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'type' => 'setType',
+        'auth' => 'setAuth',
+        'id' => 'setId'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'type' => 'getType',
+        'auth' => 'getAuth',
+        'id' => 'getId'
     );
   
     
     /**
-      * $code Error code.
+      * $type Type of gateway to use.
       * @var string
       */
-    protected $code;
+    protected $type;
     
     /**
-      * $message Error message.
+      * $auth 
+      * @var \Swagger\Client\Model\GatewayItemListPayloadAuth
+      */
+    protected $auth;
+    
+    /**
+      * $id Item id, obtained from previous /gateway/item/list call.
       * @var string
       */
-    protected $message;
+    protected $id;
     
 
     /**
@@ -103,50 +113,75 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->type = $data["type"];
+            $this->auth = $data["auth"];
+            $this->id = $data["id"];
         }
     }
     
     /**
-     * Gets code
+     * Gets type
      * @return string
      */
-    public function getCode()
+    public function getType()
     {
-        return $this->code;
+        return $this->type;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets type
+     * @param string $type Type of gateway to use.
      * @return $this
      */
-    public function setCode($code)
+    public function setType($type)
     {
-        
-        $this->code = $code;
+        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de");
+        if (!in_array($type, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de'");
+        }
+        $this->type = $type;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets auth
+     * @return \Swagger\Client\Model\GatewayItemListPayloadAuth
      */
-    public function getMessage()
+    public function getAuth()
     {
-        return $this->message;
+        return $this->auth;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets auth
+     * @param \Swagger\Client\Model\GatewayItemListPayloadAuth $auth 
      * @return $this
      */
-    public function setMessage($message)
+    public function setAuth($auth)
     {
         
-        $this->message = $message;
+        $this->auth = $auth;
+        return $this;
+    }
+    
+    /**
+     * Gets id
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+  
+    /**
+     * Sets id
+     * @param string $id Item id, obtained from previous /gateway/item/list call.
+     * @return $this
+     */
+    public function setId($id)
+    {
+        
+        $this->id = $id;
         return $this;
     }
     

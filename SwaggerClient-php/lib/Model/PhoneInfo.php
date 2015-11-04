@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * PhoneInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * PhoneInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class PhoneInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'phone_type' => 'string',
+        'country' => 'string',
+        'number' => 'string'
     );
   
     /** 
@@ -60,8 +61,9 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'phone_type' => 'phone_type',
+        'country' => 'country',
+        'number' => 'number'
     );
   
     /**
@@ -69,8 +71,9 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'phone_type' => 'setPhoneType',
+        'country' => 'setCountry',
+        'number' => 'setNumber'
     );
   
     /**
@@ -78,22 +81,29 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'phone_type' => 'getPhoneType',
+        'country' => 'getCountry',
+        'number' => 'getNumber'
     );
   
     
     /**
-      * $code Error code.
+      * $phone_type Fax or phone.
       * @var string
       */
-    protected $code;
+    protected $phone_type;
     
     /**
-      * $message Error message.
+      * $country 2-letter country code (ISO 3166).
       * @var string
       */
-    protected $message;
+    protected $country;
+    
+    /**
+      * $number Normalized phone number.
+      * @var string
+      */
+    protected $number;
     
 
     /**
@@ -103,50 +113,75 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->phone_type = $data["phone_type"];
+            $this->country = $data["country"];
+            $this->number = $data["number"];
         }
     }
     
     /**
-     * Gets code
+     * Gets phone_type
      * @return string
      */
-    public function getCode()
+    public function getPhoneType()
     {
-        return $this->code;
+        return $this->phone_type;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets phone_type
+     * @param string $phone_type Fax or phone.
      * @return $this
      */
-    public function setCode($code)
+    public function setPhoneType($phone_type)
     {
-        
-        $this->code = $code;
+        $allowed_values = array("FAX", "PHONE");
+        if (!in_array($phone_type, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'phone_type', must be one of 'FAX', 'PHONE'");
+        }
+        $this->phone_type = $phone_type;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets country
      * @return string
      */
-    public function getMessage()
+    public function getCountry()
     {
-        return $this->message;
+        return $this->country;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets country
+     * @param string $country 2-letter country code (ISO 3166).
      * @return $this
      */
-    public function setMessage($message)
+    public function setCountry($country)
     {
         
-        $this->message = $message;
+        $this->country = $country;
+        return $this;
+    }
+    
+    /**
+     * Gets number
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+  
+    /**
+     * Sets number
+     * @param string $number Normalized phone number.
+     * @return $this
+     */
+    public function setNumber($number)
+    {
+        
+        $this->number = $number;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * AddressInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * AddressInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,18 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class AddressInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'header' => 'string',
+        'subheader' => 'string',
+        'street' => 'string',
+        'postal_code' => 'string',
+        'city' => 'string'
     );
   
     /** 
@@ -60,8 +63,11 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'header' => 'header',
+        'subheader' => 'subheader',
+        'street' => 'street',
+        'postal_code' => 'postal_code',
+        'city' => 'city'
     );
   
     /**
@@ -69,8 +75,11 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'header' => 'setHeader',
+        'subheader' => 'setSubheader',
+        'street' => 'setStreet',
+        'postal_code' => 'setPostalCode',
+        'city' => 'setCity'
     );
   
     /**
@@ -78,22 +87,43 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'header' => 'getHeader',
+        'subheader' => 'getSubheader',
+        'street' => 'getStreet',
+        'postal_code' => 'getPostalCode',
+        'city' => 'getCity'
     );
   
     
     /**
-      * $code Error code.
+      * $header Name.
       * @var string
       */
-    protected $code;
+    protected $header;
     
     /**
-      * $message Error message.
+      * $subheader Second part of name (can be null).
       * @var string
       */
-    protected $message;
+    protected $subheader;
+    
+    /**
+      * $street Street name and number or postbox (can be null).
+      * @var string
+      */
+    protected $street;
+    
+    /**
+      * $postal_code Postal code.
+      * @var string
+      */
+    protected $postal_code;
+    
+    /**
+      * $city City.
+      * @var string
+      */
+    protected $city;
     
 
     /**
@@ -103,50 +133,116 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->header = $data["header"];
+            $this->subheader = $data["subheader"];
+            $this->street = $data["street"];
+            $this->postal_code = $data["postal_code"];
+            $this->city = $data["city"];
         }
     }
     
     /**
-     * Gets code
+     * Gets header
      * @return string
      */
-    public function getCode()
+    public function getHeader()
     {
-        return $this->code;
+        return $this->header;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets header
+     * @param string $header Name.
      * @return $this
      */
-    public function setCode($code)
+    public function setHeader($header)
     {
         
-        $this->code = $code;
+        $this->header = $header;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets subheader
      * @return string
      */
-    public function getMessage()
+    public function getSubheader()
     {
-        return $this->message;
+        return $this->subheader;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets subheader
+     * @param string $subheader Second part of name (can be null).
      * @return $this
      */
-    public function setMessage($message)
+    public function setSubheader($subheader)
     {
         
-        $this->message = $message;
+        $this->subheader = $subheader;
+        return $this;
+    }
+    
+    /**
+     * Gets street
+     * @return string
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+  
+    /**
+     * Sets street
+     * @param string $street Street name and number or postbox (can be null).
+     * @return $this
+     */
+    public function setStreet($street)
+    {
+        
+        $this->street = $street;
+        return $this;
+    }
+    
+    /**
+     * Gets postal_code
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postal_code;
+    }
+  
+    /**
+     * Sets postal_code
+     * @param string $postal_code Postal code.
+     * @return $this
+     */
+    public function setPostalCode($postal_code)
+    {
+        
+        $this->postal_code = $postal_code;
+        return $this;
+    }
+    
+    /**
+     * Gets city
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+  
+    /**
+     * Sets city
+     * @param string $city City.
+     * @return $this
+     */
+    public function setCity($city)
+    {
+        
+        $this->city = $city;
         return $this;
     }
     

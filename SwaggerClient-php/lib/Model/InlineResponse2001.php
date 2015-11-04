@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * InlineResponse2001
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * InlineResponse2001 Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,14 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class InlineResponse2001 implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'status' => 'string'
     );
   
     /** 
@@ -60,8 +59,7 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'status' => 'status'
     );
   
     /**
@@ -69,8 +67,7 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'status' => 'setStatus'
     );
   
     /**
@@ -78,22 +75,15 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'status' => 'getStatus'
     );
   
     
     /**
-      * $code Error code.
+      * $status Status of the feedback request.
       * @var string
       */
-    protected $code;
-    
-    /**
-      * $message Error message.
-      * @var string
-      */
-    protected $message;
+    protected $status;
     
 
     /**
@@ -103,50 +93,28 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->status = $data["status"];
         }
     }
     
     /**
-     * Gets code
+     * Gets status
      * @return string
      */
-    public function getCode()
+    public function getStatus()
     {
-        return $this->code;
+        return $this->status;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets status
+     * @param string $status Status of the feedback request.
      * @return $this
      */
-    public function setCode($code)
+    public function setStatus($status)
     {
         
-        $this->code = $code;
-        return $this;
-    }
-    
-    /**
-     * Gets message
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-  
-    /**
-     * Sets message
-     * @param string $message Error message.
-     * @return $this
-     */
-    public function setMessage($message)
-    {
-        
-        $this->message = $message;
+        $this->status = $status;
         return $this;
     }
     

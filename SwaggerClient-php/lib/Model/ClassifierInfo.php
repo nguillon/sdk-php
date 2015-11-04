@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * ClassifierInfo
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * ClassifierInfo Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class ClassifierInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'type' => 'string',
+        'category' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'type' => 'type',
+        'category' => 'category'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'type' => 'setType',
+        'category' => 'setCategory'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'type' => 'getType',
+        'category' => 'getCategory'
     );
   
     
     /**
-      * $code Error code.
+      * $type The document's type, according to the classifier.
       * @var string
       */
-    protected $code;
+    protected $type;
     
     /**
-      * $message Error message.
+      * $category The document's category, according to the classifier.
       * @var string
       */
-    protected $message;
+    protected $category;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->type = $data["type"];
+            $this->category = $data["category"];
         }
     }
     
     /**
-     * Gets code
+     * Gets type
      * @return string
      */
-    public function getCode()
+    public function getType()
     {
-        return $this->code;
+        return $this->type;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets type
+     * @param string $type The document's type, according to the classifier.
      * @return $this
      */
-    public function setCode($code)
+    public function setType($type)
     {
         
-        $this->code = $code;
+        $this->type = $type;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets category
      * @return string
      */
-    public function getMessage()
+    public function getCategory()
     {
-        return $this->message;
+        return $this->category;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets category
+     * @param string $category The document's category, according to the classifier.
      * @return $this
      */
-    public function setMessage($message)
+    public function setCategory($category)
     {
         
-        $this->message = $message;
+        $this->category = $category;
         return $this;
     }
     

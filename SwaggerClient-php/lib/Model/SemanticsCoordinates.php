@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsCoordinates
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsCoordinates Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,18 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsCoordinates implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'style' => '\Swagger\Client\Model\SemanticsStyle',
+        'page' => 'int',
+        'baselines' => 'int[]',
+        'absolute' => '\Swagger\Client\Model\SemanticsAbsCoords',
+        'relative' => '\Swagger\Client\Model\SemanticsRelCoords'
     );
   
     /** 
@@ -60,8 +63,11 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'style' => 'style',
+        'page' => 'page',
+        'baselines' => 'baselines',
+        'absolute' => 'absolute',
+        'relative' => 'relative'
     );
   
     /**
@@ -69,8 +75,11 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'style' => 'setStyle',
+        'page' => 'setPage',
+        'baselines' => 'setBaselines',
+        'absolute' => 'setAbsolute',
+        'relative' => 'setRelative'
     );
   
     /**
@@ -78,22 +87,43 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'style' => 'getStyle',
+        'page' => 'getPage',
+        'baselines' => 'getBaselines',
+        'absolute' => 'getAbsolute',
+        'relative' => 'getRelative'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $style 
+      * @var \Swagger\Client\Model\SemanticsStyle
       */
-    protected $code;
+    protected $style;
     
     /**
-      * $message Error message.
-      * @var string
+      * $page 0-based number of page.
+      * @var int
       */
-    protected $message;
+    protected $page;
+    
+    /**
+      * $baselines Array of the baselines of this element's text, the length of this array describes the number of lines.
+      * @var int[]
+      */
+    protected $baselines;
+    
+    /**
+      * $absolute Absolute coordinates of elements.
+      * @var \Swagger\Client\Model\SemanticsAbsCoords
+      */
+    protected $absolute;
+    
+    /**
+      * $relative Relative coordinates of elements (width/height of page == 1).
+      * @var \Swagger\Client\Model\SemanticsRelCoords
+      */
+    protected $relative;
     
 
     /**
@@ -103,50 +133,116 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->style = $data["style"];
+            $this->page = $data["page"];
+            $this->baselines = $data["baselines"];
+            $this->absolute = $data["absolute"];
+            $this->relative = $data["relative"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets style
+     * @return \Swagger\Client\Model\SemanticsStyle
      */
-    public function getCode()
+    public function getStyle()
     {
-        return $this->code;
+        return $this->style;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets style
+     * @param \Swagger\Client\Model\SemanticsStyle $style 
      * @return $this
      */
-    public function setCode($code)
+    public function setStyle($style)
     {
         
-        $this->code = $code;
+        $this->style = $style;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets page
+     * @return int
      */
-    public function getMessage()
+    public function getPage()
     {
-        return $this->message;
+        return $this->page;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets page
+     * @param int $page 0-based number of page.
      * @return $this
      */
-    public function setMessage($message)
+    public function setPage($page)
     {
         
-        $this->message = $message;
+        $this->page = $page;
+        return $this;
+    }
+    
+    /**
+     * Gets baselines
+     * @return int[]
+     */
+    public function getBaselines()
+    {
+        return $this->baselines;
+    }
+  
+    /**
+     * Sets baselines
+     * @param int[] $baselines Array of the baselines of this element's text, the length of this array describes the number of lines.
+     * @return $this
+     */
+    public function setBaselines($baselines)
+    {
+        
+        $this->baselines = $baselines;
+        return $this;
+    }
+    
+    /**
+     * Gets absolute
+     * @return \Swagger\Client\Model\SemanticsAbsCoords
+     */
+    public function getAbsolute()
+    {
+        return $this->absolute;
+    }
+  
+    /**
+     * Sets absolute
+     * @param \Swagger\Client\Model\SemanticsAbsCoords $absolute Absolute coordinates of elements.
+     * @return $this
+     */
+    public function setAbsolute($absolute)
+    {
+        
+        $this->absolute = $absolute;
+        return $this;
+    }
+    
+    /**
+     * Gets relative
+     * @return \Swagger\Client\Model\SemanticsRelCoords
+     */
+    public function getRelative()
+    {
+        return $this->relative;
+    }
+  
+    /**
+     * Sets relative
+     * @param \Swagger\Client\Model\SemanticsRelCoords $relative Relative coordinates of elements (width/height of page == 1).
+     * @return $this
+     */
+    public function setRelative($relative)
+    {
+        
+        $this->relative = $relative;
         return $this;
     }
     

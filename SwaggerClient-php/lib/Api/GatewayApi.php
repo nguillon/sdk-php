@@ -1,6 +1,6 @@
 <?php
 /**
- * SemanticsApi
+ * GatewayApi
  * PHP version 5
  *
  * @category Class
@@ -39,7 +39,7 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * SemanticsApi Class Doc Comment
+ * GatewayApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
@@ -47,7 +47,7 @@ use \Swagger\Client\ObjectSerializer;
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SemanticsApi
+class GatewayApi
 {
 
     /**
@@ -82,7 +82,7 @@ class SemanticsApi
     /**
      * Set the API client
      * @param \Swagger\Client\ApiClient $apiClient set the API client
-     * @return SemanticsApi
+     * @return GatewayApi
      */
     public function setApiClient(ApiClient $apiClient)
     {
@@ -92,143 +92,38 @@ class SemanticsApi
   
     
     /**
-     * getDocumentSemantics
+     * getGatewayItemContent
      *
      * 
      *
-     * @param \SplFileObject $file File to get semantics for. Supported input formats are PDF, PNG, TIFF, JPEG, JPEG 2000, GIF, BMP, PCX, DCX, JBIG2, XPS, DjVu and WDP. (required)
+     * @param \Swagger\Client\Model\GatewayItemContentPayload $payload Gateway specific settings. (required)
      * @param string $accept_version The API version to accept, defaults to latest version from server. (optional)
-     * @param bool $coordinates Determines if coordinates and child information should be included in the results, defaults to `true`. (optional)
-     * @param string $doctype Type of the document, use only if type is known. Will speed up processing and lead to better results. (optional)
-     * @param string[] $extractors List of extractors to apply, defaults to all extractors. (optional)
-     * @param string $feedback JSON object containing additional data for feedback collection, defaults to `false`. (optional)
-     * @return \Swagger\Client\Model\SemanticsResult
+     * @return \SplFileObject
      * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function getDocumentSemantics($file, $accept_version=null, $coordinates=null, $doctype=null, $extractors=null, $feedback=null)
+    public function getGatewayItemContent($payload, $accept_version=null)
     {
         
-        // verify the required parameter 'file' is set
-        if ($file === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $file when calling getDocumentSemantics');
-        }
-  
-        // parse inputs
-        $resourcePath = "/document/semantics";
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
-        $httpBody = '';
-        $queryParams = array();
-        $headerParams = array();
-        $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml'));
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('multipart/form-data'));
-  
-        
-        // header params
-        if ($accept_version !== null) {
-            $headerParams['Accept-Version'] = $this->apiClient->getSerializer()->toHeaderValue($accept_version);
-        }
-        
-        // form params
-        if ($coordinates !== null) {
-            $formParams['coordinates'] = $this->apiClient->getSerializer()->toFormValue($coordinates);
-        }// form params
-        if ($doctype !== null) {
-            $formParams['doctype'] = $this->apiClient->getSerializer()->toFormValue($doctype);
-        }// form params
-        if ($extractors !== null) {
-            $formParams['extractors'] = $this->apiClient->getSerializer()->toFormValue($extractors);
-        }// form params
-        if ($feedback !== null) {
-            $formParams['feedback'] = $this->apiClient->getSerializer()->toFormValue($feedback);
-        }// form params
-        if ($file !== null) {
-            $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
-        }
-        
-  
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } else if (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        
-        // make the API Call
-        try
-        {
-            list($response, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath, $method,
-                $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\SemanticsResult'
-            );
-            
-            if (!$response) {
-                return null;
-            }
-
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\SemanticsResult', $httpHeader);
-            
-        } catch (ApiException $e) {
-            switch ($e->getCode()) { 
-            case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\SemanticsResult', $e->getResponseHeaders());
-                $e->setResponseObject($data);
-                break;
-            }
-  
-            throw $e;
-        }
-        
-        return null;
-        
-    }
-    
-    /**
-     * setDocumentSemanticsFeedback
-     *
-     * 
-     *
-     * @param string $request_id The request ID to give feedback for. (required)
-     * @param \Swagger\Client\Model\Payload1 $payload Feedback data. (required)
-     * @param string $accept_version The API version to accept, defaults to latest version from server. (optional)
-     * @return \Swagger\Client\Model\InlineResponse2001
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     */
-    public function setDocumentSemanticsFeedback($request_id, $payload, $accept_version=null)
-    {
-        
-        // verify the required parameter 'request_id' is set
-        if ($request_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $request_id when calling setDocumentSemanticsFeedback');
-        }
         // verify the required parameter 'payload' is set
         if ($payload === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $payload when calling setDocumentSemanticsFeedback');
+            throw new \InvalidArgumentException('Missing the required parameter $payload when calling getGatewayItemContent');
         }
   
         // parse inputs
-        $resourcePath = "/document/semantics/feedback";
+        $resourcePath = "/gateway/item/content";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
         $method = "POST";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
         $formParams = array();
-        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml'));
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/octet-stream'));
         if (!is_null($_header_accept)) {
             $headerParams['Accept'] = $_header_accept;
         }
         $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json'));
   
-        // query params
-        if ($request_id !== null) {
-            $queryParams['request_id'] = $this->apiClient->getSerializer()->toQueryValue($request_id);
-        }
+        
         // header params
         if ($accept_version !== null) {
             $headerParams['Accept-Version'] = $this->apiClient->getSerializer()->toHeaderValue($accept_version);
@@ -254,19 +149,101 @@ class SemanticsApi
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
+                $headerParams, '\SplFileObject'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\SplFileObject', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\SplFileObject', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+        
+        return null;
+        
+    }
+    
+    /**
+     * getGatewayItemList
+     *
+     * 
+     *
+     * @param \Swagger\Client\Model\GatewayItemListPayload $payload Gateway specific settings. (required)
+     * @param string $accept_version The API version to accept, defaults to latest version from server. (optional)
+     * @return \Swagger\Client\Model\GatewayItemListResult
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     */
+    public function getGatewayItemList($payload, $accept_version=null)
+    {
+        
+        // verify the required parameter 'payload' is set
+        if ($payload === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $payload when calling getGatewayItemList');
+        }
+  
+        // parse inputs
+        $resourcePath = "/gateway/item/list";
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+        $method = "POST";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json', 'application/xml'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array('application/json'));
+  
+        
+        // header params
+        if ($accept_version !== null) {
+            $headerParams['Accept-Version'] = $this->apiClient->getSerializer()->toHeaderValue($accept_version);
+        }
+        
+        
+        // body params
+        $_tempBody = null;
+        if (isset($payload)) {
+            $_tempBody = $payload;
+        }
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } else if (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // make the API Call
+        try
+        {
+            list($response, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, $method,
+                $queryParams, $httpBody,
+                $headerParams, '\Swagger\Client\Model\GatewayItemListResult'
+            );
+            
+            if (!$response) {
+                return null;
+            }
+
+            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\GatewayItemListResult', $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\GatewayItemListResult', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * PaymentInfo
  *
  * PHP version 5
  *
@@ -35,24 +35,27 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * PaymentInfo Class Doc Comment
  *
  * @category    Class
- * @description 
+ * @description The children provide the coordinates for the \&quot;info\&quot; object&#39;s values.
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class PaymentInfo implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'account_number' => 'string',
+        'bank_code' => 'string',
+        'bank_name' => 'string',
+        'iban' => 'string',
+        'bic' => 'string'
     );
   
     /** 
@@ -60,8 +63,11 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'account_number' => 'account_number',
+        'bank_code' => 'bank_code',
+        'bank_name' => 'bank_name',
+        'iban' => 'iban',
+        'bic' => 'bic'
     );
   
     /**
@@ -69,8 +75,11 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'account_number' => 'setAccountNumber',
+        'bank_code' => 'setBankCode',
+        'bank_name' => 'setBankName',
+        'iban' => 'setIban',
+        'bic' => 'setBic'
     );
   
     /**
@@ -78,22 +87,43 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'account_number' => 'getAccountNumber',
+        'bank_code' => 'getBankCode',
+        'bank_name' => 'getBankName',
+        'iban' => 'getIban',
+        'bic' => 'getBic'
     );
   
     
     /**
-      * $code Error code.
+      * $account_number Number of bank account.
       * @var string
       */
-    protected $code;
+    protected $account_number;
     
     /**
-      * $message Error message.
+      * $bank_code ID-Code of financial institution (BLZ/sort code/...).
       * @var string
       */
-    protected $message;
+    protected $bank_code;
+    
+    /**
+      * $bank_name Name of bank. (Not extracted, but taken from database based on bank_code or iban.)
+      * @var string
+      */
+    protected $bank_name;
+    
+    /**
+      * $iban IBAN
+      * @var string
+      */
+    protected $iban;
+    
+    /**
+      * $bic SWIFT BIC
+      * @var string
+      */
+    protected $bic;
     
 
     /**
@@ -103,50 +133,116 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->account_number = $data["account_number"];
+            $this->bank_code = $data["bank_code"];
+            $this->bank_name = $data["bank_name"];
+            $this->iban = $data["iban"];
+            $this->bic = $data["bic"];
         }
     }
     
     /**
-     * Gets code
+     * Gets account_number
      * @return string
      */
-    public function getCode()
+    public function getAccountNumber()
     {
-        return $this->code;
+        return $this->account_number;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets account_number
+     * @param string $account_number Number of bank account.
      * @return $this
      */
-    public function setCode($code)
+    public function setAccountNumber($account_number)
     {
         
-        $this->code = $code;
+        $this->account_number = $account_number;
         return $this;
     }
     
     /**
-     * Gets message
+     * Gets bank_code
      * @return string
      */
-    public function getMessage()
+    public function getBankCode()
     {
-        return $this->message;
+        return $this->bank_code;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets bank_code
+     * @param string $bank_code ID-Code of financial institution (BLZ/sort code/...).
      * @return $this
      */
-    public function setMessage($message)
+    public function setBankCode($bank_code)
     {
         
-        $this->message = $message;
+        $this->bank_code = $bank_code;
+        return $this;
+    }
+    
+    /**
+     * Gets bank_name
+     * @return string
+     */
+    public function getBankName()
+    {
+        return $this->bank_name;
+    }
+  
+    /**
+     * Sets bank_name
+     * @param string $bank_name Name of bank. (Not extracted, but taken from database based on bank_code or iban.)
+     * @return $this
+     */
+    public function setBankName($bank_name)
+    {
+        
+        $this->bank_name = $bank_name;
+        return $this;
+    }
+    
+    /**
+     * Gets iban
+     * @return string
+     */
+    public function getIban()
+    {
+        return $this->iban;
+    }
+  
+    /**
+     * Sets iban
+     * @param string $iban IBAN
+     * @return $this
+     */
+    public function setIban($iban)
+    {
+        
+        $this->iban = $iban;
+        return $this;
+    }
+    
+    /**
+     * Gets bic
+     * @return string
+     */
+    public function getBic()
+    {
+        return $this->bic;
+    }
+  
+    /**
+     * Sets bic
+     * @param string $bic SWIFT BIC
+     * @return $this
+     */
+    public function setBic($bic)
+    {
+        
+        $this->bic = $bic;
         return $this;
     }
     

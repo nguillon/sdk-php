@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsResult
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsResult Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,15 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsResult implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'results' => '\Swagger\Client\Model\SemanticsResultMap',
+        'meta' => '\Swagger\Client\Model\SemanticsResultMeta'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'results' => 'results',
+        'meta' => 'meta'
     );
   
     /**
@@ -69,8 +69,8 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'results' => 'setResults',
+        'meta' => 'setMeta'
     );
   
     /**
@@ -78,22 +78,22 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'results' => 'getResults',
+        'meta' => 'getMeta'
     );
   
     
     /**
-      * $code Error code.
-      * @var string
+      * $results 
+      * @var \Swagger\Client\Model\SemanticsResultMap
       */
-    protected $code;
+    protected $results;
     
     /**
-      * $message Error message.
-      * @var string
+      * $meta 
+      * @var \Swagger\Client\Model\SemanticsResultMeta
       */
-    protected $message;
+    protected $meta;
     
 
     /**
@@ -103,50 +103,50 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->results = $data["results"];
+            $this->meta = $data["meta"];
         }
     }
     
     /**
-     * Gets code
-     * @return string
+     * Gets results
+     * @return \Swagger\Client\Model\SemanticsResultMap
      */
-    public function getCode()
+    public function getResults()
     {
-        return $this->code;
+        return $this->results;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets results
+     * @param \Swagger\Client\Model\SemanticsResultMap $results 
      * @return $this
      */
-    public function setCode($code)
+    public function setResults($results)
     {
         
-        $this->code = $code;
+        $this->results = $results;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets meta
+     * @return \Swagger\Client\Model\SemanticsResultMeta
      */
-    public function getMessage()
+    public function getMeta()
     {
-        return $this->message;
+        return $this->meta;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets meta
+     * @param \Swagger\Client\Model\SemanticsResultMeta $meta 
      * @return $this
      */
-    public function setMessage($message)
+    public function setMeta($meta)
     {
         
-        $this->message = $message;
+        $this->meta = $meta;
         return $this;
     }
     

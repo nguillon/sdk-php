@@ -1,6 +1,6 @@
 <?php
 /**
- * GeneralError
+ * SemanticsResultMeta
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * GeneralError Class Doc Comment
+ * SemanticsResultMeta Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,18 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class GeneralError implements ArrayAccess
+class SemanticsResultMeta implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'code' => 'string',
-        'message' => 'string'
+        'request_id' => 'string',
+        'extractors' => 'string[]',
+        'file' => '\Swagger\Client\Model\SemanticsResultMetaFile',
+        'version' => 'string',
+        'processing_time' => 'int'
     );
   
     /** 
@@ -60,8 +63,11 @@ class GeneralError implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'code' => 'code',
-        'message' => 'message'
+        'request_id' => 'request_id',
+        'extractors' => 'extractors',
+        'file' => 'file',
+        'version' => 'version',
+        'processing_time' => 'processingTime'
     );
   
     /**
@@ -69,8 +75,11 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'code' => 'setCode',
-        'message' => 'setMessage'
+        'request_id' => 'setRequestId',
+        'extractors' => 'setExtractors',
+        'file' => 'setFile',
+        'version' => 'setVersion',
+        'processing_time' => 'setProcessingTime'
     );
   
     /**
@@ -78,22 +87,43 @@ class GeneralError implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'code' => 'getCode',
-        'message' => 'getMessage'
+        'request_id' => 'getRequestId',
+        'extractors' => 'getExtractors',
+        'file' => 'getFile',
+        'version' => 'getVersion',
+        'processing_time' => 'getProcessingTime'
     );
   
     
     /**
-      * $code Error code.
+      * $request_id Internal request ID.
       * @var string
       */
-    protected $code;
+    protected $request_id;
     
     /**
-      * $message Error message.
+      * $extractors List of applied extractors.
+      * @var string[]
+      */
+    protected $extractors;
+    
+    /**
+      * $file 
+      * @var \Swagger\Client\Model\SemanticsResultMetaFile
+      */
+    protected $file;
+    
+    /**
+      * $version Used API version for this request.
       * @var string
       */
-    protected $message;
+    protected $version;
+    
+    /**
+      * $processing_time Processing time for this request.
+      * @var int
+      */
+    protected $processing_time;
     
 
     /**
@@ -103,50 +133,116 @@ class GeneralError implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->code = $data["code"];
-            $this->message = $data["message"];
+            $this->request_id = $data["request_id"];
+            $this->extractors = $data["extractors"];
+            $this->file = $data["file"];
+            $this->version = $data["version"];
+            $this->processing_time = $data["processing_time"];
         }
     }
     
     /**
-     * Gets code
+     * Gets request_id
      * @return string
      */
-    public function getCode()
+    public function getRequestId()
     {
-        return $this->code;
+        return $this->request_id;
     }
   
     /**
-     * Sets code
-     * @param string $code Error code.
+     * Sets request_id
+     * @param string $request_id Internal request ID.
      * @return $this
      */
-    public function setCode($code)
+    public function setRequestId($request_id)
     {
         
-        $this->code = $code;
+        $this->request_id = $request_id;
         return $this;
     }
     
     /**
-     * Gets message
-     * @return string
+     * Gets extractors
+     * @return string[]
      */
-    public function getMessage()
+    public function getExtractors()
     {
-        return $this->message;
+        return $this->extractors;
     }
   
     /**
-     * Sets message
-     * @param string $message Error message.
+     * Sets extractors
+     * @param string[] $extractors List of applied extractors.
      * @return $this
      */
-    public function setMessage($message)
+    public function setExtractors($extractors)
     {
         
-        $this->message = $message;
+        $this->extractors = $extractors;
+        return $this;
+    }
+    
+    /**
+     * Gets file
+     * @return \Swagger\Client\Model\SemanticsResultMetaFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+  
+    /**
+     * Sets file
+     * @param \Swagger\Client\Model\SemanticsResultMetaFile $file 
+     * @return $this
+     */
+    public function setFile($file)
+    {
+        
+        $this->file = $file;
+        return $this;
+    }
+    
+    /**
+     * Gets version
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+  
+    /**
+     * Sets version
+     * @param string $version Used API version for this request.
+     * @return $this
+     */
+    public function setVersion($version)
+    {
+        
+        $this->version = $version;
+        return $this;
+    }
+    
+    /**
+     * Gets processing_time
+     * @return int
+     */
+    public function getProcessingTime()
+    {
+        return $this->processing_time;
+    }
+  
+    /**
+     * Sets processing_time
+     * @param int $processing_time Processing time for this request.
+     * @return $this
+     */
+    public function setProcessingTime($processing_time)
+    {
+        
+        $this->processing_time = $processing_time;
         return $this;
     }
     
