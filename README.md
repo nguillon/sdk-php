@@ -16,24 +16,66 @@ Download [latest version](https://github.com/Organiceme/xtractor.io-sdk-php/arch
 
 ## Usage
 
+### Example: Get semantics data for a document
 ```php
 <?php
 
-require_once '<PATH_TO_LIBRARY>/xtractor.php';
+require_once __DIR__ . '/../autoload.php';
 
-$xtractorApi = new Xtractor('<YOUR_API_KEY>');
+use Organizeme\Xtractor\SemanticsApi;
+use Organizeme\Xtractor\ApiException;
+
+$apiKey = '<YOUR_API_KEY>';
 $file = __DIR__ . '/files/example.pdf';
 
 try {
-  $client = $xtractorApi->getApiClient();
+  $semanticsApi = new SemanticsApi();
+  $semanticsApi->getApiClient()->getConfig()->addDefaultHeader('X-API-Key', $apiKey);
+  $result = $semanticsApi->getDocumentSemantics($file);
 
-  $result = $client->getDocumentSemantics($file);
-
-  echo "<pre>";
+  echo "<pre>\n";
   var_export($result);
-  echo "</pre>";
+  echo "</pre>\n";
 }
-catch (Swagger\Client\ApiException $e) {
+catch (ApiException $e) {
+  echo "<pre>\n";
+  echo 'Caught exception: ', $e->getMessage(), "\n";
+  echo 'HTTP status code: ', $e->getCode(), "\n";
+  echo 'HTTP response headers: ', $e->getResponseHeaders(), "\n";
+  echo 'HTTP response body: '; print_r($e->getResponseBody()); echo "\n";
+  echo "</pre>\n";
+}
+```
+
+### Example: Get item listing from gateway
+```
+<?php
+
+require_once __DIR__ . '/../autoload.php';
+
+use Organizeme\Xtractor\GatewayApi;
+use Organizeme\Xtractor\ApiException;
+use Organizeme\Xtractor\Models\GatewayItemListPayload;
+
+$apiKey = '<YOUR_API_KEY>';
+
+try {
+  $gatewayApi = new GatewayApi();
+  $gatewayApi->getApiClient()->getConfig()->addDefaultHeader('X-API-Key', $apiKey);
+  $payload = new GatewayItemListPayload([
+    'type' => '<GATEWAY_TYPE>',
+    'auth' => [
+      'username' => '<YOUR_GATEWAY_USERNAME>',
+      'password' => '<YOUR_GATEWAY_PASSWORD>'
+    ]
+  ]);
+  $result = $gatewayApi->getGatewayItemList($payload);
+
+  echo "<pre>\n";
+  var_export($result);
+  echo "</pre>\n";
+}
+catch (ApiException $e) {
   echo "<pre>\n";
   echo 'Caught exception: ', $e->getMessage(), "\n";
   echo 'HTTP status code: ', $e->getCode(), "\n";
