@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -52,7 +52,7 @@ class GatewayItemListPayload implements ArrayAccess
       */
     static $swaggerTypes = array(
         'type' => 'string',
-        'auth' => '\Swagger\Client\Model\GatewayItemListPayloadAuth'
+        'auth' => '\Organizeme\Xtractor\Models\GatewayItemListPayloadAuth'
     );
   
     /** 
@@ -91,7 +91,7 @@ class GatewayItemListPayload implements ArrayAccess
     
     /**
       * $auth 
-      * @var \Swagger\Client\Model\GatewayItemListPayloadAuth
+      * @var \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth
       */
     protected $auth;
     
@@ -124,9 +124,9 @@ class GatewayItemListPayload implements ArrayAccess
      */
     public function setType($type)
     {
-        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de");
+        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de", "telekom.de");
         if (!in_array($type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de'");
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de', 'telekom.de'");
         }
         $this->type = $type;
         return $this;
@@ -134,7 +134,7 @@ class GatewayItemListPayload implements ArrayAccess
     
     /**
      * Gets auth
-     * @return \Swagger\Client\Model\GatewayItemListPayloadAuth
+     * @return \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth
      */
     public function getAuth()
     {
@@ -143,7 +143,7 @@ class GatewayItemListPayload implements ArrayAccess
   
     /**
      * Sets auth
-     * @param \Swagger\Client\Model\GatewayItemListPayloadAuth $auth 
+     * @param \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth $auth 
      * @return $this
      */
     public function setAuth($auth)

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,9 +51,9 @@ class GatewayItemContentPayload implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
+        'id' => 'string',
         'type' => 'string',
-        'auth' => '\Swagger\Client\Model\GatewayItemListPayloadAuth',
-        'id' => 'string'
+        'auth' => '\Organizeme\Xtractor\Models\GatewayItemListPayloadAuth'
     );
   
     /** 
@@ -61,9 +61,9 @@ class GatewayItemContentPayload implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
+        'id' => 'id',
         'type' => 'type',
-        'auth' => 'auth',
-        'id' => 'id'
+        'auth' => 'auth'
     );
   
     /**
@@ -71,9 +71,9 @@ class GatewayItemContentPayload implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
+        'id' => 'setId',
         'type' => 'setType',
-        'auth' => 'setAuth',
-        'id' => 'setId'
+        'auth' => 'setAuth'
     );
   
     /**
@@ -81,11 +81,17 @@ class GatewayItemContentPayload implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
+        'id' => 'getId',
         'type' => 'getType',
-        'auth' => 'getAuth',
-        'id' => 'getId'
+        'auth' => 'getAuth'
     );
   
+    
+    /**
+      * $id Item id, obtained from previous /gateway/item/list call.
+      * @var string
+      */
+    protected $id;
     
     /**
       * $type Type of gateway to use.
@@ -95,15 +101,9 @@ class GatewayItemContentPayload implements ArrayAccess
     
     /**
       * $auth 
-      * @var \Swagger\Client\Model\GatewayItemListPayloadAuth
+      * @var \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth
       */
     protected $auth;
-    
-    /**
-      * $id Item id, obtained from previous /gateway/item/list call.
-      * @var string
-      */
-    protected $id;
     
 
     /**
@@ -113,55 +113,10 @@ class GatewayItemContentPayload implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
+            $this->id = $data["id"];
             $this->type = $data["type"];
             $this->auth = $data["auth"];
-            $this->id = $data["id"];
         }
-    }
-    
-    /**
-     * Gets type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-  
-    /**
-     * Sets type
-     * @param string $type Type of gateway to use.
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de");
-        if (!in_array($type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de'");
-        }
-        $this->type = $type;
-        return $this;
-    }
-    
-    /**
-     * Gets auth
-     * @return \Swagger\Client\Model\GatewayItemListPayloadAuth
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-  
-    /**
-     * Sets auth
-     * @param \Swagger\Client\Model\GatewayItemListPayloadAuth $auth 
-     * @return $this
-     */
-    public function setAuth($auth)
-    {
-        
-        $this->auth = $auth;
-        return $this;
     }
     
     /**
@@ -182,6 +137,51 @@ class GatewayItemContentPayload implements ArrayAccess
     {
         
         $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+  
+    /**
+     * Sets type
+     * @param string $type Type of gateway to use.
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de", "telekom.de");
+        if (!in_array($type, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de', 'telekom.de'");
+        }
+        $this->type = $type;
+        return $this;
+    }
+    
+    /**
+     * Gets auth
+     * @return \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth
+     */
+    public function getAuth()
+    {
+        return $this->auth;
+    }
+  
+    /**
+     * Sets auth
+     * @param \Organizeme\Xtractor\Models\GatewayItemListPayloadAuth $auth 
+     * @return $this
+     */
+    public function setAuth($auth)
+    {
+        
+        $this->auth = $auth;
         return $this;
     }
     

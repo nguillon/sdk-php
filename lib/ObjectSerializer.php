@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,13 +31,13 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client;
+namespace Organizeme\Xtractor;
 
 /**
  * ObjectSerializer Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client 
+ * @package  Organizeme\Xtractor 
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -193,7 +193,7 @@ class ObjectSerializer
             $deserialized = $values;
         } elseif ($class === '\DateTime') {
             $deserialized = new \DateTime($data);
-        } elseif (in_array($class, array('void', 'bool', 'string', 'double', 'byte', 'mixed', 'integer', 'float', 'int', 'DateTime', 'number', 'boolean', 'object', 'null'))) {
+        } elseif (in_array($class, array('integer', 'int', 'void', 'number', 'object', 'double', 'float', 'byte', 'DateTime', 'string', 'mixed', 'boolean', 'bool'))) {
             settype($data, $class);
             $deserialized = $data;
         } elseif ($class === '\SplFileObject') {

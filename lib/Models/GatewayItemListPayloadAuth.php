@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description Authentication for the specific gateway type.
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,8 +51,8 @@ class GatewayItemListPayloadAuth implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'password' => 'string',
-        'username' => 'string'
+        'username' => 'string',
+        'password' => 'string'
     );
   
     /** 
@@ -60,8 +60,8 @@ class GatewayItemListPayloadAuth implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'password' => 'password',
-        'username' => 'username'
+        'username' => 'username',
+        'password' => 'password'
     );
   
     /**
@@ -69,8 +69,8 @@ class GatewayItemListPayloadAuth implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'password' => 'setPassword',
-        'username' => 'setUsername'
+        'username' => 'setUsername',
+        'password' => 'setPassword'
     );
   
     /**
@@ -78,22 +78,22 @@ class GatewayItemListPayloadAuth implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'password' => 'getPassword',
-        'username' => 'getUsername'
+        'username' => 'getUsername',
+        'password' => 'getPassword'
     );
   
     
     /**
-      * $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
-      * @var string
-      */
-    protected $password;
-    
-    /**
-      * $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
+      * $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
       * @var string
       */
     protected $username;
+    
+    /**
+      * $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+      * @var string
+      */
+    protected $password;
     
 
     /**
@@ -103,30 +103,9 @@ class GatewayItemListPayloadAuth implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->password = $data["password"];
             $this->username = $data["username"];
+            $this->password = $data["password"];
         }
-    }
-    
-    /**
-     * Gets password
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-  
-    /**
-     * Sets password
-     * @param string $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
-     * @return $this
-     */
-    public function setPassword($password)
-    {
-        
-        $this->password = $password;
-        return $this;
     }
     
     /**
@@ -140,13 +119,34 @@ class GatewayItemListPayloadAuth implements ArrayAccess
   
     /**
      * Sets username
-     * @param string $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de
+     * @param string $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
      * @return $this
      */
     public function setUsername($username)
     {
         
         $this->username = $username;
+        return $this;
+    }
+    
+    /**
+     * Gets password
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+  
+    /**
+     * Sets password
+     * @param string $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+     * @return $this
+     */
+    public function setPassword($password)
+    {
+        
+        $this->password = $password;
         return $this;
     }
     

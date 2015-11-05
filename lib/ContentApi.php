@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,18 +31,18 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Api;
+namespace Organizeme\Xtractor;
 
-use \Swagger\Client\Configuration;
-use \Swagger\Client\ApiClient;
-use \Swagger\Client\ApiException;
-use \Swagger\Client\ObjectSerializer;
+use \Organizeme\Xtractor\Configuration;
+use \Organizeme\Xtractor\ApiClient;
+use \Organizeme\Xtractor\ApiException;
+use \Organizeme\Xtractor\ObjectSerializer;
 
 /**
  * ContentApi Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -52,13 +52,13 @@ class ContentApi
 
     /**
      * API Client
-     * @var \Swagger\Client\ApiClient instance of the ApiClient
+     * @var \Organizeme\Xtractor\ApiClient instance of the ApiClient
      */
     protected $apiClient;
   
     /**
      * Constructor
-     * @param \Swagger\Client\ApiClient|null $apiClient The api client to use
+     * @param \Organizeme\Xtractor\ApiClient|null $apiClient The api client to use
      */
     function __construct($apiClient = null)
     {
@@ -72,7 +72,7 @@ class ContentApi
   
     /**
      * Get API client
-     * @return \Swagger\Client\ApiClient get the API client
+     * @return \Organizeme\Xtractor\ApiClient get the API client
      */
     public function getApiClient()
     {
@@ -81,7 +81,7 @@ class ContentApi
   
     /**
      * Set the API client
-     * @param \Swagger\Client\ApiClient $apiClient set the API client
+     * @param \Organizeme\Xtractor\ApiClient $apiClient set the API client
      * @return ContentApi
      */
     public function setApiClient(ApiClient $apiClient)
@@ -96,10 +96,10 @@ class ContentApi
      *
      * 
      *
-     * @param \Swagger\Client\Model\Payload $payload Content to compare. (required)
+     * @param \Organizeme\Xtractor\Models\Payload $payload Content to compare. (required)
      * @param string $accept_version The API version to accept, defaults to latest version from server. (optional)
-     * @return \Swagger\Client\Model\InlineResponse200
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return \Organizeme\Xtractor\Models\InlineResponse200
+     * @throws \Organizeme\Xtractor\ApiException on non-2xx response
      */
     public function getContentSimilarity($payload, $accept_version=null)
     {
@@ -143,25 +143,52 @@ class ContentApi
             $httpBody = $formParams; // for HTTP post (form)
         }
         
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-API-Key');
+        if (isset($apiKey)) {
+            $headerParams['X-API-Key'] = $apiKey;
+        }
+        
+        
+        
         // make the API Call
         try
         {
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse200'
+                $headerParams, '\Organizeme\Xtractor\Models\InlineResponse200'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse200', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Organizeme\Xtractor\Models\InlineResponse200', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse200', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\InlineResponse200', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 403:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 429:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 500:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

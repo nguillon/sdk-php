@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,8 +51,8 @@ class GatewayItemListResult implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'results' => '\Swagger\Client\Model\GatewayItemListResultItem[]',
-        'meta' => '\Swagger\Client\Model\GatewayItemListResultMeta'
+        'results' => '\Organizeme\Xtractor\Models\GatewayItemListResultItem[]',
+        'meta' => '\Organizeme\Xtractor\Models\GatewayItemListResultMeta'
     );
   
     /** 
@@ -85,13 +85,13 @@ class GatewayItemListResult implements ArrayAccess
     
     /**
       * $results 
-      * @var \Swagger\Client\Model\GatewayItemListResultItem[]
+      * @var \Organizeme\Xtractor\Models\GatewayItemListResultItem[]
       */
     protected $results;
     
     /**
       * $meta 
-      * @var \Swagger\Client\Model\GatewayItemListResultMeta
+      * @var \Organizeme\Xtractor\Models\GatewayItemListResultMeta
       */
     protected $meta;
     
@@ -110,7 +110,7 @@ class GatewayItemListResult implements ArrayAccess
     
     /**
      * Gets results
-     * @return \Swagger\Client\Model\GatewayItemListResultItem[]
+     * @return \Organizeme\Xtractor\Models\GatewayItemListResultItem[]
      */
     public function getResults()
     {
@@ -119,7 +119,7 @@ class GatewayItemListResult implements ArrayAccess
   
     /**
      * Sets results
-     * @param \Swagger\Client\Model\GatewayItemListResultItem[] $results 
+     * @param \Organizeme\Xtractor\Models\GatewayItemListResultItem[] $results 
      * @return $this
      */
     public function setResults($results)
@@ -131,7 +131,7 @@ class GatewayItemListResult implements ArrayAccess
     
     /**
      * Gets meta
-     * @return \Swagger\Client\Model\GatewayItemListResultMeta
+     * @return \Organizeme\Xtractor\Models\GatewayItemListResultMeta
      */
     public function getMeta()
     {
@@ -140,7 +140,7 @@ class GatewayItemListResult implements ArrayAccess
   
     /**
      * Sets meta
-     * @param \Swagger\Client\Model\GatewayItemListResultMeta $meta 
+     * @param \Organizeme\Xtractor\Models\GatewayItemListResultMeta $meta 
      * @return $this
      */
     public function setMeta($meta)

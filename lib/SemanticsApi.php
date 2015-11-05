@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,18 +31,18 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Api;
+namespace Organizeme\Xtractor;
 
-use \Swagger\Client\Configuration;
-use \Swagger\Client\ApiClient;
-use \Swagger\Client\ApiException;
-use \Swagger\Client\ObjectSerializer;
+use \Organizeme\Xtractor\Configuration;
+use \Organizeme\Xtractor\ApiClient;
+use \Organizeme\Xtractor\ApiException;
+use \Organizeme\Xtractor\ObjectSerializer;
 
 /**
  * SemanticsApi Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -52,13 +52,13 @@ class SemanticsApi
 
     /**
      * API Client
-     * @var \Swagger\Client\ApiClient instance of the ApiClient
+     * @var \Organizeme\Xtractor\ApiClient instance of the ApiClient
      */
     protected $apiClient;
   
     /**
      * Constructor
-     * @param \Swagger\Client\ApiClient|null $apiClient The api client to use
+     * @param \Organizeme\Xtractor\ApiClient|null $apiClient The api client to use
      */
     function __construct($apiClient = null)
     {
@@ -72,7 +72,7 @@ class SemanticsApi
   
     /**
      * Get API client
-     * @return \Swagger\Client\ApiClient get the API client
+     * @return \Organizeme\Xtractor\ApiClient get the API client
      */
     public function getApiClient()
     {
@@ -81,7 +81,7 @@ class SemanticsApi
   
     /**
      * Set the API client
-     * @param \Swagger\Client\ApiClient $apiClient set the API client
+     * @param \Organizeme\Xtractor\ApiClient $apiClient set the API client
      * @return SemanticsApi
      */
     public function setApiClient(ApiClient $apiClient)
@@ -102,8 +102,8 @@ class SemanticsApi
      * @param string $doctype Type of the document, use only if type is known. Will speed up processing and lead to better results. (optional)
      * @param string[] $extractors List of extractors to apply, defaults to all extractors. (optional)
      * @param string $feedback JSON object containing additional data for feedback collection, defaults to `false`. (optional)
-     * @return \Swagger\Client\Model\SemanticsResult
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return \Organizeme\Xtractor\Models\SemanticsResult
+     * @throws \Organizeme\Xtractor\ApiException on non-2xx response
      */
     public function getDocumentSemantics($file, $accept_version=null, $coordinates=null, $doctype=null, $extractors=null, $feedback=null)
     {
@@ -135,19 +135,40 @@ class SemanticsApi
         
         // form params
         if ($coordinates !== null) {
+            
+            
             $formParams['coordinates'] = $this->apiClient->getSerializer()->toFormValue($coordinates);
+            
         }// form params
         if ($doctype !== null) {
+            
+            
             $formParams['doctype'] = $this->apiClient->getSerializer()->toFormValue($doctype);
+            
         }// form params
         if ($extractors !== null) {
+            
+            
             $formParams['extractors'] = $this->apiClient->getSerializer()->toFormValue($extractors);
+            
         }// form params
         if ($feedback !== null) {
+            
+            
             $formParams['feedback'] = $this->apiClient->getSerializer()->toFormValue($feedback);
+            
         }// form params
         if ($file !== null) {
-            $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
+            
+            // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+            // See: https://wiki.php.net/rfc/curl-file-upload
+            if (function_exists('curl_file_create')) {
+                $formParams['file'] = curl_file_create($this->apiClient->getSerializer()->toFormValue($file));
+            } else {
+               $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
+            }
+            
+            
         }
         
   
@@ -158,25 +179,52 @@ class SemanticsApi
             $httpBody = $formParams; // for HTTP post (form)
         }
         
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-API-Key');
+        if (isset($apiKey)) {
+            $headerParams['X-API-Key'] = $apiKey;
+        }
+        
+        
+        
         // make the API Call
         try
         {
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\SemanticsResult'
+                $headerParams, '\Organizeme\Xtractor\Models\SemanticsResult'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\SemanticsResult', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Organizeme\Xtractor\Models\SemanticsResult', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\SemanticsResult', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\SemanticsResult', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 403:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 429:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 500:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }
@@ -194,10 +242,10 @@ class SemanticsApi
      * 
      *
      * @param string $request_id The request ID to give feedback for. (required)
-     * @param \Swagger\Client\Model\Payload1 $payload Feedback data. (required)
+     * @param \Organizeme\Xtractor\Models\Payload1 $payload Feedback data. (required)
      * @param string $accept_version The API version to accept, defaults to latest version from server. (optional)
-     * @return \Swagger\Client\Model\InlineResponse2001
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return \Organizeme\Xtractor\Models\InlineResponse2001
+     * @throws \Organizeme\Xtractor\ApiException on non-2xx response
      */
     public function setDocumentSemanticsFeedback($request_id, $payload, $accept_version=null)
     {
@@ -248,25 +296,52 @@ class SemanticsApi
             $httpBody = $formParams; // for HTTP post (form)
         }
         
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('X-API-Key');
+        if (isset($apiKey)) {
+            $headerParams['X-API-Key'] = $apiKey;
+        }
+        
+        
+        
         // make the API Call
         try
         {
             list($response, $httpHeader) = $this->apiClient->callApi(
                 $resourcePath, $method,
                 $queryParams, $httpBody,
-                $headerParams, '\Swagger\Client\Model\InlineResponse2001'
+                $headerParams, '\Organizeme\Xtractor\Models\InlineResponse2001'
             );
             
             if (!$response) {
                 return null;
             }
 
-            return $this->apiClient->getSerializer()->deserialize($response, '\Swagger\Client\Model\InlineResponse2001', $httpHeader);
+            return $this->apiClient->getSerializer()->deserialize($response, '\Organizeme\Xtractor\Models\InlineResponse2001', $httpHeader);
             
         } catch (ApiException $e) {
             switch ($e->getCode()) { 
             case 200:
-                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Swagger\Client\Model\InlineResponse2001', $e->getResponseHeaders());
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\InlineResponse2001', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 400:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 401:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 403:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 429:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            case 500:
+                $data = $this->apiClient->getSerializer()->deserialize($e->getResponseBody(), '\Organizeme\Xtractor\Models\GeneralError', $e->getResponseHeaders());
                 $e->setResponseObject($data);
                 break;
             }

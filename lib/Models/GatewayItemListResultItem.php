@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -54,7 +54,7 @@ class GatewayItemListResultItem implements ArrayAccess
         'id' => 'string',
         'title' => 'string',
         'type' => 'string',
-        'meta' => '\Swagger\Client\Model\GatewayItemListResultItemMeta'
+        'meta' => '\Organizeme\Xtractor\Models\GatewayItemListResultItemMeta'
     );
   
     /** 
@@ -111,7 +111,7 @@ class GatewayItemListResultItem implements ArrayAccess
     
     /**
       * $meta 
-      * @var \Swagger\Client\Model\GatewayItemListResultItemMeta
+      * @var \Organizeme\Xtractor\Models\GatewayItemListResultItemMeta
       */
     protected $meta;
     
@@ -195,7 +195,7 @@ class GatewayItemListResultItem implements ArrayAccess
     
     /**
      * Gets meta
-     * @return \Swagger\Client\Model\GatewayItemListResultItemMeta
+     * @return \Organizeme\Xtractor\Models\GatewayItemListResultItemMeta
      */
     public function getMeta()
     {
@@ -204,7 +204,7 @@ class GatewayItemListResultItem implements ArrayAccess
   
     /**
      * Sets meta
-     * @param \Swagger\Client\Model\GatewayItemListResultItemMeta $meta 
+     * @param \Organizeme\Xtractor\Models\GatewayItemListResultItemMeta $meta 
      * @return $this
      */
     public function setMeta($meta)

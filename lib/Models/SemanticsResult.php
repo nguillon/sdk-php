@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,8 +51,8 @@ class SemanticsResult implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'results' => '\Swagger\Client\Model\SemanticsResultMap',
-        'meta' => '\Swagger\Client\Model\SemanticsResultMeta'
+        'results' => '\Organizeme\Xtractor\Models\SemanticsResultMap',
+        'meta' => '\Organizeme\Xtractor\Models\SemanticsResultMeta'
     );
   
     /** 
@@ -85,13 +85,13 @@ class SemanticsResult implements ArrayAccess
     
     /**
       * $results 
-      * @var \Swagger\Client\Model\SemanticsResultMap
+      * @var \Organizeme\Xtractor\Models\SemanticsResultMap
       */
     protected $results;
     
     /**
       * $meta 
-      * @var \Swagger\Client\Model\SemanticsResultMeta
+      * @var \Organizeme\Xtractor\Models\SemanticsResultMeta
       */
     protected $meta;
     
@@ -110,7 +110,7 @@ class SemanticsResult implements ArrayAccess
     
     /**
      * Gets results
-     * @return \Swagger\Client\Model\SemanticsResultMap
+     * @return \Organizeme\Xtractor\Models\SemanticsResultMap
      */
     public function getResults()
     {
@@ -119,7 +119,7 @@ class SemanticsResult implements ArrayAccess
   
     /**
      * Sets results
-     * @param \Swagger\Client\Model\SemanticsResultMap $results 
+     * @param \Organizeme\Xtractor\Models\SemanticsResultMap $results 
      * @return $this
      */
     public function setResults($results)
@@ -131,7 +131,7 @@ class SemanticsResult implements ArrayAccess
     
     /**
      * Gets meta
-     * @return \Swagger\Client\Model\SemanticsResultMeta
+     * @return \Organizeme\Xtractor\Models\SemanticsResultMeta
      */
     public function getMeta()
     {
@@ -140,7 +140,7 @@ class SemanticsResult implements ArrayAccess
   
     /**
      * Sets meta
-     * @param \Swagger\Client\Model\SemanticsResultMeta $meta 
+     * @param \Organizeme\Xtractor\Models\SemanticsResultMeta $meta 
      * @return $this
      */
     public function setMeta($meta)

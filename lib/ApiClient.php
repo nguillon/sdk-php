@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,13 +31,13 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client;
+namespace Organizeme\Xtractor;
 
 /**
  * ApiClient Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -69,7 +69,7 @@ class ApiClient
      * Constructor of the class
      * @param Configuration $config config for this ApiClient
      */
-    function __construct(Configuration $config = null)
+    public function __construct(Configuration $config = null)
     {
         if ($config == null) {
             $config = Configuration::getDefaultConfiguration();
@@ -128,7 +128,7 @@ class ApiClient
      * @param array  $postData     parameters to be placed in POST body
      * @param array  $headerParams parameters to be place in request header
      * @param string $responseType expected response type of the endpoint
-     * @throws \Swagger\Client\ApiException on a non 2xx response
+     * @throws \Organizeme\Xtractor\ApiException on a non 2xx response
      * @return mixed
      */
     public function callApi($resourcePath, $method, $queryParams, $postData, $headerParams, $responseType=null)

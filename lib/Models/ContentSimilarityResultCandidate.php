@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,7 +51,7 @@ class ContentSimilarityResultCandidate implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'properties' => '\Swagger\Client\Model\ContentSimilarityResultCandidateProperties',
+        'properties' => '\Organizeme\Xtractor\Models\ContentSimilarityResultCandidateProperties',
         'rating' => 'float'
     );
   
@@ -85,7 +85,7 @@ class ContentSimilarityResultCandidate implements ArrayAccess
     
     /**
       * $properties 
-      * @var \Swagger\Client\Model\ContentSimilarityResultCandidateProperties
+      * @var \Organizeme\Xtractor\Models\ContentSimilarityResultCandidateProperties
       */
     protected $properties;
     
@@ -110,7 +110,7 @@ class ContentSimilarityResultCandidate implements ArrayAccess
     
     /**
      * Gets properties
-     * @return \Swagger\Client\Model\ContentSimilarityResultCandidateProperties
+     * @return \Organizeme\Xtractor\Models\ContentSimilarityResultCandidateProperties
      */
     public function getProperties()
     {
@@ -119,7 +119,7 @@ class ContentSimilarityResultCandidate implements ArrayAccess
   
     /**
      * Sets properties
-     * @param \Swagger\Client\Model\ContentSimilarityResultCandidateProperties $properties 
+     * @param \Organizeme\Xtractor\Models\ContentSimilarityResultCandidateProperties $properties 
      * @return $this
      */
     public function setProperties($properties)

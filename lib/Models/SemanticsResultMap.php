@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,13 +51,13 @@ class SemanticsResultMap implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'addresses' => '\Swagger\Client\Model\Address[]',
-        'amounts' => '\Swagger\Client\Model\Amount[]',
-        'classifier' => '\Swagger\Client\Model\Classifier[]',
+        'addresses' => '\Organizeme\Xtractor\Models\Address[]',
+        'amounts' => '\Organizeme\Xtractor\Models\Amount[]',
+        'classifier' => '\Organizeme\Xtractor\Models\Classifier[]',
         'dates' => 'null[]',
-        'phones' => '\Swagger\Client\Model\Phone[]',
-        'registers' => '\Swagger\Client\Model\Register[]',
-        'urls' => '\Swagger\Client\Model\Url[]',
+        'phones' => '\Organizeme\Xtractor\Models\Phone[]',
+        'registers' => '\Organizeme\Xtractor\Models\Register[]',
+        'urls' => '\Organizeme\Xtractor\Models\Url[]',
         'payment' => 'null[]'
     );
   
@@ -109,19 +109,19 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
       * $addresses Extracted addresses.
-      * @var \Swagger\Client\Model\Address[]
+      * @var \Organizeme\Xtractor\Models\Address[]
       */
     protected $addresses;
     
     /**
       * $amounts Extracted amounts.
-      * @var \Swagger\Client\Model\Amount[]
+      * @var \Organizeme\Xtractor\Models\Amount[]
       */
     protected $amounts;
     
     /**
       * $classifier Result of classifier. Always contains exactly one element (if present).
-      * @var \Swagger\Client\Model\Classifier[]
+      * @var \Organizeme\Xtractor\Models\Classifier[]
       */
     protected $classifier;
     
@@ -133,19 +133,19 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
       * $phones Extracted phone and fax numbers.
-      * @var \Swagger\Client\Model\Phone[]
+      * @var \Organizeme\Xtractor\Models\Phone[]
       */
     protected $phones;
     
     /**
       * $registers Extracted company registers and IDs.
-      * @var \Swagger\Client\Model\Register[]
+      * @var \Organizeme\Xtractor\Models\Register[]
       */
     protected $registers;
     
     /**
       * $urls Extracted URLs and email addresses.
-      * @var \Swagger\Client\Model\Url[]
+      * @var \Organizeme\Xtractor\Models\Url[]
       */
     protected $urls;
     
@@ -176,7 +176,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets addresses
-     * @return \Swagger\Client\Model\Address[]
+     * @return \Organizeme\Xtractor\Models\Address[]
      */
     public function getAddresses()
     {
@@ -185,7 +185,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets addresses
-     * @param \Swagger\Client\Model\Address[] $addresses Extracted addresses.
+     * @param \Organizeme\Xtractor\Models\Address[] $addresses Extracted addresses.
      * @return $this
      */
     public function setAddresses($addresses)
@@ -197,7 +197,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets amounts
-     * @return \Swagger\Client\Model\Amount[]
+     * @return \Organizeme\Xtractor\Models\Amount[]
      */
     public function getAmounts()
     {
@@ -206,7 +206,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets amounts
-     * @param \Swagger\Client\Model\Amount[] $amounts Extracted amounts.
+     * @param \Organizeme\Xtractor\Models\Amount[] $amounts Extracted amounts.
      * @return $this
      */
     public function setAmounts($amounts)
@@ -218,7 +218,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets classifier
-     * @return \Swagger\Client\Model\Classifier[]
+     * @return \Organizeme\Xtractor\Models\Classifier[]
      */
     public function getClassifier()
     {
@@ -227,7 +227,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets classifier
-     * @param \Swagger\Client\Model\Classifier[] $classifier Result of classifier. Always contains exactly one element (if present).
+     * @param \Organizeme\Xtractor\Models\Classifier[] $classifier Result of classifier. Always contains exactly one element (if present).
      * @return $this
      */
     public function setClassifier($classifier)
@@ -260,7 +260,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets phones
-     * @return \Swagger\Client\Model\Phone[]
+     * @return \Organizeme\Xtractor\Models\Phone[]
      */
     public function getPhones()
     {
@@ -269,7 +269,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets phones
-     * @param \Swagger\Client\Model\Phone[] $phones Extracted phone and fax numbers.
+     * @param \Organizeme\Xtractor\Models\Phone[] $phones Extracted phone and fax numbers.
      * @return $this
      */
     public function setPhones($phones)
@@ -281,7 +281,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets registers
-     * @return \Swagger\Client\Model\Register[]
+     * @return \Organizeme\Xtractor\Models\Register[]
      */
     public function getRegisters()
     {
@@ -290,7 +290,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets registers
-     * @param \Swagger\Client\Model\Register[] $registers Extracted company registers and IDs.
+     * @param \Organizeme\Xtractor\Models\Register[] $registers Extracted company registers and IDs.
      * @return $this
      */
     public function setRegisters($registers)
@@ -302,7 +302,7 @@ class SemanticsResultMap implements ArrayAccess
     
     /**
      * Gets urls
-     * @return \Swagger\Client\Model\Url[]
+     * @return \Organizeme\Xtractor\Models\Url[]
      */
     public function getUrls()
     {
@@ -311,7 +311,7 @@ class SemanticsResultMap implements ArrayAccess
   
     /**
      * Sets urls
-     * @param \Swagger\Client\Model\Url[] $urls Extracted URLs and email addresses.
+     * @param \Organizeme\Xtractor\Models\Url[] $urls Extracted URLs and email addresses.
      * @return $this
      */
     public function setUrls($urls)

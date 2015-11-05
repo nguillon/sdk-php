@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,15 +31,15 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
  * Address Class Doc Comment
  *
  * @category    Class
- * @description The \&quot;normalized\&quot; field is always null.
- * @package     Swagger\Client
+ * @description 
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,13 +51,13 @@ class Address implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'rect' => '\Swagger\Client\Model\SemanticsCoordinates',
-        'subtype' => 'string',
-        'children' => '\Swagger\Client\Model\SemanticsElement[]',
-        'normalized' => 'string',
         'raw' => 'string',
+        'normalized' => 'string',
+        'subtype' => 'string',
+        'children' => '\Organizeme\Xtractor\Models\SemanticsElement[]',
+        'rect' => '\Organizeme\Xtractor\Models\SemanticsCoordinates',
         'type' => 'string',
-        'info' => '\Swagger\Client\Model\AddressInfo'
+        'info' => '\Organizeme\Xtractor\Models\AddressInfo'
     );
   
     /** 
@@ -65,11 +65,11 @@ class Address implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'rect' => 'rect',
+        'raw' => 'raw',
+        'normalized' => 'normalized',
         'subtype' => 'subtype',
         'children' => 'children',
-        'normalized' => 'normalized',
-        'raw' => 'raw',
+        'rect' => 'rect',
         'type' => 'type',
         'info' => 'info'
     );
@@ -79,11 +79,11 @@ class Address implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'rect' => 'setRect',
+        'raw' => 'setRaw',
+        'normalized' => 'setNormalized',
         'subtype' => 'setSubtype',
         'children' => 'setChildren',
-        'normalized' => 'setNormalized',
-        'raw' => 'setRaw',
+        'rect' => 'setRect',
         'type' => 'setType',
         'info' => 'setInfo'
     );
@@ -93,21 +93,27 @@ class Address implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'rect' => 'getRect',
+        'raw' => 'getRaw',
+        'normalized' => 'getNormalized',
         'subtype' => 'getSubtype',
         'children' => 'getChildren',
-        'normalized' => 'getNormalized',
-        'raw' => 'getRaw',
+        'rect' => 'getRect',
         'type' => 'getType',
         'info' => 'getInfo'
     );
   
     
     /**
-      * $rect 
-      * @var \Swagger\Client\Model\SemanticsCoordinates
+      * $raw Original matched string.
+      * @var string
       */
-    protected $rect;
+    protected $raw;
+    
+    /**
+      * $normalized Normalized representation of this element.
+      * @var string
+      */
+    protected $normalized;
     
     /**
       * $subtype Subtype of this element.
@@ -117,21 +123,15 @@ class Address implements ArrayAccess
     
     /**
       * $children Child elements of this element.
-      * @var \Swagger\Client\Model\SemanticsElement[]
+      * @var \Organizeme\Xtractor\Models\SemanticsElement[]
       */
     protected $children;
     
     /**
-      * $normalized Normalized representation of this element.
-      * @var string
+      * $rect 
+      * @var \Organizeme\Xtractor\Models\SemanticsCoordinates
       */
-    protected $normalized;
-    
-    /**
-      * $raw Original matched string.
-      * @var string
-      */
-    protected $raw;
+    protected $rect;
     
     /**
       * $type Type of this element.
@@ -141,7 +141,7 @@ class Address implements ArrayAccess
     
     /**
       * $info 
-      * @var \Swagger\Client\Model\AddressInfo
+      * @var \Organizeme\Xtractor\Models\AddressInfo
       */
     protected $info;
     
@@ -153,34 +153,55 @@ class Address implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->rect = $data["rect"];
+            $this->raw = $data["raw"];
+            $this->normalized = $data["normalized"];
             $this->subtype = $data["subtype"];
             $this->children = $data["children"];
-            $this->normalized = $data["normalized"];
-            $this->raw = $data["raw"];
+            $this->rect = $data["rect"];
             $this->type = $data["type"];
             $this->info = $data["info"];
         }
     }
     
     /**
-     * Gets rect
-     * @return \Swagger\Client\Model\SemanticsCoordinates
+     * Gets raw
+     * @return string
      */
-    public function getRect()
+    public function getRaw()
     {
-        return $this->rect;
+        return $this->raw;
     }
   
     /**
-     * Sets rect
-     * @param \Swagger\Client\Model\SemanticsCoordinates $rect 
+     * Sets raw
+     * @param string $raw Original matched string.
      * @return $this
      */
-    public function setRect($rect)
+    public function setRaw($raw)
     {
         
-        $this->rect = $rect;
+        $this->raw = $raw;
+        return $this;
+    }
+    
+    /**
+     * Gets normalized
+     * @return string
+     */
+    public function getNormalized()
+    {
+        return $this->normalized;
+    }
+  
+    /**
+     * Sets normalized
+     * @param string $normalized Normalized representation of this element.
+     * @return $this
+     */
+    public function setNormalized($normalized)
+    {
+        
+        $this->normalized = $normalized;
         return $this;
     }
     
@@ -207,7 +228,7 @@ class Address implements ArrayAccess
     
     /**
      * Gets children
-     * @return \Swagger\Client\Model\SemanticsElement[]
+     * @return \Organizeme\Xtractor\Models\SemanticsElement[]
      */
     public function getChildren()
     {
@@ -216,7 +237,7 @@ class Address implements ArrayAccess
   
     /**
      * Sets children
-     * @param \Swagger\Client\Model\SemanticsElement[] $children Child elements of this element.
+     * @param \Organizeme\Xtractor\Models\SemanticsElement[] $children Child elements of this element.
      * @return $this
      */
     public function setChildren($children)
@@ -227,44 +248,23 @@ class Address implements ArrayAccess
     }
     
     /**
-     * Gets normalized
-     * @return string
+     * Gets rect
+     * @return \Organizeme\Xtractor\Models\SemanticsCoordinates
      */
-    public function getNormalized()
+    public function getRect()
     {
-        return $this->normalized;
+        return $this->rect;
     }
   
     /**
-     * Sets normalized
-     * @param string $normalized Normalized representation of this element.
+     * Sets rect
+     * @param \Organizeme\Xtractor\Models\SemanticsCoordinates $rect 
      * @return $this
      */
-    public function setNormalized($normalized)
+    public function setRect($rect)
     {
         
-        $this->normalized = $normalized;
-        return $this;
-    }
-    
-    /**
-     * Gets raw
-     * @return string
-     */
-    public function getRaw()
-    {
-        return $this->raw;
-    }
-  
-    /**
-     * Sets raw
-     * @param string $raw Original matched string.
-     * @return $this
-     */
-    public function setRaw($raw)
-    {
-        
-        $this->raw = $raw;
+        $this->rect = $rect;
         return $this;
     }
     
@@ -291,7 +291,7 @@ class Address implements ArrayAccess
     
     /**
      * Gets info
-     * @return \Swagger\Client\Model\AddressInfo
+     * @return \Organizeme\Xtractor\Models\AddressInfo
      */
     public function getInfo()
     {
@@ -300,7 +300,7 @@ class Address implements ArrayAccess
   
     /**
      * Sets info
-     * @param \Swagger\Client\Model\AddressInfo $info 
+     * @param \Organizeme\Xtractor\Models\AddressInfo $info 
      * @return $this
      */
     public function setInfo($info)

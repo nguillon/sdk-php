@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,7 +51,7 @@ class ContentSimilarityResultCandidateProperties implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'custom_key_name1' => '\Swagger\Client\Model\ContentSimilarityResultPropertyRating'
+        'custom_key_name1' => '\Organizeme\Xtractor\Models\ContentSimilarityResultPropertyRating'
     );
   
     /** 
@@ -81,7 +81,7 @@ class ContentSimilarityResultCandidateProperties implements ArrayAccess
     
     /**
       * $custom_key_name1 
-      * @var \Swagger\Client\Model\ContentSimilarityResultPropertyRating
+      * @var \Organizeme\Xtractor\Models\ContentSimilarityResultPropertyRating
       */
     protected $custom_key_name1;
     
@@ -99,7 +99,7 @@ class ContentSimilarityResultCandidateProperties implements ArrayAccess
     
     /**
      * Gets custom_key_name1
-     * @return \Swagger\Client\Model\ContentSimilarityResultPropertyRating
+     * @return \Organizeme\Xtractor\Models\ContentSimilarityResultPropertyRating
      */
     public function getCustomKeyName1()
     {
@@ -108,7 +108,7 @@ class ContentSimilarityResultCandidateProperties implements ArrayAccess
   
     /**
      * Sets custom_key_name1
-     * @param \Swagger\Client\Model\ContentSimilarityResultPropertyRating $custom_key_name1 
+     * @param \Organizeme\Xtractor\Models\ContentSimilarityResultPropertyRating $custom_key_name1 
      * @return $this
      */
     public function setCustomKeyName1($custom_key_name1)

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -55,8 +55,8 @@ class SemanticsElement implements ArrayAccess
         'subtype' => 'string',
         'raw' => 'string',
         'normalized' => 'string',
-        'children' => '\Swagger\Client\Model\SemanticsElement[]',
-        'rect' => '\Swagger\Client\Model\SemanticsCoordinates'
+        'children' => '\Organizeme\Xtractor\Models\SemanticsElement[]',
+        'rect' => '\Organizeme\Xtractor\Models\SemanticsCoordinates'
     );
   
     /** 
@@ -125,13 +125,13 @@ class SemanticsElement implements ArrayAccess
     
     /**
       * $children Child elements of this element.
-      * @var \Swagger\Client\Model\SemanticsElement[]
+      * @var \Organizeme\Xtractor\Models\SemanticsElement[]
       */
     protected $children;
     
     /**
       * $rect 
-      * @var \Swagger\Client\Model\SemanticsCoordinates
+      * @var \Organizeme\Xtractor\Models\SemanticsCoordinates
       */
     protected $rect;
     
@@ -238,7 +238,7 @@ class SemanticsElement implements ArrayAccess
     
     /**
      * Gets children
-     * @return \Swagger\Client\Model\SemanticsElement[]
+     * @return \Organizeme\Xtractor\Models\SemanticsElement[]
      */
     public function getChildren()
     {
@@ -247,7 +247,7 @@ class SemanticsElement implements ArrayAccess
   
     /**
      * Sets children
-     * @param \Swagger\Client\Model\SemanticsElement[] $children Child elements of this element.
+     * @param \Organizeme\Xtractor\Models\SemanticsElement[] $children Child elements of this element.
      * @return $this
      */
     public function setChildren($children)
@@ -259,7 +259,7 @@ class SemanticsElement implements ArrayAccess
     
     /**
      * Gets rect
-     * @return \Swagger\Client\Model\SemanticsCoordinates
+     * @return \Organizeme\Xtractor\Models\SemanticsCoordinates
      */
     public function getRect()
     {
@@ -268,7 +268,7 @@ class SemanticsElement implements ArrayAccess
   
     /**
      * Sets rect
-     * @param \Swagger\Client\Model\SemanticsCoordinates $rect 
+     * @param \Organizeme\Xtractor\Models\SemanticsCoordinates $rect 
      * @return $this
      */
     public function setRect($rect)

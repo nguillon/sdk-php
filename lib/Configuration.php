@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -32,14 +32,14 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client;
+namespace Organizeme\Xtractor;
 
 /**
  * Configuration Class Doc Comment
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -64,6 +64,13 @@ class Configuration
     protected $apiKeyPrefixes = array();
 
     /**
+     * Access token for OAuth
+     *
+     * @var string
+     */
+    protected $accessToken = '';
+
+    /**
      * Username for HTTP basic authentication
      *
      * @var string
@@ -80,7 +87,7 @@ class Configuration
     /**
      * The default instance of ApiClient
      *
-     * @var \Swagger\Client\ApiClient
+     * @var \Organizeme\Xtractor\ApiClient
      */
     protected $defaultHeaders = array();
 
@@ -103,7 +110,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "PHP-Swagger/1.0.0";
+    protected $userAgent = "PHP-Swagger/1.4.0";
 
     /**
      * Debug switch (default set to false)
@@ -193,6 +200,29 @@ class Configuration
     public function getApiKeyPrefix($apiKeyIdentifier)
     {
         return isset($this->apiKeyPrefixes[$apiKeyIdentifier]) ? $this->apiKeyPrefixes[$apiKeyIdentifier] : null;
+    }
+
+    /**
+     * Sets the access token for OAuth
+     *
+     * @param string $accessToken Token for OAuth
+     *
+     * @return Configuration
+     */
+    public function setAccessToken($accessToken)
+    {
+        $this->$accessToken = $accessToken;
+        return $this;
+    }
+
+    /**
+     * Gets the access token for OAuth
+     *
+     * @return string Access token for OAuth
+     */
+    public function getAccessToken()
+    {
+        return $this->accessToken;
     }
 
     /**
@@ -483,11 +513,11 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = "PHP SDK (Swagger\Client) Debug Report:\n";
+        $report  = "PHP SDK (Organizeme\Xtractor) Debug Report:\n";
         $report .= "    OS: ".php_uname()."\n";
         $report .= "    PHP Version: ".phpversion()."\n";
         $report .= "    Swagger Spec Version: 1.4.0\n";
-        $report .= "    SDK Package Version: 1.0.0\n";
+        $report .= "    SDK Package Version: 1.4.0\n";
         $report .= "    Temp Folder Path: ".self::getDefaultConfiguration()->getTempFolderPath()."\n";
 
         return $report;

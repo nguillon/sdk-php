@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,9 +51,9 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'candidates' => '\Swagger\Client\Model\ContentSimilarityResultCandidate[]',
-        'best_candidate' => '\Swagger\Client\Model\ContentSimilarityResultCandidate',
-        'properties' => '\Swagger\Client\Model\InlineResponse200Properties'
+        'best_candidate' => '\Organizeme\Xtractor\Models\ContentSimilarityResultCandidate',
+        'properties' => '\Organizeme\Xtractor\Models\InlineResponse200Properties',
+        'candidates' => '\Organizeme\Xtractor\Models\ContentSimilarityResultCandidate[]'
     );
   
     /** 
@@ -61,9 +61,9 @@ class InlineResponse200 implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'candidates' => 'candidates',
         'best_candidate' => 'bestCandidate',
-        'properties' => 'properties'
+        'properties' => 'properties',
+        'candidates' => 'candidates'
     );
   
     /**
@@ -71,9 +71,9 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'candidates' => 'setCandidates',
         'best_candidate' => 'setBestCandidate',
-        'properties' => 'setProperties'
+        'properties' => 'setProperties',
+        'candidates' => 'setCandidates'
     );
   
     /**
@@ -81,29 +81,29 @@ class InlineResponse200 implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'candidates' => 'getCandidates',
         'best_candidate' => 'getBestCandidate',
-        'properties' => 'getProperties'
+        'properties' => 'getProperties',
+        'candidates' => 'getCandidates'
     );
   
     
     /**
-      * $candidates 
-      * @var \Swagger\Client\Model\ContentSimilarityResultCandidate[]
-      */
-    protected $candidates;
-    
-    /**
       * $best_candidate 
-      * @var \Swagger\Client\Model\ContentSimilarityResultCandidate
+      * @var \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate
       */
     protected $best_candidate;
     
     /**
       * $properties 
-      * @var \Swagger\Client\Model\InlineResponse200Properties
+      * @var \Organizeme\Xtractor\Models\InlineResponse200Properties
       */
     protected $properties;
+    
+    /**
+      * $candidates 
+      * @var \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate[]
+      */
+    protected $candidates;
     
 
     /**
@@ -113,36 +113,15 @@ class InlineResponse200 implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->candidates = $data["candidates"];
             $this->best_candidate = $data["best_candidate"];
             $this->properties = $data["properties"];
+            $this->candidates = $data["candidates"];
         }
     }
     
     /**
-     * Gets candidates
-     * @return \Swagger\Client\Model\ContentSimilarityResultCandidate[]
-     */
-    public function getCandidates()
-    {
-        return $this->candidates;
-    }
-  
-    /**
-     * Sets candidates
-     * @param \Swagger\Client\Model\ContentSimilarityResultCandidate[] $candidates 
-     * @return $this
-     */
-    public function setCandidates($candidates)
-    {
-        
-        $this->candidates = $candidates;
-        return $this;
-    }
-    
-    /**
      * Gets best_candidate
-     * @return \Swagger\Client\Model\ContentSimilarityResultCandidate
+     * @return \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate
      */
     public function getBestCandidate()
     {
@@ -151,7 +130,7 @@ class InlineResponse200 implements ArrayAccess
   
     /**
      * Sets best_candidate
-     * @param \Swagger\Client\Model\ContentSimilarityResultCandidate $best_candidate 
+     * @param \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate $best_candidate 
      * @return $this
      */
     public function setBestCandidate($best_candidate)
@@ -163,7 +142,7 @@ class InlineResponse200 implements ArrayAccess
     
     /**
      * Gets properties
-     * @return \Swagger\Client\Model\InlineResponse200Properties
+     * @return \Organizeme\Xtractor\Models\InlineResponse200Properties
      */
     public function getProperties()
     {
@@ -172,13 +151,34 @@ class InlineResponse200 implements ArrayAccess
   
     /**
      * Sets properties
-     * @param \Swagger\Client\Model\InlineResponse200Properties $properties 
+     * @param \Organizeme\Xtractor\Models\InlineResponse200Properties $properties 
      * @return $this
      */
     public function setProperties($properties)
     {
         
         $this->properties = $properties;
+        return $this;
+    }
+    
+    /**
+     * Gets candidates
+     * @return \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate[]
+     */
+    public function getCandidates()
+    {
+        return $this->candidates;
+    }
+  
+    /**
+     * Sets candidates
+     * @param \Organizeme\Xtractor\Models\ContentSimilarityResultCandidate[] $candidates 
+     * @return $this
+     */
+    public function setCandidates($candidates)
+    {
+        
+        $this->candidates = $candidates;
         return $this;
     }
     

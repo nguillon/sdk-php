@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,11 +51,11 @@ class SemanticsCoordinates implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'style' => '\Swagger\Client\Model\SemanticsStyle',
+        'style' => '\Organizeme\Xtractor\Models\SemanticsStyle',
         'page' => 'int',
         'baselines' => 'int[]',
-        'absolute' => '\Swagger\Client\Model\SemanticsAbsCoords',
-        'relative' => '\Swagger\Client\Model\SemanticsRelCoords'
+        'absolute' => '\Organizeme\Xtractor\Models\SemanticsAbsCoords',
+        'relative' => '\Organizeme\Xtractor\Models\SemanticsRelCoords'
     );
   
     /** 
@@ -97,7 +97,7 @@ class SemanticsCoordinates implements ArrayAccess
     
     /**
       * $style 
-      * @var \Swagger\Client\Model\SemanticsStyle
+      * @var \Organizeme\Xtractor\Models\SemanticsStyle
       */
     protected $style;
     
@@ -115,13 +115,13 @@ class SemanticsCoordinates implements ArrayAccess
     
     /**
       * $absolute Absolute coordinates of elements.
-      * @var \Swagger\Client\Model\SemanticsAbsCoords
+      * @var \Organizeme\Xtractor\Models\SemanticsAbsCoords
       */
     protected $absolute;
     
     /**
       * $relative Relative coordinates of elements (width/height of page == 1).
-      * @var \Swagger\Client\Model\SemanticsRelCoords
+      * @var \Organizeme\Xtractor\Models\SemanticsRelCoords
       */
     protected $relative;
     
@@ -143,7 +143,7 @@ class SemanticsCoordinates implements ArrayAccess
     
     /**
      * Gets style
-     * @return \Swagger\Client\Model\SemanticsStyle
+     * @return \Organizeme\Xtractor\Models\SemanticsStyle
      */
     public function getStyle()
     {
@@ -152,7 +152,7 @@ class SemanticsCoordinates implements ArrayAccess
   
     /**
      * Sets style
-     * @param \Swagger\Client\Model\SemanticsStyle $style 
+     * @param \Organizeme\Xtractor\Models\SemanticsStyle $style 
      * @return $this
      */
     public function setStyle($style)
@@ -206,7 +206,7 @@ class SemanticsCoordinates implements ArrayAccess
     
     /**
      * Gets absolute
-     * @return \Swagger\Client\Model\SemanticsAbsCoords
+     * @return \Organizeme\Xtractor\Models\SemanticsAbsCoords
      */
     public function getAbsolute()
     {
@@ -215,7 +215,7 @@ class SemanticsCoordinates implements ArrayAccess
   
     /**
      * Sets absolute
-     * @param \Swagger\Client\Model\SemanticsAbsCoords $absolute Absolute coordinates of elements.
+     * @param \Organizeme\Xtractor\Models\SemanticsAbsCoords $absolute Absolute coordinates of elements.
      * @return $this
      */
     public function setAbsolute($absolute)
@@ -227,7 +227,7 @@ class SemanticsCoordinates implements ArrayAccess
     
     /**
      * Gets relative
-     * @return \Swagger\Client\Model\SemanticsRelCoords
+     * @return \Organizeme\Xtractor\Models\SemanticsRelCoords
      */
     public function getRelative()
     {
@@ -236,7 +236,7 @@ class SemanticsCoordinates implements ArrayAccess
   
     /**
      * Sets relative
-     * @param \Swagger\Client\Model\SemanticsRelCoords $relative Relative coordinates of elements (width/height of page == 1).
+     * @param \Organizeme\Xtractor\Models\SemanticsRelCoords $relative Relative coordinates of elements (width/height of page == 1).
      * @return $this
      */
     public function setRelative($relative)

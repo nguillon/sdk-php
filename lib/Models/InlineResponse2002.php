@@ -1,6 +1,6 @@
 <?php
 /**
- * SemanticsAbsCoords
+ * InlineResponse2002
  *
  * PHP version 5
  *
@@ -35,26 +35,24 @@ namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
- * SemanticsAbsCoords Class Doc Comment
+ * InlineResponse2002 Class Doc Comment
  *
  * @category    Class
- * @description Bounding box of element, in pixels.
+ * @description 
  * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class SemanticsAbsCoords implements ArrayAccess
+class InlineResponse2002 implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'x0' => 'int',
-        'x1' => 'int',
-        'y0' => 'int',
-        'y1' => 'int'
+        'results' => 'object[]',
+        'meta' => '\Organizeme\Xtractor\Models\InlineResponse2002Meta'
     );
   
     /** 
@@ -62,10 +60,8 @@ class SemanticsAbsCoords implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'x0' => 'x0',
-        'x1' => 'x1',
-        'y0' => 'y0',
-        'y1' => 'y1'
+        'results' => 'results',
+        'meta' => 'meta'
     );
   
     /**
@@ -73,10 +69,8 @@ class SemanticsAbsCoords implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'x0' => 'setX0',
-        'x1' => 'setX1',
-        'y0' => 'setY0',
-        'y1' => 'setY1'
+        'results' => 'setResults',
+        'meta' => 'setMeta'
     );
   
     /**
@@ -84,36 +78,22 @@ class SemanticsAbsCoords implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'x0' => 'getX0',
-        'x1' => 'getX1',
-        'y0' => 'getY0',
-        'y1' => 'getY1'
+        'results' => 'getResults',
+        'meta' => 'getMeta'
     );
   
     
     /**
-      * $x0 Left border of bounding box.
-      * @var int
+      * $results Gateway type.
+      * @var object[]
       */
-    protected $x0;
+    protected $results;
     
     /**
-      * $x1 Right border of bounding box.
-      * @var int
+      * $meta 
+      * @var \Organizeme\Xtractor\Models\InlineResponse2002Meta
       */
-    protected $x1;
-    
-    /**
-      * $y0 Top of bounding box.
-      * @var int
-      */
-    protected $y0;
-    
-    /**
-      * $y1 Bottom of bounding box.
-      * @var int
-      */
-    protected $y1;
+    protected $meta;
     
 
     /**
@@ -123,94 +103,50 @@ class SemanticsAbsCoords implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->x0 = $data["x0"];
-            $this->x1 = $data["x1"];
-            $this->y0 = $data["y0"];
-            $this->y1 = $data["y1"];
+            $this->results = $data["results"];
+            $this->meta = $data["meta"];
         }
     }
     
     /**
-     * Gets x0
-     * @return int
+     * Gets results
+     * @return object[]
      */
-    public function getX0()
+    public function getResults()
     {
-        return $this->x0;
+        return $this->results;
     }
   
     /**
-     * Sets x0
-     * @param int $x0 Left border of bounding box.
+     * Sets results
+     * @param object[] $results Gateway type.
      * @return $this
      */
-    public function setX0($x0)
+    public function setResults($results)
     {
         
-        $this->x0 = $x0;
+        $this->results = $results;
         return $this;
     }
     
     /**
-     * Gets x1
-     * @return int
+     * Gets meta
+     * @return \Organizeme\Xtractor\Models\InlineResponse2002Meta
      */
-    public function getX1()
+    public function getMeta()
     {
-        return $this->x1;
+        return $this->meta;
     }
   
     /**
-     * Sets x1
-     * @param int $x1 Right border of bounding box.
+     * Sets meta
+     * @param \Organizeme\Xtractor\Models\InlineResponse2002Meta $meta 
      * @return $this
      */
-    public function setX1($x1)
+    public function setMeta($meta)
     {
         
-        $this->x1 = $x1;
-        return $this;
-    }
-    
-    /**
-     * Gets y0
-     * @return int
-     */
-    public function getY0()
-    {
-        return $this->y0;
-    }
-  
-    /**
-     * Sets y0
-     * @param int $y0 Top of bounding box.
-     * @return $this
-     */
-    public function setY0($y0)
-    {
-        
-        $this->y0 = $y0;
-        return $this;
-    }
-    
-    /**
-     * Gets y1
-     * @return int
-     */
-    public function getY1()
-    {
-        return $this->y1;
-    }
-  
-    /**
-     * Sets y1
-     * @param int $y1 Bottom of bounding box.
-     * @return $this
-     */
-    public function setY1($y1)
-    {
-        
-        $this->y1 = $y1;
+        $this->meta = $meta;
         return $this;
     }
     

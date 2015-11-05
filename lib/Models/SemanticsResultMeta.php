@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Organizeme\Xtractor
  * @author   http://github.com/swagger-api/swagger-codegen
  * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -31,7 +31,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Model;
+namespace Organizeme\Xtractor\Models;
 
 use \ArrayAccess;
 /**
@@ -39,7 +39,7 @@ use \ArrayAccess;
  *
  * @category    Class
  * @description 
- * @package     Swagger\Client
+ * @package     Organizeme\Xtractor
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -53,7 +53,7 @@ class SemanticsResultMeta implements ArrayAccess
     static $swaggerTypes = array(
         'request_id' => 'string',
         'extractors' => 'string[]',
-        'file' => '\Swagger\Client\Model\SemanticsResultMetaFile',
+        'file' => '\Organizeme\Xtractor\Models\SemanticsResultMetaFile',
         'version' => 'string',
         'processing_time' => 'int'
     );
@@ -109,7 +109,7 @@ class SemanticsResultMeta implements ArrayAccess
     
     /**
       * $file 
-      * @var \Swagger\Client\Model\SemanticsResultMetaFile
+      * @var \Organizeme\Xtractor\Models\SemanticsResultMetaFile
       */
     protected $file;
     
@@ -185,7 +185,7 @@ class SemanticsResultMeta implements ArrayAccess
     
     /**
      * Gets file
-     * @return \Swagger\Client\Model\SemanticsResultMetaFile
+     * @return \Organizeme\Xtractor\Models\SemanticsResultMetaFile
      */
     public function getFile()
     {
@@ -194,7 +194,7 @@ class SemanticsResultMeta implements ArrayAccess
   
     /**
      * Sets file
-     * @param \Swagger\Client\Model\SemanticsResultMetaFile $file 
+     * @param \Organizeme\Xtractor\Models\SemanticsResultMetaFile $file 
      * @return $this
      */
     public function setFile($file)
