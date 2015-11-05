@@ -1,6 +1,6 @@
 <?php
 /**
- * UrlInfo
+ * GatewayItemListResultMeta
  *
  * PHP version 5
  *
@@ -35,7 +35,7 @@ namespace Swagger\Client\Model;
 
 use \ArrayAccess;
 /**
- * UrlInfo Class Doc Comment
+ * GatewayItemListResultMeta Class Doc Comment
  *
  * @category    Class
  * @description 
@@ -44,15 +44,16 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class UrlInfo implements ArrayAccess
+class GatewayItemListResultMeta implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'url_type' => 'string',
-        'url' => 'string'
+        'request_id' => 'string',
+        'version' => 'string',
+        'processing_time' => 'int'
     );
   
     /** 
@@ -60,8 +61,9 @@ class UrlInfo implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'url_type' => 'url_type',
-        'url' => 'url'
+        'request_id' => 'request_id',
+        'version' => 'version',
+        'processing_time' => 'processingTime'
     );
   
     /**
@@ -69,8 +71,9 @@ class UrlInfo implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'url_type' => 'setUrlType',
-        'url' => 'setUrl'
+        'request_id' => 'setRequestId',
+        'version' => 'setVersion',
+        'processing_time' => 'setProcessingTime'
     );
   
     /**
@@ -78,22 +81,29 @@ class UrlInfo implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'url_type' => 'getUrlType',
-        'url' => 'getUrl'
+        'request_id' => 'getRequestId',
+        'version' => 'getVersion',
+        'processing_time' => 'getProcessingTime'
     );
   
     
     /**
-      * $url_type Type of URI
+      * $request_id Internal request ID.
       * @var string
       */
-    protected $url_type;
+    protected $request_id;
     
     /**
-      * $url 
+      * $version Used API version for this request.
       * @var string
       */
-    protected $url;
+    protected $version;
+    
+    /**
+      * $processing_time Processing time for this request.
+      * @var int
+      */
+    protected $processing_time;
     
 
     /**
@@ -103,53 +113,72 @@ class UrlInfo implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->url_type = $data["url_type"];
-            $this->url = $data["url"];
+            $this->request_id = $data["request_id"];
+            $this->version = $data["version"];
+            $this->processing_time = $data["processing_time"];
         }
     }
     
     /**
-     * Gets url_type
+     * Gets request_id
      * @return string
      */
-    public function getUrlType()
+    public function getRequestId()
     {
-        return $this->url_type;
+        return $this->request_id;
     }
   
     /**
-     * Sets url_type
-     * @param string $url_type Type of URI
+     * Sets request_id
+     * @param string $request_id Internal request ID.
      * @return $this
      */
-    public function setUrlType($url_type)
+    public function setRequestId($request_id)
     {
-        $allowed_values = array("email", "homepage");
-        if (!in_array($url_type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'url_type', must be one of 'email', 'homepage'");
-        }
-        $this->url_type = $url_type;
+        
+        $this->request_id = $request_id;
         return $this;
     }
     
     /**
-     * Gets url
+     * Gets version
      * @return string
      */
-    public function getUrl()
+    public function getVersion()
     {
-        return $this->url;
+        return $this->version;
     }
   
     /**
-     * Sets url
-     * @param string $url 
+     * Sets version
+     * @param string $version Used API version for this request.
      * @return $this
      */
-    public function setUrl($url)
+    public function setVersion($version)
     {
         
-        $this->url = $url;
+        $this->version = $version;
+        return $this;
+    }
+    
+    /**
+     * Gets processing_time
+     * @return int
+     */
+    public function getProcessingTime()
+    {
+        return $this->processing_time;
+    }
+  
+    /**
+     * Sets processing_time
+     * @param int $processing_time Processing time for this request.
+     * @return $this
+     */
+    public function setProcessingTime($processing_time)
+    {
+        
+        $this->processing_time = $processing_time;
         return $this;
     }
     

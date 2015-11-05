@@ -51,7 +51,8 @@ class GatewayItemListResult implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'results' => '\Swagger\Client\Model\GatewayItemListResultItem'
+        'results' => '\Swagger\Client\Model\GatewayItemListResultItem[]',
+        'meta' => '\Swagger\Client\Model\GatewayItemListResultMeta'
     );
   
     /** 
@@ -59,7 +60,8 @@ class GatewayItemListResult implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'results' => 'results'
+        'results' => 'results',
+        'meta' => 'meta'
     );
   
     /**
@@ -67,7 +69,8 @@ class GatewayItemListResult implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'results' => 'setResults'
+        'results' => 'setResults',
+        'meta' => 'setMeta'
     );
   
     /**
@@ -75,15 +78,22 @@ class GatewayItemListResult implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'results' => 'getResults'
+        'results' => 'getResults',
+        'meta' => 'getMeta'
     );
   
     
     /**
       * $results 
-      * @var \Swagger\Client\Model\GatewayItemListResultItem
+      * @var \Swagger\Client\Model\GatewayItemListResultItem[]
       */
     protected $results;
+    
+    /**
+      * $meta 
+      * @var \Swagger\Client\Model\GatewayItemListResultMeta
+      */
+    protected $meta;
     
 
     /**
@@ -94,12 +104,13 @@ class GatewayItemListResult implements ArrayAccess
     {
         if ($data != null) {
             $this->results = $data["results"];
+            $this->meta = $data["meta"];
         }
     }
     
     /**
      * Gets results
-     * @return \Swagger\Client\Model\GatewayItemListResultItem
+     * @return \Swagger\Client\Model\GatewayItemListResultItem[]
      */
     public function getResults()
     {
@@ -108,13 +119,34 @@ class GatewayItemListResult implements ArrayAccess
   
     /**
      * Sets results
-     * @param \Swagger\Client\Model\GatewayItemListResultItem $results 
+     * @param \Swagger\Client\Model\GatewayItemListResultItem[] $results 
      * @return $this
      */
     public function setResults($results)
     {
         
         $this->results = $results;
+        return $this;
+    }
+    
+    /**
+     * Gets meta
+     * @return \Swagger\Client\Model\GatewayItemListResultMeta
+     */
+    public function getMeta()
+    {
+        return $this->meta;
+    }
+  
+    /**
+     * Sets meta
+     * @param \Swagger\Client\Model\GatewayItemListResultMeta $meta 
+     * @return $this
+     */
+    public function setMeta($meta)
+    {
+        
+        $this->meta = $meta;
         return $this;
     }
     
