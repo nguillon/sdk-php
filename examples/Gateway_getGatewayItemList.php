@@ -6,7 +6,9 @@ $xtractorApi = new Xtractor('<YOUR_API_KEY>');
 $file = __DIR__ . '/files/example.pdf';
 
 try {
-  $gatewayApi = new \Swagger\Client\Api\GatewayApi();
+  $client = $xtractorApi->getApiClient();
+
+  $gatewayApi = new \Swagger\Client\Api\GatewayApi($client->getApiClient());
   $payload = new \Swagger\Client\Model\GatewayItemListPayload([
       'type' => '<GATEWAY_TYPE>',
       'auth' => [
