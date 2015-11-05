@@ -1,5 +1,6 @@
-.idea
+*.iml
 vendor
 composer.lock
+/.idea
 /.settings/
 /.project
