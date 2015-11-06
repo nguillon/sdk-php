@@ -48,7 +48,7 @@ catch (ApiException $e) {
 ```
 
 ### Example: Get item listing from gateway
-```
+```php
 <?php
 
 require_once __DIR__ . '/../autoload.php';
@@ -86,7 +86,7 @@ catch (ApiException $e) {
 ```
 
 ### Example: Get item content from gateway
-```
+```php
 <?php
 
 require_once __DIR__ . '/../autoload.php';
