@@ -1,18 +1,32 @@
 {
-  "name": "organizeme/xtractor.io",
-  "version": "1.4.0",
-  "description": "PHP SDK for the xtractor.io REST API.",
-  "homepage": "https://github.com/Organiceme/xtractor.io-sdk-php",
-  "minimum-stability": "stable",
-  "license": "MIT",
-  "support": {
-    "issues": "https://github.com/Organiceme/xtractor.io-sdk-php/issues"
-  },
-  "authors": [
-    {
-      "name": "organize.me GmbH",
-      "email": "info@organize.me",
-      "homepage": "https://www.organize.me/"
+    "name": "organizeme/xtractor",
+    "version": "1.4.0",
+    "description": "PHP SDK for the xtractor.io REST API.",
+    "homepage": "https://github.com/Organiceme/xtractor.io-sdk-php",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/Organiceme/xtractor.io-sdk-php/issues"
+    },
+    "authors": [
+        {
+            "name": "organize.me GmbH",
+            "email": "info@organize.me",
+            "homepage": "https://www.organize.me/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "~0.6.1",
+        "squizlabs/php_codesniffer": "~2.0"
+    },
+    "autoload": {
+        "psr-4": { "Organizeme\\Xtractor\\" : "lib/" }
     }
-  ]
 }
