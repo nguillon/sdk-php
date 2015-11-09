@@ -123,3 +123,11 @@ catch (ApiException $e) {
   echo "</pre>\n";
 }
 ```
+
+## Building the SDK
+
+Building a new version of the SDK from the latest xtractor.io JSON Spec is as easy as running the build script:
+
+```
+./build/build.sh
+```
