@@ -51,17 +51,22 @@ class GatewayItemListResultItemMeta implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
+        'status' => 'string',
+        'booking_status' => 'string',
+        'received' => 'string',
+        'number' => 'string',
+        'period_of_travel' => 'string',
+        'invoice_date' => 'string',
+        'invoice_number' => 'string',
+        'date' => 'string',
+        'recipient' => 'string',
+        'currency' => 'string',
         'sender' => 'string',
         'amount' => 'string',
-        'booking_status' => 'string',
+        'items' => 'string',
         'month' => 'string',
-        'received' => 'string',
         'operation_number' => 'string',
-        'period_of_travel' => 'string',
-        'invoice_number' => 'string',
-        'hotel' => 'string',
-        'invoice_date' => 'string',
-        'currency' => 'string'
+        'hotel' => 'string'
     );
   
     /** 
@@ -69,17 +74,22 @@ class GatewayItemListResultItemMeta implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
+        'status' => 'status',
+        'booking_status' => 'booking_status',
+        'received' => 'received',
+        'number' => 'number',
+        'period_of_travel' => 'period_of_travel',
+        'invoice_date' => 'invoice_date',
+        'invoice_number' => 'invoice_number',
+        'date' => 'date',
+        'recipient' => 'recipient',
+        'currency' => 'currency',
         'sender' => 'sender',
         'amount' => 'amount',
-        'booking_status' => 'booking_status',
+        'items' => 'items',
         'month' => 'month',
-        'received' => 'received',
         'operation_number' => 'operation_number',
-        'period_of_travel' => 'period_of_travel',
-        'invoice_number' => 'invoice_number',
-        'hotel' => 'hotel',
-        'invoice_date' => 'invoice_date',
-        'currency' => 'currency'
+        'hotel' => 'hotel'
     );
   
     /**
@@ -87,17 +97,22 @@ class GatewayItemListResultItemMeta implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
+        'status' => 'setStatus',
+        'booking_status' => 'setBookingStatus',
+        'received' => 'setReceived',
+        'number' => 'setNumber',
+        'period_of_travel' => 'setPeriodOfTravel',
+        'invoice_date' => 'setInvoiceDate',
+        'invoice_number' => 'setInvoiceNumber',
+        'date' => 'setDate',
+        'recipient' => 'setRecipient',
+        'currency' => 'setCurrency',
         'sender' => 'setSender',
         'amount' => 'setAmount',
-        'booking_status' => 'setBookingStatus',
+        'items' => 'setItems',
         'month' => 'setMonth',
-        'received' => 'setReceived',
         'operation_number' => 'setOperationNumber',
-        'period_of_travel' => 'setPeriodOfTravel',
-        'invoice_number' => 'setInvoiceNumber',
-        'hotel' => 'setHotel',
-        'invoice_date' => 'setInvoiceDate',
-        'currency' => 'setCurrency'
+        'hotel' => 'setHotel'
     );
   
     /**
@@ -105,19 +120,84 @@ class GatewayItemListResultItemMeta implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
+        'status' => 'getStatus',
+        'booking_status' => 'getBookingStatus',
+        'received' => 'getReceived',
+        'number' => 'getNumber',
+        'period_of_travel' => 'getPeriodOfTravel',
+        'invoice_date' => 'getInvoiceDate',
+        'invoice_number' => 'getInvoiceNumber',
+        'date' => 'getDate',
+        'recipient' => 'getRecipient',
+        'currency' => 'getCurrency',
         'sender' => 'getSender',
         'amount' => 'getAmount',
-        'booking_status' => 'getBookingStatus',
+        'items' => 'getItems',
         'month' => 'getMonth',
-        'received' => 'getReceived',
         'operation_number' => 'getOperationNumber',
-        'period_of_travel' => 'getPeriodOfTravel',
-        'invoice_number' => 'getInvoiceNumber',
-        'hotel' => 'getHotel',
-        'invoice_date' => 'getInvoiceDate',
-        'currency' => 'getCurrency'
+        'hotel' => 'getHotel'
     );
   
+    
+    /**
+      * $status Applies to the following gateway types: amazon.de
+      * @var string
+      */
+    protected $status;
+    
+    /**
+      * $booking_status Applies to the following gateway types: holidaycheck.de
+      * @var string
+      */
+    protected $booking_status;
+    
+    /**
+      * $received Applies to the following gateway types: allianz.de
+      * @var string
+      */
+    protected $received;
+    
+    /**
+      * $number Applies to the following gateway types: amazon.de
+      * @var string
+      */
+    protected $number;
+    
+    /**
+      * $period_of_travel Applies to the following gateway types: holidaycheck.de
+      * @var string
+      */
+    protected $period_of_travel;
+    
+    /**
+      * $invoice_date Applies to the following gateway types: o2online.de
+      * @var string
+      */
+    protected $invoice_date;
+    
+    /**
+      * $invoice_number Applies to the following gateway types: congstar.de
+      * @var string
+      */
+    protected $invoice_number;
+    
+    /**
+      * $date Applies to the following gateway types: amazon.de
+      * @var string
+      */
+    protected $date;
+    
+    /**
+      * $recipient Applies to the following gateway types: amazon.de
+      * @var string
+      */
+    protected $recipient;
+    
+    /**
+      * $currency Applies to the following gateway types: telekom.de
+      * @var string
+      */
+    protected $currency;
     
     /**
       * $sender Applies to the following gateway types: allianz.de
@@ -132,10 +212,10 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     protected $amount;
     
     /**
-      * $booking_status Applies to the following gateway types: holidaycheck.de
+      * $items Applies to the following gateway types: amazon.de
       * @var string
       */
-    protected $booking_status;
+    protected $items;
     
     /**
       * $month Applies to the following gateway types: congstar.de, telekom.de
@@ -144,46 +224,16 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     protected $month;
     
     /**
-      * $received Applies to the following gateway types: allianz.de
-      * @var string
-      */
-    protected $received;
-    
-    /**
       * $operation_number Applies to the following gateway types: holidaycheck.de
       * @var string
       */
     protected $operation_number;
     
     /**
-      * $period_of_travel Applies to the following gateway types: holidaycheck.de
-      * @var string
-      */
-    protected $period_of_travel;
-    
-    /**
-      * $invoice_number Applies to the following gateway types: congstar.de
-      * @var string
-      */
-    protected $invoice_number;
-    
-    /**
       * $hotel Applies to the following gateway types: holidaycheck.de
       * @var string
       */
     protected $hotel;
-    
-    /**
-      * $invoice_date Applies to the following gateway types: o2online.de
-      * @var string
-      */
-    protected $invoice_date;
-    
-    /**
-      * $currency Applies to the following gateway types: telekom.de
-      * @var string
-      */
-    protected $currency;
     
 
     /**
@@ -193,18 +243,233 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
+            $this->status = $data["status"];
+            $this->booking_status = $data["booking_status"];
+            $this->received = $data["received"];
+            $this->number = $data["number"];
+            $this->period_of_travel = $data["period_of_travel"];
+            $this->invoice_date = $data["invoice_date"];
+            $this->invoice_number = $data["invoice_number"];
+            $this->date = $data["date"];
+            $this->recipient = $data["recipient"];
+            $this->currency = $data["currency"];
             $this->sender = $data["sender"];
             $this->amount = $data["amount"];
-            $this->booking_status = $data["booking_status"];
+            $this->items = $data["items"];
             $this->month = $data["month"];
-            $this->received = $data["received"];
             $this->operation_number = $data["operation_number"];
-            $this->period_of_travel = $data["period_of_travel"];
-            $this->invoice_number = $data["invoice_number"];
             $this->hotel = $data["hotel"];
-            $this->invoice_date = $data["invoice_date"];
-            $this->currency = $data["currency"];
         }
+    }
+    
+    /**
+     * Gets status
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+  
+    /**
+     * Sets status
+     * @param string $status Applies to the following gateway types: amazon.de
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        
+        $this->status = $status;
+        return $this;
+    }
+    
+    /**
+     * Gets booking_status
+     * @return string
+     */
+    public function getBookingStatus()
+    {
+        return $this->booking_status;
+    }
+  
+    /**
+     * Sets booking_status
+     * @param string $booking_status Applies to the following gateway types: holidaycheck.de
+     * @return $this
+     */
+    public function setBookingStatus($booking_status)
+    {
+        
+        $this->booking_status = $booking_status;
+        return $this;
+    }
+    
+    /**
+     * Gets received
+     * @return string
+     */
+    public function getReceived()
+    {
+        return $this->received;
+    }
+  
+    /**
+     * Sets received
+     * @param string $received Applies to the following gateway types: allianz.de
+     * @return $this
+     */
+    public function setReceived($received)
+    {
+        
+        $this->received = $received;
+        return $this;
+    }
+    
+    /**
+     * Gets number
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+  
+    /**
+     * Sets number
+     * @param string $number Applies to the following gateway types: amazon.de
+     * @return $this
+     */
+    public function setNumber($number)
+    {
+        
+        $this->number = $number;
+        return $this;
+    }
+    
+    /**
+     * Gets period_of_travel
+     * @return string
+     */
+    public function getPeriodOfTravel()
+    {
+        return $this->period_of_travel;
+    }
+  
+    /**
+     * Sets period_of_travel
+     * @param string $period_of_travel Applies to the following gateway types: holidaycheck.de
+     * @return $this
+     */
+    public function setPeriodOfTravel($period_of_travel)
+    {
+        
+        $this->period_of_travel = $period_of_travel;
+        return $this;
+    }
+    
+    /**
+     * Gets invoice_date
+     * @return string
+     */
+    public function getInvoiceDate()
+    {
+        return $this->invoice_date;
+    }
+  
+    /**
+     * Sets invoice_date
+     * @param string $invoice_date Applies to the following gateway types: o2online.de
+     * @return $this
+     */
+    public function setInvoiceDate($invoice_date)
+    {
+        
+        $this->invoice_date = $invoice_date;
+        return $this;
+    }
+    
+    /**
+     * Gets invoice_number
+     * @return string
+     */
+    public function getInvoiceNumber()
+    {
+        return $this->invoice_number;
+    }
+  
+    /**
+     * Sets invoice_number
+     * @param string $invoice_number Applies to the following gateway types: congstar.de
+     * @return $this
+     */
+    public function setInvoiceNumber($invoice_number)
+    {
+        
+        $this->invoice_number = $invoice_number;
+        return $this;
+    }
+    
+    /**
+     * Gets date
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+  
+    /**
+     * Sets date
+     * @param string $date Applies to the following gateway types: amazon.de
+     * @return $this
+     */
+    public function setDate($date)
+    {
+        
+        $this->date = $date;
+        return $this;
+    }
+    
+    /**
+     * Gets recipient
+     * @return string
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
+  
+    /**
+     * Sets recipient
+     * @param string $recipient Applies to the following gateway types: amazon.de
+     * @return $this
+     */
+    public function setRecipient($recipient)
+    {
+        
+        $this->recipient = $recipient;
+        return $this;
+    }
+    
+    /**
+     * Gets currency
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+  
+    /**
+     * Sets currency
+     * @param string $currency Applies to the following gateway types: telekom.de
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        
+        $this->currency = $currency;
+        return $this;
     }
     
     /**
@@ -250,23 +515,23 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     }
     
     /**
-     * Gets booking_status
+     * Gets items
      * @return string
      */
-    public function getBookingStatus()
+    public function getItems()
     {
-        return $this->booking_status;
+        return $this->items;
     }
   
     /**
-     * Sets booking_status
-     * @param string $booking_status Applies to the following gateway types: holidaycheck.de
+     * Sets items
+     * @param string $items Applies to the following gateway types: amazon.de
      * @return $this
      */
-    public function setBookingStatus($booking_status)
+    public function setItems($items)
     {
         
-        $this->booking_status = $booking_status;
+        $this->items = $items;
         return $this;
     }
     
@@ -292,27 +557,6 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     }
     
     /**
-     * Gets received
-     * @return string
-     */
-    public function getReceived()
-    {
-        return $this->received;
-    }
-  
-    /**
-     * Sets received
-     * @param string $received Applies to the following gateway types: allianz.de
-     * @return $this
-     */
-    public function setReceived($received)
-    {
-        
-        $this->received = $received;
-        return $this;
-    }
-    
-    /**
      * Gets operation_number
      * @return string
      */
@@ -334,48 +578,6 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     }
     
     /**
-     * Gets period_of_travel
-     * @return string
-     */
-    public function getPeriodOfTravel()
-    {
-        return $this->period_of_travel;
-    }
-  
-    /**
-     * Sets period_of_travel
-     * @param string $period_of_travel Applies to the following gateway types: holidaycheck.de
-     * @return $this
-     */
-    public function setPeriodOfTravel($period_of_travel)
-    {
-        
-        $this->period_of_travel = $period_of_travel;
-        return $this;
-    }
-    
-    /**
-     * Gets invoice_number
-     * @return string
-     */
-    public function getInvoiceNumber()
-    {
-        return $this->invoice_number;
-    }
-  
-    /**
-     * Sets invoice_number
-     * @param string $invoice_number Applies to the following gateway types: congstar.de
-     * @return $this
-     */
-    public function setInvoiceNumber($invoice_number)
-    {
-        
-        $this->invoice_number = $invoice_number;
-        return $this;
-    }
-    
-    /**
      * Gets hotel
      * @return string
      */
@@ -393,48 +595,6 @@ class GatewayItemListResultItemMeta implements ArrayAccess
     {
         
         $this->hotel = $hotel;
-        return $this;
-    }
-    
-    /**
-     * Gets invoice_date
-     * @return string
-     */
-    public function getInvoiceDate()
-    {
-        return $this->invoice_date;
-    }
-  
-    /**
-     * Sets invoice_date
-     * @param string $invoice_date Applies to the following gateway types: o2online.de
-     * @return $this
-     */
-    public function setInvoiceDate($invoice_date)
-    {
-        
-        $this->invoice_date = $invoice_date;
-        return $this;
-    }
-    
-    /**
-     * Gets currency
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-  
-    /**
-     * Sets currency
-     * @param string $currency Applies to the following gateway types: telekom.de
-     * @return $this
-     */
-    public function setCurrency($currency)
-    {
-        
-        $this->currency = $currency;
         return $this;
     }
     

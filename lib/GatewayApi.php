@@ -325,7 +325,7 @@ class GatewayApi
         // parse inputs
         $resourcePath = "/gateway/types";
         $resourcePath = str_replace("{format}", "json", $resourcePath);
-        $method = "POST";
+        $method = "GET";
         $httpBody = '';
         $queryParams = array();
         $headerParams = array();
