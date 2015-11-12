@@ -131,3 +131,34 @@ Building a new version of the SDK from the latest xtractor.io JSON Spec is as ea
 ```
 ./build/build.sh
 ```
+
+### Important Disclaimer:
+
+The swagger build currently does not support "null" values. As a result, the Organizeme\Xtractor\ObjectSerializer class
+triggers an error when serializing the API response:
+
+```
+PHP Fatal error:  Class 'null' not found in /path/lib/ObjectSerializer.php on line 211
+PHP Stack trace:
+PHP   1. {main}() /path/examples/test.php:0
+PHP   2. Organizeme\Xtractor\SemanticsApi->getDocumentSemantics() /path/examples/test.php:14
+PHP   3. Organizeme\Xtractor\ObjectSerializer->deserialize() /path/lib/SemanticsApi.php:202
+PHP   4. Organizeme\Xtractor\ObjectSerializer->deserialize() /path/lib/ObjectSerializer.php:221
+PHP   5. Organizeme\Xtractor\ObjectSerializer->deserialize() /path/lib/ObjectSerializer.php:221
+PHP   6. Organizeme\Xtractor\ObjectSerializer->deserialize() /path/lib/ObjectSerializer.php:191
+```
+
+The error has been addressed in a PR: https://github.com/swagger-api/swagger-codegen/pull/1560
+
+In the meantime, you need to patch ObjectSerializer.php yourself after every build.
+Find the following line:
+
+```
+} elseif (in_array($class, array('integer', 'int', 'void', 'number', 'object', 'double', 'float', 'byte', 'DateTime', 'string', 'mixed', 'boolean', 'bool'))) {
+```
+
+and add ```'null'``` to the list. The result should look like this:
+
+```
+} elseif (in_array($class, array('integer', 'int', 'void', 'number', 'object', 'double', 'float', 'byte', 'DateTime', 'string', 'mixed', 'boolean', 'bool', 'null'))) {
+```
