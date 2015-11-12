@@ -1,0 +1,10 @@
+{
+  "groupId": "Organizeme",
+  "modelPackage": "Organizeme\\Xtractor\\Models",
+  "apiPackage": "Organizeme\\Xtractor",
+  "invokerPackage": "Organizeme\\Xtractor",
+  "artifactId": "Xtractor",
+  "artifactVersion": "1.4.0",
+  "composerVendorName": "organizeme",
+  "composerProjectName": "xtractor"
+}

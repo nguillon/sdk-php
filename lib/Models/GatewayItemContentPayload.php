@@ -156,9 +156,9 @@ class GatewayItemContentPayload implements ArrayAccess
      */
     public function setType($type)
     {
-        $allowed_values = array("allianz.de", "congstar.de", "holidaycheck.de", "o2online.de", "telekom.de");
+        $allowed_values = array("allianz.de", "amazon.de", "congstar.de", "holidaycheck.de", "o2online.de", "telekom.de");
         if (!in_array($type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'congstar.de', 'holidaycheck.de', 'o2online.de', 'telekom.de'");
+            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'allianz.de', 'amazon.de', 'congstar.de', 'holidaycheck.de', 'o2online.de', 'telekom.de'");
         }
         $this->type = $type;
         return $this;

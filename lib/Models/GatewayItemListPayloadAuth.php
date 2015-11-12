@@ -84,13 +84,13 @@ class GatewayItemListPayloadAuth implements ArrayAccess
   
     
     /**
-      * $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+      * $username Username for the gateway to use. Applies to the following gateway types: allianz.de, amazon.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
       * @var string
       */
     protected $username;
     
     /**
-      * $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+      * $password Password for the gateway to use. Applies to the following gateway types: allianz.de, amazon.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
       * @var string
       */
     protected $password;
@@ -119,7 +119,7 @@ class GatewayItemListPayloadAuth implements ArrayAccess
   
     /**
      * Sets username
-     * @param string $username Username for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+     * @param string $username Username for the gateway to use. Applies to the following gateway types: allianz.de, amazon.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
      * @return $this
      */
     public function setUsername($username)
@@ -140,7 +140,7 @@ class GatewayItemListPayloadAuth implements ArrayAccess
   
     /**
      * Sets password
-     * @param string $password Password for the gateway to use. Applies to the following gateway types: allianz.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
+     * @param string $password Password for the gateway to use. Applies to the following gateway types: allianz.de, amazon.de, congstar.de, holidaycheck.de, o2online.de, telekom.de
      * @return $this
      */
     public function setPassword($password)
